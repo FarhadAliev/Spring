@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Fresh Market</title>
+    <title th:text="${title}">Fresh Market</title>
     <script src="https://kit.fontawesome.com/44a5bc4613.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/FreshMarket.css">
-    <link rel="stylesheet" href="../static/css/contact.css">
+    <link rel="stylesheet" th:href="@{/css/FreshMarket.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/contact.css}" type="text/css">
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    
@@ -124,11 +125,11 @@
     <div class="container row first-row-input">
 
          <div class="First-name-input-block col-6">
-            <label  class="labels-for-input" for="input">First Name<span class="span-for-input">&nbsp;*</span></label>
+            <label  class="labels-for-input" >First Name<span class="span-for-input">&nbsp;*</span></label>
              <input class="input-contact"  value="" type="text">
          </div>
          <div class="last-name-input-block col-6">
-            <label class="labels-for-input" for="input">Last Name <span class="span-for-input">&nbsp;*</span></label>
+            <label class="labels-for-input" >Last Name <span class="span-for-input">&nbsp;*</span></label>
              <input class="input-contact"  value="" type="text">
          </div>
 
@@ -140,11 +141,11 @@
     <div class="container  row second-row-input">
 
         <div class="email-input-block col-6">
-           <label class="labels-for-input" for="input" >Email<span class="span-for-input">&nbsp;*</span></label>
+           <label class="labels-for-input" >Email<span class="span-for-input">&nbsp;*</span></label>
             <input class="input-contact"  value="" type="email">
         </div>
         <div class="subject-input-block col-6">
-           <label class="labels-for-input" for="input">Subject <span>&nbsp;*</span></label>
+           <label class="labels-for-input" >Subject <span>&nbsp;*</span></label>
             <input class="input-contact-subject input-contact"  value="" type="text" >
         </div>
 
@@ -158,7 +159,7 @@
    <div class="container  text-input-block ">
 
     <div  class="contacts text-area-input-block ">
-       <label class="label-for-text-area" for="input">Type your message here...<span>&nbsp;*</span></label>
+       <label class="label-for-text-area">Type your message here...<span>&nbsp;*</span></label>
        <textarea  class="text-area input-contact" name="comment" ></textarea>
     </div>
     
@@ -301,12 +302,12 @@
             <h5  class="second-footer-title">GET IT FRESH</h5>
         </div>
         <div>
-            <p class="second-footer-text-Get-it"  ">
+            <p class="second-footer-text-Get-it">
                 Email
             </p>
         </div>
         <div class="footer-email">
-            <input class="footer-email" required id="email" pattern=".+@gmail.com" class="email-btn" type="email">
+            <input class="footer-email email-btn" required id="email" pattern=".+@gmail.com"  type="email">
         </div>
         <div class="second-footer-text" >
             <button class="btn btn-light btn-hover my-button">SUBSCRIBE
@@ -469,7 +470,7 @@
                     <p class="card-total">
                         <b>Total</b></p>
                     <p class="card-total-price"><b>$8.39</b></p>
-                    <a href="VeiwCart.html">
+                    <a href="ViewCart.html">
                         <button class="add-to-card-view btn light" type="submit">View Cart</button>
                         </a>
                 </div>
@@ -500,8 +501,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
         integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
         crossorigin="anonymous"></script>
-    <script src="../static/js/FreshMarket.js"></script>
-    <script src="../static/js/contact.js"></script>
+    <script  th:src="@{/js/FreshMarket.js}"></script>
+<script  th:src="@{/js/contact.js}"></script>
 
 
 

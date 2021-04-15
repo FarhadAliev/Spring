@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Policy</title>
+        <title th:text="${title}">Policy</title>
         <script src="https://kit.fontawesome.com/44a5bc4613.js" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <link rel="stylesheet" href="../static/css/FreshMarket.css">
-        <link rel="stylesheet" href="../static/css/Shipping&Policy.css">
+        <link rel="stylesheet" th:href="@{/css/FreshMarket.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/css/ShippingPolicy.css}" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap" rel="stylesheet">
@@ -285,12 +286,12 @@ We may from time to time provide interactive services on our Website such as,
             <h5  class="second-footer-title">GET IT FRESH</h5>
         </div>
         <div>
-            <p class="second-footer-text-Get-it"  ">
+            <p class="second-footer-text-Get-it">
                 Email
             </p>
         </div>
         <div class="footer-email">
-            <input class="footer-email" required id="email" pattern=".+@gmail.com" class="email-btn" type="email">
+            <input class="footer-email email-btn" required id="email" pattern=".+@gmail.com" type="email">
         </div>
         <div class="second-footer-text" >
             <button class="btn btn-light btn-hover my-button">SUBSCRIBE
@@ -486,7 +487,7 @@ We may from time to time provide interactive services on our Website such as,
                     <p class="card-total">
                         <b>Total</b></p>
                     <p class="card-total-price"><b>$8.39</b></p>
-                    <a href="VeiwCart.html">
+                    <a href="ViewCart.html">
                         <button class="add-to-card-view btn light" type="submit">View Cart</button>
                         </a>
                 </div>
@@ -512,8 +513,7 @@ We may from time to time provide interactive services on our Website such as,
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
         integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
         crossorigin="anonymous"></script>
-        <script src="../static/js/FreshMarket.js"></script>
-
+    <script  th:src="@{/js/FreshMarket.js}"></script>
 
 
 
