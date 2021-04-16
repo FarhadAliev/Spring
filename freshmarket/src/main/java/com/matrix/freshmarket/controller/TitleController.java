@@ -14,7 +14,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String homePage( Model model) {
-        model.addAttribute("title", "home");
+        model.addAttribute("title", "Home");
         return "FreshMarket";
     }
 
@@ -45,19 +45,19 @@ public class HomeController {
 
     @GetMapping("/shop_1")
     public String shopPage_1( Model model) {
-        model.addAttribute("title", "shop_1");
+        model.addAttribute("title", "Shop");
         return "FreshMarketShop-1";
     }
 
     @GetMapping("/shop_2")
     public String shopPage_2( Model model) {
-        model.addAttribute("title", "shop_2");
+        model.addAttribute("title", "Shop");
         return "FreshMarketShop-2";
     }
 
     @GetMapping("/login")
     public String loginPage( Model model) {
-        model.addAttribute("title", "login");
+        model.addAttribute("title", "Login");
         return "LogIn";
     }
 
