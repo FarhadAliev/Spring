@@ -1,2 +1,4 @@
-package com.matrix.freshmarket.model;public class ProductCategory {
+package com.matrix.freshmarket.model;
+
+public class ProductCategory {
 }

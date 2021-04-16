@@ -1,2 +1,4 @@
-package com.matrix.freshmarket.service;public class ProductService {
+package com.matrix.freshmarket.service;
+
+public class ProductService {
 }

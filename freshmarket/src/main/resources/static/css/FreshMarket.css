@@ -586,7 +586,7 @@ width: 30%;
        color: #2A6049; 
        float: left;  
       
-         padding-left: 6%;
+         padding-left: 10%;
       
        
 }
@@ -596,7 +596,7 @@ width: 30%;
      font-family: sans-serif;
       color: #2A6049; 
       float: left;  
-        padding-left: 5%;
+        padding-left: 10%;
 }
 
 
@@ -1008,11 +1008,6 @@ width: 30%;
          font-family: sans-serif;
 }
 
-
-
-
-
-
 @media only screen and (min-width: 1200px){
     .my-chat{
         width: 5%;
@@ -1023,7 +1018,7 @@ width: 30%;
         padding: 30%;
     }
     .chat-footer-input{
-        width: 55%;
+        width: 50%;
     }
     .chat-footer-button{
         width: 23%;
@@ -1031,10 +1026,9 @@ width: 30%;
 
     .chat-icon:hover{
         padding: 33%;
+
     }
 }
-
-
 
 
 @media only screen and (max-width: 1200px) and (min-width: 992px){
@@ -1063,7 +1057,7 @@ width: 30%;
         width: 5%;
     }
     .chat-icon{
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         padding: 30%;
     }
 
@@ -1075,17 +1069,17 @@ width: 30%;
         font-size: 0.8rem;
     }
     .chat-icon:hover{
-        padding: 30%;
+        padding: 33%;
     }
 }
 
 @media only screen and (max-width: 768px) and (min-width: 674px){
     .my-chat{
         width: 5%;
-       
+
     }
     .chat-icon{
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         padding: 30%;
     }
     .chat-footer-input{
@@ -1099,7 +1093,7 @@ width: 30%;
         font-size: 1.2rem;
     }
     .chat-icon:hover{
-        padding: 32%;
+        padding: 33%;
     }
 }
 
@@ -1108,10 +1102,10 @@ width: 30%;
 @media only screen and (max-width: 674px) and (min-width: 572px){
     .my-chat{
         width: 5%;
-       
+
     }
     .chat-icon{
-        font-size: 1.1rem;
+        font-size: 1rem;
         padding: 30%;
     }
     .chat-footer-input{
@@ -1133,19 +1127,18 @@ width: 30%;
 @media only screen and (max-width: 572px) and (min-width: 0px){
     .my-chat{
         display: none;
-       
+
     }
     .chat-icon{
         display: none;
     }
-   
+
     .chat{
         display: none;
     }
-   
-    
-}
 
+
+}
 
 
 
@@ -1223,6 +1216,10 @@ width: 30%;
       width: 100%;
        text-align: center;
         margin-top: 5%;
+}
+
+.add-to-card-view:hover{
+    color: white;
 }
 
 .card-text-price{

@@ -19,14 +19,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <a href="C:\Users\Farhad\Desktop\WorkBranch\Project\Web-Project\Matrix-Web\FreshMarket.html" >
+                <a th:href="@{/}" >
                     <i class="fas fa-times close-log" ></i>
                 </a>
                 <div class="card">
                     <form onsubmit="event.preventDefault()" class="box">
                         <h1>Sign Up</h1>
                         <p class="Sign-up-already-text">Already a member?
-                            <a class="Sign-up-text-2" href="LogIn.html">&nbsp;Log In</a></p>
+                            <a class="Sign-up-text-2" th:href="@{/login}">&nbsp;Log In</a></p>
                        
 
                         <input type="text" name="" placeholder="Email">

@@ -1,2 +1,4 @@
-package com.matrix.freshmarket.entity;public class ProductEntity {
+package com.matrix.freshmarket.entity;
+
+public class ProductEntity {
 }

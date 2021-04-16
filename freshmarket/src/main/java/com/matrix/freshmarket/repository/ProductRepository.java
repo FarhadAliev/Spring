@@ -1,2 +1,4 @@
-package com.matrix.freshmarket.repository;public class ProductRepository {
+package com.matrix.freshmarket.repository;
+
+public class ProductRepository {
 }
