@@ -86,6 +86,32 @@
         </div>
 
     </div>
+        //-----------------------------------------------------------------------------
+        <div class="container">
+            <table id="example" class="table table-bordered table-striped" style="width: 100%">
+                <thead>
+                <tr class="table table-dark">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>price</th>
+                    <th>category</th>
+                    <th>image</th>
+                    <th>action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.id}"/>
+                    <td th:text="${product.productName}"/>
+                    <td th:text="${product.specialPrice}"/>
+                    <td th:text="${product.productCategory}"/>
+                    <td th:text="${product.productImg}"/>
+
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
 
         <!-- ----------------------------------------------------------------------------------------- -->
        <!--Product Slider  -->
@@ -244,18 +270,16 @@
 
                 
                 <div class="container Grab-first-line">
-                    <div class="row row-Grab">
-                    <div class="col-3 column">
-                    <div class="card Grab-cards box ">
+                    <div class="row row-Grab"  >
+                    <div class="col-3 column"  th:each="product : ${firstLine}">
+                    <div class="card Grab-cards box " >
                         <a href="../ProductsInfo.html">
-                        <img class="card-img-top" src="../gallery/p-9.jpg" alt="" >
+                        <img class="card-img-top" th:src="${product.productImg}" alt="" >
                         </a>
-                        <button class="btn card-text card-special-price">Special Price</button>
                         <hr>
                         <div class="card-body">
-                            <h5 class="card-title  products-name" >Head & Shoulders Classic </h5>
-                            <p class="card-text products-price">$5.99
-                            </p>
+                            <h5 class="card-title  products-name" th:text="${product.productName}"></h5>
+                            <p class="card-text products-price"  th:text="${product.productPrice}"></p>
                             <div  class="summ-product-btn ">
                                 <div class="counter">
                                     <button class="minus  btn light">-</button>
@@ -274,78 +298,7 @@
 
 
 
-                    <div class="col-3 column">
-                    <div class="card Grab-cards box ">
-                        <a href="../ProductsInfo.html">
-                        <img class="card-img-top" src="../gallery/p-10.jpg" alt="" style="position:relative;">
-                        </a>
-                        <hr>
-                        <div class="card-body ">
-                            <h5 class="card-title  products-name" >Tide Ultra Oxi Liquid</h5>
-                            <p class="card-text products-price">$9.99
-                            </p>
-                            <div  class="summ-product-btn">
-                                <div class="counter" >
-                                    <button class="minus  btn light" >-</button>
-                                    <input class="summ-products-input btn light" type="number" min="0" max="1000000" step="1"
-                                        value="0" >
-                                    <button class="plus  btn light">+</button>
-                                </div>
-                            </div>
-                            
-                            <button class="btn light add-to-card " type="submit" >Add to Cart</button>
-                        
-                        </div>
-                    </div>
-                    </div>
 
-
-                   <div class="col-3 column">
-                    <div class="card Grab-cards box ">
-                        <a href="../ProductsInfo.html">
-                        <img class="card-img-top" src="../gallery/p-11.jpg" alt="" style="position:relative;">
-                        </a>
-                        <hr>
-                        <div class="card-body">
-                            <h5 class="card-title  products-name">Stella Artois Lager Beerz</h5>
-                            <p class="card-text products-price">$14.99
-                            </p>
-                            <div  class="summ-product-btn">
-                                <div class="counter">
-                                    <button class="minus  btn light">-</button>
-                                    <input class="summ-products-input btn light" type="number" min="0" max="1000000" step="1"
-                                        value="0" >
-                                    <button class="plus  btn light">+</button>
-                                </div>
-                            </div>
-                            <button class="btn light add-to-card" type="submit">Add to Cart</button>
-                        </div>
-                    </div>
-                   </div>
-
-                    <div class="col-3 column">
-                    <div class="card Grab-cards box ">
-                        <a href="../ProductsInfo.html">
-                        <img class="card-img-top" src="../gallery/p-12.jpg" alt="" style="position:relative;">
-                        </a>
-                        <hr>
-                        <div class="card-body">
-                            <h5 class="card-title  products-name" >
-                                PICS Mushroom, Stems & Pieces</h5>
-                            <p class="card-text products-price" >$1.09
-                            </p>
-                            <div  class="summ-product-btn">
-                                <div class="counter">
-                                    <button class="minus  btn light">-</button>
-                                    <input class="summ-products-input btn light" type="number" min="0" max="1000000" step="1"
-                                        value="0" >
-                                    <button class="plus  btn light">+</button>
-                                </div>
-                            </div>
-                            <button class="btn light add-to-card" type="submit">Add to Cart</button>
-                        </div>
-                    </div>
-                    </div>
 
 
                 </div>
@@ -356,117 +309,6 @@
                 <!-- -------------------------------------------------------------------------------- -->
 
 
-
-                <div class="container Grab-second-line">
-                    <div class="row row-Grab">
-                    <div class="col-3 column">
-                    <div class="card Grab-cards  box">
-                        <a href="../ProductsInfo.html">
-                        <img class="card-img-top" src="../gallery/p-13.jpg" alt="" style="position:relative;">
-                        </a>
-                        <button class="btn card-text card-special-price ">Special Price</button>
-                        <hr>
-                        <div class="card-body">
-                            <h5 class="card-title  products-name">Feta Cheese</h5>
-                            <p class="card-text products-price" >$8.39
-                            </p>
-                            <div  class="summ-product-btn">
-                                <div class="counter">
-                                    <button class="minus  btn light">-</button>
-                                    <input class="summ-products-input btn light" type="number" min="1" max="1000000" step="1"
-                                        value="0" >
-                                    <button class="plus  btn light">+</button>
-                                </div>
-                            </div>
-                            <button class="btn light add-to-card " type="submit" >Add to Cart</button>
-                        </div>
-                    </div>
-</div>
-
-
-                    <div class="col-3 column">
-                    <div class="card Grab-cards  box">
-                        <a href="../ProductsInfo.html">
-                        <img class="card-img-top" src="../gallery/p-14.jpg" alt="" style="position:relative;">
-                        </a>
-                        <hr>
-                        <div class="card-body">
-                            <h5 class="card-title  products-name">Dole Mandarin Fruit Juice</h5>
-                            <p class="card-text products-price">$2.99
-                            </p>
-                            <div  class="summ-product-btn">
-                                <div class="counter">
-                                    <button class="minus  btn light">-</button>
-                                    <input class="summ-products-input btn light" type="number" min="1" max="1000000" step="1"
-                                        value="0">
-                                    <button class="plus  btn light">+</button>
-                                </div>
-                            </div>
-                            <button class="btn light add-to-card" type="submit" >Add to Cart</button>
-                        </div>
-                    </div>
-</div>
-
-
-                    <div class="col-3 column">
-                    <div class="card Grab-cards  box">
-                        <a href="../ProductsInfo.html">
-                        <img class="card-img-top" src="../gallery/p-15.jpg" alt="" style="position:relative;">
-                        </a>
-                        <hr>
-                        <div class="card-body">
-                            <h5 class="card-title  products-name">
-                                PICS Potato Chips</h5>
-                            <p class="card-text products-price">$1.99
-                            </p>
-                            <div   class="summ-product-btn">
-                                <div class="counter">
-                                    <button class="minus  btn light">-</button>
-                                    <input class="summ-products-input btn light" type="number" min="1" max="1000000" step="1"
-                                        value="0">
-                                    <button class="plus  btn light">+</button>
-                                </div>
-                            </div>
-                            <button class="btn light add-to-card " type="submit">Add to Cart</button>
-                        </div>
-                    </div>
-</div>
-
-                    <div class="col-3 column">
-                    <div class="card Grab-cards  box" >
-                        <a href="../ProductsInfo.html">
-                        <img class="card-img-top" src="../gallery/p-16.jpeg" alt="" style="position:relative;">
-                        </a>
-                        <hr>
-                        <div class="card-body">
-                            <h5 class="card-title  products-name">Marie Callender's Chicken</h5>
-                            <p class="card-text products-price" >$2.19
-                            </p>
-                            <div  class="summ-product-btn">
-                                <div class="counter">
-                                    <button class="minus  btn light">-</button>
-                                    <input class="summ-products-input btn light" type="number" min="0" max="1000000" step="1"
-                                        value="0">
-                                    <button class="plus  btn light">+</button>
-                                </div>
-                            </div>
-                            <button class="btn light add-to-card" type="submit">Add to Cart</button>
-                        </div>
-                    </div>
-</div>
-
-
-                </div>
-
-
-                
-
-
-
-
-
-            
-            </div>
             </div>
         </div>
         

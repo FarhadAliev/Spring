@@ -1,4 +1,5 @@
 package com.matrix.freshmarket.model;
 
-public class ProductCategory {
+public enum ProductCategory {
+    Food,Drink,Cleaning_Supplies, Personal_Care
 }
