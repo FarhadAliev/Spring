@@ -15,9 +15,9 @@ public class ProductService{
         this.productRepository = productRepository;
     }
 
-    public List<ProductEntity> findAllBySpecialPriceIsNotNull(){
+    public List<ProductEntity> findNotNulltop4(){
         List<ProductEntity> products=
-                productRepository.findAllBySpecialPriceIsNotNull();
+                productRepository.findNotNulltop4();
         return products;
     }
 

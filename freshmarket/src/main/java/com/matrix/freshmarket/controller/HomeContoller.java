@@ -26,6 +26,9 @@ public class HomeContoller {
     @GetMapping("/")
     public String homePage(Model model) {
         model.addAttribute("title", "Home");
+        List<ProductEntity> productSlider =
+                productService.findNotNulltop4();
+        model.addAttribute("slider",productSlider);
         List<ProductEntity> productsFirst =
                 productService.findtop8();
         model.addAttribute("firstLine",productsFirst);
