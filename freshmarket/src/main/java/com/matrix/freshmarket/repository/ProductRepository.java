@@ -22,4 +22,8 @@ List<ProductEntity> findNotNulltop4();
             "  LIMIT 8 ",
             nativeQuery=true)
    List<ProductEntity> findbytop8();
+
+    @Query(value =" SELECT * FROM product WHERE special_price IS NOT NULL GROUP BY id ASC LIMIT 4 OFFSET 0;", nativeQuery=true)
+    List<ProductEntity> findFirstElement();
+
 }
