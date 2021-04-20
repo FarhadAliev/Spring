@@ -1,80 +1,26 @@
 
+var items = [];
+$(document).ready(function(){
 
-var product=[
-    {
-        name: 'Poland Spring Water',
-        slary:'$5.29',
-        image:'gallery/z-1.jpg'
-    },
-    {
-        name: 'Dial Hand Soap',
-        slary:'$1.59',
-        image:'gallery/z-2.jpg'
-    },
-    {
-        name: 'Hellmann s Mayonnaise',
-        slary:'$30.99',
-        image:'gallery/z-3.jpg'
-    },
-
-    {
-        name: 'Heinz Ketchup',
-        slary:'$2.88',
-        image:'gallery/z-4.jpg'
-    },
-
-    {
-        name: 'Tresemmé Shampoo',
-        slary:'$2.99',
-        image:'gallery/z-5.jpg'
-    },
-    {
-        name: 'Garden Gourmet',
-        slary:'$4.19',
-        image:'gallery/z-6.jpg'
-    },
-    {
-        name: 'Poland Spring Water',
-        slary:'$5.29',
-        image:'gallery/z-1.jpg'
-    },
-    {
-        name: 'Dial Hand Soap',
-        slary:'$1.59',
-        image:'gallery/z-2.jpg'
-    },
-    {
-        name: 'Hellmann s Mayonnaise',
-        slary:'$30.99',
-        image:'gallery/z-3.jpg'
-    },
-
-    {
-        name: 'Heinz Ketchup',
-        slary:'$2.88',
-        image:'gallery/z-4.jpg'
-    },
-
-    {
-        name: 'Tresemmé Shampoo',
-        slary:'$2.99',
-        image:'gallery/z-5.jpg'
-    },
-    {
-        name: 'Garden Gourmet',
-        slary:'$4.19',
-        image:'gallery/z-6.jpg'
-    }
-];
-
+    $.ajax({
+        url:"/slider",
+        type : "GET",
+        dataType: 'JSON',
+        data : items,
+        success: function(data) {
+            $.each( data, function( key, val ) {
+                items.push( "{'" + key + "' : '" + val + "'}" );
+            });
+        },
+    })
+});
+$.getJSON( "/slider", function( items ) {
+    console.log(items[0].productName);
+});
 
 
 var index = 0;
-
-
-var count = product.length;
-
-
+var count = items.length;
 document.querySelector('.div-icon-1').addEventListener('click', function () {
     index--;
     
@@ -104,23 +50,24 @@ document.querySelector('.div-icon-2').addEventListener('click', function () {
 });
 
 
+
 function showSlideNext(index) {
 
-    document.querySelector('.title-z-1').textContent = product[0+index].name;
-    document.querySelector('.text-z-1').textContent= product[0+index].slary;
-    document.querySelector('.img-z-1').setAttribute('src', product[0+index].image);
+    document.querySelector('.title-z-1').textContent = obj[0+index].productName;
+    document.querySelector('.text-z-1').textContent= obj[0+index].slary;
+    document.querySelector('.img-z-1').setAttribute('src', obj[0+index].image);
 
-    document.querySelector('.title-z-2').textContent = product[1+index].name;
-    document.querySelector('.text-z-2').textContent= product[1+index].slary;
-    document.querySelector('.img-z-2').setAttribute('src', product[1+index].image);
+    document.querySelector('.title-z-2').textContent = obj[1+index].name;
+    document.querySelector('.text-z-2').textContent= obj[1+index].slary;
+    document.querySelector('.img-z-2').setAttribute('src', obj[1+index].image);
 
-    document.querySelector('.title-z-3').textContent = product[2+index].name;
-    document.querySelector('.text-z-3').textContent= product[2+index].slary;
-    document.querySelector('.img-z-3').setAttribute('src', product[2+index].image);
+    document.querySelector('.title-z-3').textContent = obj[2+index].name;
+    document.querySelector('.text-z-3').textContent= obj[2+index].slary;
+    document.querySelector('.img-z-3').setAttribute('src', obj[2+index].image);
 
-    document.querySelector('.title-z-4').textContent = product[3+index].name;
-    document.querySelector('.text-z-4').textContent= product[3+index].slary;
-    document.querySelector('.img-z-4').setAttribute('src', product[3+index].image);
+    document.querySelector('.title-z-4').textContent = obj[3+index].name;
+    document.querySelector('.text-z-4').textContent= obj[3+index].slary;
+    document.querySelector('.img-z-4').setAttribute('src', obj[3+index].image);
 }
 
 
@@ -143,3 +90,15 @@ function showSlidePrev(index) {
     document.querySelector('.text-z-4').textContent= product[index+3].slary;
     document.querySelector('.img-z-4').setAttribute('src', product[index+3].image);
 }
+
+
+
+
+
+
+
+
+
+
+
+

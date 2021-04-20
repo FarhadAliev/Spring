@@ -12,7 +12,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
     @Query(value = "SELECT * FROM  product"
             +" WHERE special_price IS NOT NULL"+
-            "  LIMIT 4 ",
+            "  LIMIT 6 ",
             nativeQuery=true)
 List<ProductEntity> findNotNulltop4();
 
