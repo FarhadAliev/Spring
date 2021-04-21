@@ -87,31 +87,7 @@
 
     </div>
         //-----------------------------------------------------------------------------
-        <div class="container">
-            <table id="example" class="table table-bordered table-striped" style="width: 100%">
-                <thead>
-                <tr class="table table-dark">
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>price</th>
-                    <th>category</th>
-                    <th>image</th>
-                    <th>action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="product : ${products}">
-                    <td th:text="${product.id}"/>
-                    <td th:text="${product.productName}"/>
-                    <td th:text="${product.specialPrice}"/>
-                    <td th:text="${product.productCategory}"/>
-                    <td th:text="${product.productImg}"/>
 
-                </tr>
-                </tbody>
-            </table>
-
-        </div>
 
         <!-- ----------------------------------------------------------------------------------------- -->
        <!--Product Slider  -->
@@ -130,15 +106,16 @@
 
                 <div class="container products-slider ">
                     <div class="row row-slider">
+
                     <div class="card box products-box col-3 column-slider c-1">
                         <a href="../ProductsInfo.html">
-                        <img class="card-img-top img-z-1" src="../gallery/z-1.jpg" alt="" >
+                        <img class="card-img-top img-z-1"  alt="" >
                         </a>
                         <button class="btn card-special-price">Special Price</button>
                         <hr>
                         <div class="card-body">
-                            <h5 class="card-title title-z-1 products-name">Poland Spring Water</h5>
-                            <p class="card-text text-z-1 products-price">$5.29
+                            <h5 class="card-title title-z-1 products-name"></h5>
+                            <p class="card-text text-z-1 products-price">
                             </p>
 
                             <div class="summ-product-btn">
@@ -153,16 +130,15 @@
                         </div>
                     </div>
 
-
-                    <div class="card box products-box col-3 column-slider c-2">
+                        <div class="card box products-box col-3 column-slider c-2">
                         <a href="../ProductsInfo.html">
-                        <img class="card-img-top img-z-2" src="../gallery/z-2.jpg" alt="">
+                        <img class="card-img-top img-z-2" src="" alt="">
                         </a>
                         <button class="btn card-special-price">Special Price</button>
                         <hr>
                         <div class="card-body">
-                            <h5 class="card-title title-z-2  products-name" >Dial Hand Soap</h5>
-                            <p class="card-text text-z-2 products-price">$3.97
+                            <h5 class="card-title title-z-2  products-name" ></h5>
+                            <p class="card-text text-z-2 products-price">
 
                             </p>
                             <div class="summ-product-btn">
@@ -176,17 +152,16 @@
                             <button class="btn light add-to-card">Add to Cart</button>
                         </div>
                     </div>
-
 
                     <div class="card box products-box col-3 column-slider c-3">
                         <a href="../ProductsInfo.html">
-                        <img class="card-img-top img-z-3" src="../gallery/z-3.jpg" alt="">
+                        <img class="card-img-top img-z-3"  alt="">
                         </a>
                         <button class="btn card-special-price">Special Price</button>
                         <hr>
                         <div class="card-body">
-                            <h5 class="card-title title-z-3  products-name" >Hellmann's Mayonnaise</h5>
-                            <p class="card-text text-z-3 products-price">$30.99
+                            <h5 class="card-title title-z-3  products-name" ></h5>
+                            <p class="card-text text-z-3 products-price">
 
                             </p>
                             <div class="summ-product-btn">
@@ -200,19 +175,18 @@
                             <button class="btn light add-to-card">Add to Cart</button>
                         </div>
                     </div>
-
 
 
                     <div class="card box products-box col-3 column-slider c-4">
                         <button class="btn card-special-price">Special Price</button>
                         <a href="../ProductsInfo.html">
-                        <img class="card-img-top  img-z-4" src="../gallery/z-4.jpg" alt="">
+                        <img class="card-img-top  img-z-4" src="" alt="">
                         </a>
                         <hr>
                         <div class="card-body">
-                            <h5 class="card-title title-z-4  products-name" >Heinz
-                                Ketchup </h5>
-                            <p class="card-text text-z-4 products-price">$2.88
+                            <h5 class="card-title title-z-4  products-name" >
+                               </h5>
+                            <p class="card-text text-z-4 products-price">
                             </p>
                             <div class="summ-product-btn">
                                 <div class="counter">
@@ -225,6 +199,8 @@
                             <button class="btn light add-to-card">Add to Cart</button>
                         </div>
                     </div>
+
+
 
 
 

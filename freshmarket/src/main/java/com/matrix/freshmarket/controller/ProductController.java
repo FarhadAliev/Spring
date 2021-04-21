@@ -29,8 +29,6 @@ public class ProductController {
      public List<ProductEntity> slider(){
         List<ProductEntity> productSlider =
                 productService.findNotNulltop4();
-
-
         return productSlider;
     }
 }
