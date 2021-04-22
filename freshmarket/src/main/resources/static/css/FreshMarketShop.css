@@ -371,7 +371,7 @@ margin-bottom:5% ;
     margin-top: 2%;
      margin-bottom: 3%;
       margin-right: 5%;
-        width: 15%;
+        width: 20%;
          font: 1em sans-serif;
 }
 
@@ -441,6 +441,7 @@ display: flex;
 
 .column-shop{
   width: 25%;
+    margin-bottom: 5%;
   
 }
 

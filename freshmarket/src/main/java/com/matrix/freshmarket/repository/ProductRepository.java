@@ -1,6 +1,9 @@
 package com.matrix.freshmarket.repository;
 
 import com.matrix.freshmarket.entity.ProductEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -26,4 +29,13 @@ List<ProductEntity> findNotNulltop4();
     @Query(value =" SELECT * FROM product WHERE special_price IS NOT NULL GROUP BY id ASC LIMIT 4 OFFSET 0;", nativeQuery=true)
     List<ProductEntity> findFirstElement();
 
+     List<ProductEntity> findAll(Sort sort);
+
+    List<ProductEntity> findAll();
+
+    @Override
+    Page<ProductEntity> findAll(Pageable pageable);
+
+    @Query(value = "select * from product WHERE product_category='Food'", nativeQuery = true)
+    Page<ProductEntity> findFood(Pageable pageable);
 }

@@ -67,11 +67,7 @@ public class HomeContoller {
         return "Faq";
     }
 
-    @GetMapping("/shop_1")
-    public String shopPage_1( Model model) {
-        model.addAttribute("title", "Shop");
-        return "FreshMarketShop-1";
-    }
+
 
     @GetMapping("/shop_2")
     public String shopPage_2( Model model) {

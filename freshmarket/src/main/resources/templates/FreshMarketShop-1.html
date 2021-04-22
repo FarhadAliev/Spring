@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+
 
 <head>
     <meta charset="UTF-8">
@@ -70,12 +71,12 @@
 
             <div class="container">
                 <div  class="list-collection ">
-                    <ul class="list-collection-sections" >
+                    <ul class="list-collection-sections"  >
                         <li style="padding-bottom: 5%;" >
-                            <a  class="list-collection-sections-a"  href="">All</a>
+                            <a  class="list-collection-sections-a"  th:href="@{'/shop'}">All</a>
                         </li>
                         <li>
-                            <a  class="list-collection-sections-a"  href="">Food</a>
+                            <a  class="list-collection-sections-a"  th:href="@{'/shop/Food'}">Food</a>
                         </li>
                         <li>
                             <a class="list-collection-sections-a"  href="">Drink</a>
@@ -161,7 +162,6 @@
 
             <select class="light sort-options" name="PRODUCTS" id="PRODUCTS">
                 <option value="Sort by">Sort By</option>
-                <option value="Newst">Newst</option>
                 <option value="Price (low to high)">Price (low to high)</option>
                 <option value="Price (high to low)">Price (high to low)</option>
                 <option value="Name A-Z">Name A-Z</option>
@@ -177,15 +177,15 @@
 
     <div class="container shop-first-line">
         <div class="row row-shop">
-        <div class="col-3 column-shop">
+        <div class="col-3 column-shop" th:each="product : ${products}">
         <div class="card shop-cards box">
             <a href="ProductsInfo.html">
-            <img class="shop-img-top" src="../gallery/z-1.jpg" alt="" >
+            <img class="shop-img-top" src="" alt="" th:src="${product.productImg}">
             </a>
             <hr class="hr-card">
             <div class="card-body">
-                <h5 class="card-title  products-name-shop" >Poland Spring  </h5>
-                <p class="card-text products-price-shop" >$5.29
+                <h5 class="card-title  products-name-shop" th:text="${product.productName}"></h5>
+                <p class="card-text products-price-shop" th:text="${product.productPrice}">
                 </p>
                 <div  class="summ-product-btn-shop ">
                     <div class="counter-shop">
@@ -204,82 +204,6 @@
         </div>
 
 
-
-        <div class="col-3 column-shop">
-        <div class="card shop-cards box ">
-            <a href="ProductsInfo.html">
-            <img class="shop-img-top" src="../gallery/z-2.jpg" alt="" style="position:relative;">
-            </a>
-            <hr class="hr-card">
-            <div class="card-body">
-                <h5 class="card-title   products-name-shop" >Dial Antibacterial Liquid</h5>
-                <p class="card-text products-price-shop">$5.34
-                </p>
-                <div  class="summ-product-btn-shop">
-                    <div class="counter-shop" >
-                        <button class="minus  btn light" >-</button>
-                        <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1"
-                            value="0">
-                        <button class="plus  btn light">+</button>
-                    </div>
-                </div>
-                <button class="btn light add-to-card-shop" type="submit" >Add to Cart</button>
-            </div>
-        </div>
-        </div>
-
-
-
-        <div class="col-3 column-shop">
-            <div class="card shop-cards box ">
-                <a href="ProductsInfo.html">
-                <img class="shop-img-top" src="../gallery/z-3.jpg" alt="" style="position:relative;">
-                </a>
-                <hr class="hr-card">
-                <div class="card-body">
-                    <h5 class="card-title   products-name-shop" >Hellmann's Mayonnaise</h5>
-                    <p class="card-text products-price-shop">$3.77
-                    </p>
-                    <div  class="summ-product-btn-shop">
-                        <div class="counter-shop" >
-                            <button class="minus  btn light" >-</button>
-                            <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1"
-                                value="0">
-                            <button class="plus  btn light">+</button>
-                        </div>
-                    </div>
-                    <button class="btn light add-to-card-shop" type="submit" >Add to Cart</button>
-                </div>
-            </div>
-            </div>
-
-
-
-            <div class="col-3 column-shop">
-                <div class="card shop-cards box ">
-                    <a href="ProductsInfo.html">
-                    <img class="shop-img-top" src="../gallery/z-4.jpg" alt="" style="position:relative;">
-                    </a>
-                    <hr class="hr-card">
-                    <div class="card-body">
-                        <h5 class="card-title   products-name-shop" >Heinz Ketchup</h5>
-                        <p class="card-text products-price-shop">$2.99
-                        </p>
-                        <div  class="summ-product-btn-shop">
-                            <div class="counter-shop" >
-                                <button class="minus  btn light" >-</button>
-                                <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1"
-                                    value="0">
-                                <button class="plus  btn light">+</button>
-                            </div>
-                        </div>
-                        <button class="btn light add-to-card-shop" type="submit" >Add to Cart</button>
-                    </div>
-                </div>
-                </div>
-    
-
-    
     </div>
 
 </div>
@@ -287,387 +211,12 @@
 
 
 
-<div class="container shop-line">
-    <div class="row row-shop">
-    <div class="col-3 column-shop">
-    <div class="card shop-cards box ">
-        <a href="ProductsInfo.html">
-        <img class="shop-img-top" src="../gallery/z-5.jpg" alt="" >
-        </a>
-        <hr class="hr-card">
-        <div class="card-body">
-            <h5 class="card-title  products-name-shop" >Tresemmé Shampoo</h5>
-            <p class="card-text products-price-shop" >$2.99
-            </p>
-            <div  class="summ-product-btn-shop ">
-                <div class="counter-shop">
-                    <button class="minus  btn light">-</button>
-                    <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1"
-                        value="0">
-                    <button class="plus  btn light">+</button>
-                    
-                </div>
-            </div>
-            <div>
-            <button class="btn light add-to-card-shop">Add to Cart</button>
-        </div>
-        </div>
-    </div>
-    </div>
-
-
-
-    <div class="col-3 column-shop">
-    <div class="card shop-cards box ">
-        <a href="ProductsInfo.html">
-        <img class="shop-img-top" src="../gallery/z-6.jpg" alt="" style="position:relative;">
-        </a>
-        <hr class="hr-card">
-        <div class="card-body">
-            <h5 class="card-title   products-name-shop" >Garden Gourmet</h5>
-            <p class="card-text products-price-shop">$4.19
-            </p>
-            <div  class="summ-product-btn-shop">
-                <div class="counter-shop" >
-                    <button class="minus  btn light" >-</button>
-                    <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1"
-                        value="0">
-                    <button class="plus  btn light">+</button>
-                </div>
-            </div>
-            <button class="btn light add-to-card-shop" type="submit" >Add to Cart</button>
-        </div>
-    </div>
-    </div>
-
-
-
-    <div class="col-3 column-shop">
-        <div class="card shop-cards box ">
-            <a href="ProductsInfo.html">
-            <img class="shop-img-top" src="../gallery/p-9.jpg" alt="" style="position:relative;">
-            </a>
-            <hr class="hr-card">
-            <div class="card-body">
-                <h5 class="card-title   products-name-shop" >Head & Shoulders Classic</h5>
-                <p class="card-text products-price-shop">$5.99
-                </p>
-                <div  class="summ-product-btn-shop">
-                    <div class="counter-shop" >
-                        <button class="minus  btn light" >-</button>
-                        <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1"
-                            value="0">
-                        <button class="plus  btn light">+</button>
-                    </div>
-                </div>
-                <button class="btn light add-to-card-shop" type="submit" >Add to Cart</button>
-            </div>
-        </div>
-        </div>
-
-
-
-        <div class="col-3 column-shop">
-            <div class="card shop-cards box ">
-                <a href="ProductsInfo.html">
-                <img class="shop-img-top" src="../gallery/p-10.jpg" alt="" style="position:relative;">
-                </a>
-                <hr class="hr-card">
-                <div class="card-body">
-                    <h5 class="card-title   products-name-shop" >Tide Ultra Oxi Liquid </h5>
-                    <p class="card-text products-price-shop">$9.99
-                    </p>
-                    <div  class="summ-product-btn-shop">
-                        <div class="counter-shop" >
-                            <button class="minus  btn light" >-</button>
-                            <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1"
-                                value="0">
-                            <button class="plus  btn light">+</button>
-                        </div>
-                    </div>
-                    <button class="btn light add-to-card-shop" type="submit" >Add to Cart</button>
-                </div>
-            </div>
-            </div>
-
-
-  
-
- 
-
-
 </div>
 
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="container shop-line">
-    <div class="row row-shop">
-    <div class="col-3 column-shop">
-    <div class="card shop-cards box ">
-        <a href="ProductsInfo.html">
-        <img class="shop-img-top" src="../gallery/p-11.jpg" alt="" >
-        </a>
-        <hr class="hr-card">
-        <div class="card-body">
-            <h5 class="card-title  products-name-shop" >Stella Artois Lager Beer </h5>
-            <p class="card-text products-price-shop" >$14.99
-            </p>
-            <div  class="summ-product-btn-shop ">
-                <div class="counter-shop">
-                    <button class="minus  btn light">-</button>
-                    <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1"
-                        value="0">
-                    <button class="plus  btn light">+</button>
-                    
-                </div>
-            </div>
-            <div>
-            <button class="btn light add-to-card-shop">Add to Cart</button>
-        </div>
-        </div>
-    </div>
-    </div>
-
-
-
-    <div class="col-3 column-shop">
-    <div class="card shop-cards box ">
-        <a href="ProductsInfo.html">
-        <img class="shop-img-top" src="../gallery/p-12.jpg" alt="" style="position:relative;">
-        </a>
-        <hr class="hr-card">
-        <div class="card-body">
-            <h5 class="card-title   products-name-shop" >PICS Mushroom, Stems & Pieces</h5>
-            <p class="card-text products-price-shop">$1.09
-            </p>
-            <div  class="summ-product-btn-shop">
-                <div class="counter-shop" >
-                    <button class="minus  btn light" >-</button>
-                    <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1"
-                        value="0">
-                    <button class="plus  btn light">+</button>
-                </div>
-            </div>
-            <button class="btn light add-to-card-shop" type="submit" >Add to Cart</button>
-        </div>
-    </div>
-    </div>
-
-
-
-    <div class="col-3 column-shop">
-        <div class="card shop-cards box ">
-            <a href="ProductsInfo.html">
-            <img class="shop-img-top" src="../gallery/p-13.jpg" alt="" style="position:relative;">
-            </a>
-            <hr class="hr-card">
-            <div class="card-body">
-                <h5 class="card-title   products-name-shop" >Feta Cheese</h5>
-                <p class="card-text products-price-shop">$8.39
-                </p>
-                <div  class="summ-product-btn-shop">
-                    <div class="counter-shop" >
-                        <button class="minus  btn light" >-</button>
-                        <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1"
-                            value="0">
-                        <button class="plus  btn light">+</button>
-                    </div>
-                </div>
-                <button class="btn light add-to-card-shop" type="submit" >Add to Cart</button>
-            </div>
-        </div>
-        </div>
-
-
-
-        <div class="col-3 column-shop">
-            <div class="card shop-cards box ">
-                <a href="ProductsInfo.html">
-                <img class="shop-img-top" src="../gallery/p-14.jpg" alt="" style="position:relative;">
-                </a>
-                <hr class="hr-card">
-                <div class="card-body">
-                    <h5 class="card-title   products-name-shop" >Dole Mandarin Fruit Juice</h5>
-                    <p class="card-text products-price-shop">$2.99
-                    </p>
-                    <div  class="summ-product-btn-shop">
-                        <div class="counter-shop" >
-                            <button class="minus  btn light" >-</button>
-                            <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1"
-                                value="0">
-                            <button class="plus  btn light">+</button>
-                        </div>
-                    </div>
-                    <button class="btn light add-to-card-shop" type="submit" >Add to Cart</button>
-                </div>
-            </div>
-            </div>
-
-
-  
-
- 
-
-
-</div>
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="container shop-line">
-    <div class="row row-shop">
-    <div class="col-3 column-shop">
-    <div class="card shop-cards box ">
-        <a href="ProductsInfo.html">
-        <img class="shop-img-top" src="../gallery/p-15.jpg" alt="" >
-        </a>
-        <hr class="hr-card">
-        <div class="card-body">
-            <h5 class="card-title  products-name-shop" >PICS Potato Chips</h5>
-            <p class="card-text products-price-shop" >$1.99
-            </p>
-            <div  class="summ-product-btn-shop ">
-                <div class="counter-shop">
-                    <button class="minus  btn light">-</button>
-                    <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1"
-                        value="0">
-                    <button class="plus  btn light">+</button>
-                    
-                </div>
-            </div>
-            <div>
-            <button class="btn light add-to-card-shop">Add to Cart</button>
-        </div>
-        </div>
-    </div>
-    </div>
-
-
-
-    <div class="col-3 column-shop">
-    <div class="card shop-cards box ">
-        <a href="ProductsInfo.html">
-        <img class="shop-img-top" src="../gallery/p-16.jpeg" alt="" style="position:relative;">
-        </a>
-        <hr class="hr-card">
-        <div class="card-body">
-            <h5 class="card-title   products-name-shop" >Marie Callender's Chicken</h5>
-            <p class="card-text products-price-shop">$2.19
-            </p>
-            <div  class="summ-product-btn-shop">
-                <div class="counter-shop" >
-                    <button class="minus  btn light" >-</button>
-                    <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1"
-                        value="0">
-                    <button class="plus  btn light">+</button>
-                </div>
-            </div>
-            <button class="btn light add-to-card-shop" type="submit" >Add to Cart</button>
-        </div>
-    </div>
-    </div>
-
-
-
-    <div class="col-3 column-shop">
-        <div class="card shop-cards box ">
-            <a href="ProductsInfo.html">
-            <img class="shop-img-top" src="../gallery/p-17.jpeg" alt="" style="position:relative;">
-            </a>
-            <hr class="hr-card">
-            <div class="card-body">
-                <h5 class="card-title   products-name-shop" >Cantaloupe</h5>
-                <p class="card-text products-price-shop">$1.98
-                </p>
-                <div  class="summ-product-btn-shop">
-                    <div class="counter-shop" >
-                        <button class="minus  btn light" >-</button>
-                        <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1"
-                            value="0">
-                        <button class="plus  btn light">+</button>
-                    </div>
-                </div>
-                <button class="btn light add-to-card-shop" type="submit" >Add to Cart</button>
-            </div>
-        </div>
-        </div>
-
-
-
-        <div class="col-3 column-shop">
-            <div class="card shop-cards box ">
-                <a href="ProductsInfo.html">
-                <img class="shop-img-top" src="../gallery/p-18.jpeg" alt="" style="position:relative;">
-                </a>
-                <hr class="hr-card">
-                <div class="card-body">
-                    <h5 class="card-title   products-name-shop" >Vegetable Tray with Buttermilk</h5>
-                    <p class="card-text products-price-shop">$5.98
-                    </p>
-                    <div  class="summ-product-btn-shop">
-                        <div class="counter-shop" >
-                            <button class="minus  btn light" >-</button>
-                            <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1"
-                                value="0">
-                            <button class="plus  btn light">+</button>
-                        </div>
-                    </div>
-                    <button class="btn light add-to-card-shop" type="submit" >Add to Cart</button>
-                </div>
-            </div>
-            </div>
-
-
-  
-
- 
-
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="container page-link-class">
- 
-    <div class="indicator-page">
-    <ul class="pagination" >
-      
-      <li class="page-item "><a class="page-link" th:href="@{/shop_1}">1</a></li>
-      <li class="page-item "><a class="page-link" th:href="@{/shop_2}">2</a></li>
-     
-    </ul>
-</div>
-
-</div>
-
-
-</div>
-</div>
+    <div th:replace="content/Pagination  :: content"></div>
      
 
 
