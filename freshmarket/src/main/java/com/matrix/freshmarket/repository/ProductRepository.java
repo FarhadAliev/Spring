@@ -29,13 +29,24 @@ List<ProductEntity> findNotNulltop4();
     @Query(value =" SELECT * FROM product WHERE special_price IS NOT NULL GROUP BY id ASC LIMIT 4 OFFSET 0;", nativeQuery=true)
     List<ProductEntity> findFirstElement();
 
-     List<ProductEntity> findAll(Sort sort);
 
-    List<ProductEntity> findAll();
-
-    @Override
     Page<ProductEntity> findAll(Pageable pageable);
+
+
+
 
     @Query(value = "select * from product WHERE product_category='Food'", nativeQuery = true)
     Page<ProductEntity> findFood(Pageable pageable);
+
+
+    @Query(value = "select * from product WHERE product_category='Drink'", nativeQuery = true)
+    Page<ProductEntity> findDrink(Pageable pageable);
+
+
+    @Query(value = "select * from product WHERE product_category='Personal Care'", nativeQuery = true)
+    Page<ProductEntity> findPersonalCare(Pageable pageable);
+
+
+    @Query(value = "select * from product WHERE product_category='Cleaning Supplies'", nativeQuery = true)
+    Page<ProductEntity> findCleaningSupplies(Pageable pageable);
 }

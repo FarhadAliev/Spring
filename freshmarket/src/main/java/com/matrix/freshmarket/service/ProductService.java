@@ -35,28 +35,29 @@ public class ProductService{
     }
 
 
-    public List<ProductEntity> getProduct(String direction ,String property){
 
-        Sort sort = direction.equals("asc")
-                ?Sort.by(Sort.Direction.ASC,property)
-                :Sort.by(Sort.Direction.DESC,property);
 
-        List<ProductEntity> products=
-                productRepository.findAll(sort);
-        return products;
+
+    public Page<ProductEntity> getProduct(Pageable pageable,String direction,String property){
+
+        if(property.equals("food")){
+            return productRepository.findFood(pageable);
+        }else if(property.equals("drink")){
+            return  productRepository.findDrink(pageable);
+        }else if(property.equals("personalCare")){
+            return  productRepository.findPersonalCare(pageable);
+        }else if(property.equals("cleaningSupplies")){
+        return  productRepository.findCleaningSupplies(pageable);
     }
 
-
-    public Page<ProductEntity> getProduct(Pageable pageable){
 
         return productRepository.findAll(pageable);
     }
 
 
-    public List<ProductEntity> getProductAll(){
 
-        return productRepository.findAll();
-    }
+
+
 
     public Page<ProductEntity> getFood(Pageable pageable){
 

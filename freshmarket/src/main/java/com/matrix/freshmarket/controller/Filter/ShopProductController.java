@@ -1,4 +1,4 @@
-package com.matrix.freshmarket.controller;
+package com.matrix.freshmarket.controller.Filter;
 
 import com.matrix.freshmarket.entity.ProductEntity;
 import com.matrix.freshmarket.service.ProductService;
@@ -30,38 +30,28 @@ public class ShopProductController {
 
 
 
-    @GetMapping("/shop{name}")
-    public String shopPage(@PathVariable("name") String name,
+    @RequestMapping("/shop")
+    public String shopPage(@RequestParam(name = "direction", defaultValue = "DESC") String direction,
+                            @RequestParam(name = "property" , defaultValue = "all") String property,
                            @RequestParam (value = "page",
                                               required=false ,
                                               defaultValue = "0")
                                               Integer page,
+
                                               Model model) {
 
+
+
        Page<ProductEntity> productPage =
-                productService.getProduct(PageRequest.of(page,8));
+                productService.getProduct(PageRequest.of(page,8),direction,property);
+        model.addAttribute("property",property);
         model.addAttribute("products",productPage);
         model.addAttribute("numbers", IntStream.range(0,productPage.getTotalPages()).toArray());
+
 
         return "FreshMarketShop-1";
     }
 
 
-
-
-    @GetMapping("/shop/Food")
-    public String shopPageFood(@RequestParam (value = "page",
-            required=false ,
-            defaultValue = "0")
-                                   Integer page,
-                           Model model) {
-
-        Page<ProductEntity> productPage =
-                productService.getFood(PageRequest.of(page,8));
-        model.addAttribute("products",productPage);
-        model.addAttribute("numbers", IntStream.range(0,productPage.getTotalPages()).toArray());
-
-        return "FreshMarketShop-1";
-    }
 
 }

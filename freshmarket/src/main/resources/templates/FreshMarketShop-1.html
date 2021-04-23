@@ -73,19 +73,19 @@
                 <div  class="list-collection ">
                     <ul class="list-collection-sections"  >
                         <li style="padding-bottom: 5%;" >
-                            <a  class="list-collection-sections-a"  th:href="@{'/shop'}">All</a>
+                            <a  class="list-collection-sections-a"  th:href="@{'/shop?page='+${products.number}+'&property=all'}">All</a>
                         </li>
                         <li>
-                            <a  class="list-collection-sections-a"  th:href="@{'/shop/Food'}">Food</a>
+                            <a  class="list-collection-sections-a"  th:href="@{'/shop?page='+${products.number}+'&property=food'}">Food</a>
                         </li>
                         <li>
-                            <a class="list-collection-sections-a"  href="">Drink</a>
+                            <a class="list-collection-sections-a"  th:href="@{'/shop?page='+${products.number}+'&property=drink'}">Drink</a>
                         </li>
                         <li>
-                            <a  class="list-collection-sections-a"  href="">Personal Care </a>
+                            <a  class="list-collection-sections-a" th:href="@{'/shop?page='+${products.number}+'&property=personalCare'}">Personal Care </a>
                         </li>
                         <li>
-                            <a class="list-collection-sections-a"  href="">Cleaning Supplies</a>
+                            <a class="list-collection-sections-a"  th:href="@{'/shop?page='+${products.number}+'&property=cleaningSupplies'}">Cleaning Supplies</a>
                         </li>
                     </ul>
                 </div>

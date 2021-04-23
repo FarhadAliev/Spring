@@ -11,7 +11,7 @@
         <li class="page-item " th:each="pageNumber : ${numbers}"
         th:class="${pageNumber == products.number} ? active"
         >
-          <a class="page-link" th:href="@{'/shop?page='+${pageNumber}}"
+          <a class="page-link" th:href="@{'/shop?page='+${pageNumber}+'&property='+${property}}"
           th:text="${pageNumber+1}">1</a>
         </li>
 
