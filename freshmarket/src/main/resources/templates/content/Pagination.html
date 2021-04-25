@@ -6,7 +6,7 @@
   <div class="container page-link-class">
 
     <div class="indicator-page">
-      <ul class="pagination" th:if="${products.totalPages > 0}" >
+      <ul class="pagination" th:if="${products.totalPages > 1}" >
 
         <li class="page-item " th:each="pageNumber : ${numbers}"
         th:class="${pageNumber == products.number} ? active"

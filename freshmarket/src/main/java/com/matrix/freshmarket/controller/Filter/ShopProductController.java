@@ -30,9 +30,11 @@ public class ShopProductController {
 
 
 
-    @RequestMapping("/shop")
+    @GetMapping(value = "/shop")
     public String shopPage(@RequestParam(name = "direction", defaultValue = "DESC") String direction,
                             @RequestParam(name = "property" , defaultValue = "all") String property,
+                           @RequestParam(name="min",defaultValue = "$0") String min,
+                           @RequestParam(name="max",defaultValue = "$100") String max,
                            @RequestParam (value = "page",
                                               required=false ,
                                               defaultValue = "0")
@@ -40,10 +42,10 @@ public class ShopProductController {
 
                                               Model model) {
 
-
-
        Page<ProductEntity> productPage =
-                productService.getProduct(PageRequest.of(page,8),direction,property);
+                productService.getProduct(PageRequest.of(page,8),direction,property,min);
+
+
         model.addAttribute("property",property);
         model.addAttribute("products",productPage);
         model.addAttribute("numbers", IntStream.range(0,productPage.getTotalPages()).toArray());

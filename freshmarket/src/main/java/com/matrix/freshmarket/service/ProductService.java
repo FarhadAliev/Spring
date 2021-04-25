@@ -38,7 +38,14 @@ public class ProductService{
 
 
 
-    public Page<ProductEntity> getProduct(Pageable pageable,String direction,String property){
+    public Page<ProductEntity> getProduct(Pageable pageable,String direction,String property,String min){
+
+
+        if(min.equals("$0")){
+            return productRepository.findPersonalCare(pageable);
+        }if(min.equals("$10")){
+            return productRepository.findFood(pageable);
+        }
 
         if(property.equals("food")){
             return productRepository.findFood(pageable);

@@ -73,19 +73,19 @@
                 <div  class="list-collection ">
                     <ul class="list-collection-sections"  >
                         <li style="padding-bottom: 5%;" >
-                            <a  class="list-collection-sections-a"  th:href="@{'/shop?page='+${products.number}+'&property=all'}">All</a>
+                            <a  class="list-collection-sections-a"  th:href="@{'/shop?page=0'+'&property=all'}">All</a>
                         </li>
                         <li>
-                            <a  class="list-collection-sections-a"  th:href="@{'/shop?page='+${products.number}+'&property=food'}">Food</a>
+                            <a  class="list-collection-sections-a"  th:href="@{'/shop?page=0'+'&property=food'}">Food</a>
                         </li>
                         <li>
-                            <a class="list-collection-sections-a"  th:href="@{'/shop?page='+${products.number}+'&property=drink'}">Drink</a>
+                            <a class="list-collection-sections-a"  th:href="@{'/shop?page=0'+'&property=drink'}">Drink</a>
                         </li>
                         <li>
-                            <a  class="list-collection-sections-a" th:href="@{'/shop?page='+${products.number}+'&property=personalCare'}">Personal Care </a>
+                            <a  class="list-collection-sections-a" th:href="@{'/shop?page=0'+'&property=personalCare'}">Personal Care </a>
                         </li>
                         <li>
-                            <a class="list-collection-sections-a"  th:href="@{'/shop?page='+${products.number}+'&property=cleaningSupplies'}">Cleaning Supplies</a>
+                            <a class="list-collection-sections-a"  th:href="@{'/shop?page=0'+'&property=cleaningSupplies'}">Cleaning Supplies</a>
                         </li>
                     </ul>
                 </div>
@@ -112,15 +112,14 @@
             <!-- --- -->
 
 
-
             <div class="range-price">
                 <div class="row">
                     <div class="select-product-price">
-                    <div class="col-xs-6 caption first-price">
-                        <span id="slider-range-value1"></span>
+                    <div class="col-xs-6 caption first-price" >
+                        <span id="slider-range-value1"  name="slider-range-value1"></span>
                       </div>
                       <div class="col-xs-6 text-right caption second-price">
-                         <span id="slider-range-value2"></span>
+                         <span id="slider-range-value2" name="slider-range-value2"></span>
                       </div>
                     </div>
                   <div class="col-sm-12 slider-range-block">
@@ -129,9 +128,9 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <form>
-                      <input type="hidden" name="min-value" value="">
-                      <input type="hidden" name="max-value" value="">
+                    <form  >
+                      <input class="min" type="hidden"  name="min-value" value="">
+                      <input class="max" type="hidden"  name="max-value" value="">
                     </form>
                   </div>
                 </div>
@@ -162,7 +161,7 @@
 
             <select class="light sort-options" name="PRODUCTS" id="PRODUCTS">
                 <option value="Sort by">Sort By</option>
-                <option value="Price (low to high)">Price (low to high)</option>
+                <option  value="Price (low to high)"></option>
                 <option value="Price (high to low)">Price (high to low)</option>
                 <option value="Name A-Z">Name A-Z</option>
                 <option value="Name Z-A">Name Z-A</option>
