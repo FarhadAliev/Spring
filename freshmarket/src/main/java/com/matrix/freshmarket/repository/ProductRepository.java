@@ -5,8 +5,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -48,4 +50,9 @@ List<ProductEntity> findNotNulltop4();
 
     @Query(value = "select * from product WHERE product_category='Cleaning Supplies'", nativeQuery = true)
     Page<ProductEntity> findCleaningSupplies(Pageable pageable);
+
+
+
+
+     List<ProductEntity> findByPrice(@Param("min") BigDecimal min, @Param("max") BigDecimal max);
 }

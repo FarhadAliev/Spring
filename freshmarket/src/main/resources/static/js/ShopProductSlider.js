@@ -55,7 +55,8 @@ $(document).ready(function() {
         'max': [100]
       },
       format: moneyFormat,
-      connect: true
+      connect: true,
+
     });
 
 
@@ -67,6 +68,25 @@ $(document).ready(function() {
         values[0]);
       document.getElementsByName('max-value').value = moneyFormat.from(
         values[1]);
+
+      console.log(values)
+
+        pass(values)
+
+
+
+     function pass(values){
+
+        var from_num = values[0];
+        var to_num = values[1];
+        var url="/shop?from_num=" + from_num + "&to_num=" + to_num
+        $.ajax({
+          type: "GET",
+          url: url,
+          contentType: "application/json;"
+        })
+
+      }
     });
   });
 
@@ -2017,18 +2037,10 @@ $(document).ready(function() {
 
 
 
-    $.ajax({
-      type: "GET",
-      contentType: "application/json",
-      url: "/shop",
-      data: JSON.stringify({
-        min:  $('#slider-range-value1').values,
-        max:  $('.min').ajaxSend()
-      }),
-      dataType: 'json',
 
 
-    });
+
+
       /** @export */
     window.wNumb = wNumb;
 
