@@ -128,15 +128,29 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <form  >
+                    <form >
                       <input class="min" type="hidden"  name="min-value" value="">
                       <input class="max" type="hidden"  name="max-value" value="">
+
+
                     </form>
                   </div>
                 </div>
               </div>
 
+
+
+                <div class="filter_button">
+                    <a th:href="@{'/shop?page=0'+'&min='+${minV}+'&max='+${maxV}}">
+                        <button   class="btn-dark btn">
+                            Filter by Price
+                        </button>
+                    </a>
+                </div>
+
             </div>
+
+
 
 
             <!-- --- -->

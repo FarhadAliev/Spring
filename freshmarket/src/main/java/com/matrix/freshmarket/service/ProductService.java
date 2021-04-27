@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -40,10 +41,15 @@ public class ProductService{
 
     public Page<ProductEntity> getProduct(Pageable pageable,String direction,String property,String min, String max){
 
+         if(min!="$0" || max!="$100" || min!=null){
 
-        if(min.equals("$10")){
-            return productRepository.findDrink(pageable);
-        }
+             String f=min.substring(1);
+             String  s=max.substring(1);
+
+             BigDecimal low=new BigDecimal(f.toString());
+             BigDecimal high = new BigDecimal(s.toString());
+          return productRepository.findPrice(pageable,low,high);
+         }
         if(property.equals("food")){
             return productRepository.findFood(pageable);
         }else if(property.equals("drink")){
@@ -61,11 +67,7 @@ public class ProductService{
 
 
 
-     public List<ProductEntity> findByPrice(String min, String max){
-        
 
-
-     }
 
     public Page<ProductEntity> getFood(Pageable pageable){
 

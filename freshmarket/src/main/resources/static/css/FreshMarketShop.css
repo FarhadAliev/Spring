@@ -446,6 +446,17 @@ display: flex;
 
 }
 
+
+.filter_button{
+    padding-left: 13%;
+}
+
+.btn-dark{
+    margin-top: 20%;
+    font-size: 0.8rem;
+}
+
+
 .column-shop{
   width: 25%;
     margin-bottom: 5%;

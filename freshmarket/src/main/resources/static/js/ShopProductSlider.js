@@ -1,3 +1,7 @@
+
+
+
+
 $('.plus-icon').click(function () {
     $('.list-collection').slideDown(700);
     $('.plus-icon').hide(700);
@@ -71,22 +75,28 @@ $(document).ready(function() {
 
       console.log(values)
 
-        pass(values)
+        pass(values,handle)
 
 
 
-     function pass(values){
-
+     function pass(values , handle){
         var from_num = values[0];
         var to_num = values[1];
-        var url="/shop?from_num=" + from_num + "&to_num=" + to_num
+        // var url="/shop?page=0&from_num=" + from_num + "&to_num=" + to_num
         $.ajax({
-          type: "GET",
-          url: url,
+          type: "POST",
+          url: "/shop",
+            dataType:"JSON",
+            data:JSON.stringify({
+              min : from_num,
+                max:to_num
+            }),
           contentType: "application/json;"
         })
 
       }
+
+
     });
   });
 
