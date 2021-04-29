@@ -36,7 +36,9 @@
             prices on award-winning products at Fresh Market. View our weekly specials, find recipes, and
             shop quality brands in store or online.</p>
         </div>
-
+    <div>
+        <p class="t"></p>
+    </div>
         <!-- ----------------------------------------------------------------------------------------- -->
       
 <div class="-shop-all-products-body">
@@ -111,7 +113,6 @@
                 </div>
             <!-- --- -->
 
-
             <div class="range-price">
                 <div class="row">
                     <div class="select-product-price">
@@ -140,14 +141,6 @@
 
 
 
-                <div class="filter_button">
-                    <a th:href="@{'/shop?page=0'+'&min='+${minV}+'&max='+${maxV}}">
-                        <button   class="btn-dark btn">
-                            Filter by Price
-                        </button>
-                    </a>
-                </div>
-
             </div>
 
 
@@ -175,7 +168,7 @@
 
             <select class="light sort-options" name="PRODUCTS" id="PRODUCTS">
                 <option value="Sort by">Sort By</option>
-                <option  value="Price (low to high)"></option>
+                <option  value="Price (low to high)">Price (low to v)</option>
                 <option value="Price (high to low)">Price (high to low)</option>
                 <option value="Name A-Z">Name A-Z</option>
                 <option value="Name Z-A">Name Z-A</option>
@@ -184,8 +177,6 @@
         </div>
 
      
-        
-
 
 
     <div class="container shop-first-line">
@@ -198,13 +189,11 @@
             <hr class="hr-card">
             <div class="card-body">
                 <h5 class="card-title  products-name-shop" th:text="${product.productName}"></h5>
-                <p class="card-text products-price-shop" th:text="${product.productPrice}">
-                </p>
+                <p class="card-text products-price-shop" th:text="${product.productPrice}"></p>
                 <div  class="summ-product-btn-shop ">
                     <div class="counter-shop">
                         <button class="minus  btn light">-</button>
-                        <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1"
-                            value="0" >
+                        <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1" value="0" >
                         <button class="plus  btn light">+</button>
                         
                     </div>

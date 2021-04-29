@@ -52,11 +52,7 @@ List<ProductEntity> findNotNulltop4();
     Page<ProductEntity> findCleaningSupplies(Pageable pageable);
 
 
-
-
-
-
-     @Query(value = "SELECT * FROM product WHERE product_price> :startPrice and product_price< :endPrice  " ,nativeQuery = true)
-    Page<ProductEntity> findPrice(Pageable pageable,@Param("startPrice") BigDecimal minPrice,@Param("endPrice")BigDecimal maxPrice);
+     @Query(value = "SELECT * FROM product WHERE product_price Between :startPrice and :endPrice   " ,nativeQuery = true)
+    List<ProductEntity> findPrice(@Param("startPrice") String minPrice,@Param("endPrice")String maxPrice);
 
 }

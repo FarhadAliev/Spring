@@ -5,6 +5,7 @@ import com.matrix.freshmarket.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -39,33 +40,39 @@ public class ProductService{
 
 
 
-    public Page<ProductEntity> getProduct(Pageable pageable,String direction,String property,String min, String max){
+    public Page<ProductEntity> getProduct(Integer page,String direction,String property,String sort){
 
-         if(min!="$0" || max!="$100" || min!=null){
 
-             String f=min.substring(1);
-             String  s=max.substring(1);
-
-             BigDecimal low=new BigDecimal(f.toString());
-             BigDecimal high = new BigDecimal(s.toString());
-          return productRepository.findPrice(pageable,low,high);
-         }
         if(property.equals("food")){
-            return productRepository.findFood(pageable);
-        }else if(property.equals("drink")){
-            return  productRepository.findDrink(pageable);
-        }else if(property.equals("personalCare")){
-            return  productRepository.findPersonalCare(pageable);
-        }else if(property.equals("cleaningSupplies")){
-        return  productRepository.findCleaningSupplies(pageable);
+       if (sort.equals("Name A-Z")){
+           return productRepository.findFood(PageRequest.of(page, 8, Sort.by("product_name").descending()));
+       }else if (sort.equals("Name Z-A")){
+                return productRepository.findFood(PageRequest.of(page, 8,Sort.by("product_name").descending()));
+            }
+            return productRepository.findFood(PageRequest.of(page, 8,Sort.by("product_name").descending()));
+       }
+
+//        }else if(property.equals("drink")){
+//            return  productRepository.findDrink(pageable);
+//        }else if(property.equals("personalCare")){
+//            return  productRepository.findPersonalCare(pageable);
+//        }else if(property.equals("cleaningSupplies")){
+//        return  productRepository.findCleaningSupplies(pageable);
+//    }else if(min!="0" || max!="100" || min!=null) {
+//            return productRepository.findPrice(pageable, min, max);
+//        }
+//
+        return productRepository.findAll(PageRequest.of(page, 8));
+
     }
 
 
-        return productRepository.findAll(pageable);
-    }
+   public List<ProductEntity> getProducts(String min,String max){
 
-
-
+       String first=min.substring(1);
+       String second=max.substring(1);
+       return  productRepository.findPrice(first,second);
+   }
 
 
 
