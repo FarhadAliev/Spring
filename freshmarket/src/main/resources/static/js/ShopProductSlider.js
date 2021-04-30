@@ -1,19 +1,4 @@
 
-//
-//
-// $(document).ready(function () {
-//     $(".sort-options").change(function () {
-//
-//         var sort=$('.sort-options').val()
-//         $.ajax({
-//             url: "/shop?sort="+sort,
-//             type: 'POST',
-//             contentType: 'application/json; charset=utf-8',
-//
-//         });
-//         location.reload();
-//     });
-// });
 
 
 
@@ -53,6 +38,26 @@ $('.minus-icon-price').click(function () {
 
 
 
+    function getSelectValue() {
+        var selectedValue = $("#PRODUCTS").val();
+        console.log(selectedValue)
+
+        $.ajax({
+            type: "GET",
+            url: "shop?sort=" + selectedValue
+
+        })
+        $(".column-shop").hide().fadeIn(2000);
+
+    }
+
+    var sort = getSelectValue();
+
+
+
+
+
+
 
 
 // Requires jQuery
@@ -76,7 +81,7 @@ $(document).ready(function() {
         'max': [100]
       },
       format: moneyFormat,
-      connect: true
+      connect: true,
 
 
     });
@@ -86,17 +91,19 @@ $(document).ready(function() {
 
 
     rangeSlider.noUiSlider.on('update', function(values, handle) {
-      document.getElementById('slider-range-value1').innerHTML = values[0];
+
+        document.getElementById('slider-range-value1').innerHTML = values[0];
       document.getElementById('slider-range-value2').innerHTML = values[1];
       document.getElementsByName('min-value').value = moneyFormat.from(
         values[0]);
       document.getElementsByName('max-value').value = moneyFormat.from(
         values[1]);
 
-      pass(values)
+      if(values[0]!="$0" || values[1]!="$100") {
+          pass(values)
+      }
 
     });
-
 
 
 
@@ -117,11 +124,8 @@ $(document).ready(function() {
                     JSON.stringify(result)
                     console.log(result)
 
-                    // $('.column-shop').attr("th:each","result : ${" + result+"}")
-                    // $('.shop-img-top').attr("th:src","${json.productImg}")
-                    // $('.products-name-shop').attr("th:text","${json.productName}")
-                    // $('.products-price-shop').attr("th:text","${json.productPrice}")
-                    $(".column-shop").hide().fadeIn();
+
+                    $(".page-link-class").hide(1000)
                         $('.shop-cards').html("")
 
 
@@ -129,16 +133,16 @@ $(document).ready(function() {
                     var i;
 
 
-                    for (i=0;i<result.length;i++) {
+                    for (i=0;i<result.content.length;i++) {
                         s += '<div class="col-3 column-shop">'
                         s += ' <div class="card shop-cards box">'
                         s += '<a href="ProductsInfo.html">'
-                        s += ' <img class="shop-img-top"  alt="" src='+result[i].productImg+'>'
+                        s += ' <img class="shop-img-top"  alt="" src='+result.content[i].productImg+'>'
                         s += '</a>'
                         s += '<hr class="hr-card">'
                         s += '<div class="card-body">'
-                        s += '<h5 class="card-title  products-name-shop" >'+result[i].productName+'</h5>'
-                        s += ' <p class="card-text products-price-shop">'+result[i].productPrice+'</p>'
+                        s += '<h5 class="card-title  products-name-shop" >'+result.content[i].productName+'</h5>'
+                        s += ' <p class="card-text products-price-shop">'+result.content[i].productPrice+'</p>'
                         s += ' <div  class="summ-product-btn-shop ">'
                         s += '<div class="counter-shop">'
                         s += '<button class="minus  btn light">-</button>'
@@ -153,14 +157,14 @@ $(document).ready(function() {
                         s += ' </div>'
                         s += ' </div>'
 
-                        console.log(result[i].productName)
+                        console.log(result.content[i].productName)
                     }
 
                     $('.row-shop').html(s)
 
 
 
-                    $(".column-shop").hide().fadeIn();
+                    $(".column-shop").hide().fadeIn(2000);
 
 
 

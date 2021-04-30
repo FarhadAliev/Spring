@@ -3,13 +3,11 @@ package com.matrix.freshmarket.controller.Filter;
 import com.matrix.freshmarket.entity.ProductEntity;
 import com.matrix.freshmarket.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/product")
@@ -22,18 +20,20 @@ public class ProductPriceController {
     @RequestMapping(value = "filter/{min}/{max}", method = RequestMethod.GET,
             produces = {MimeTypeUtils.APPLICATION_JSON_VALUE},
             headers = {"Accept=application/json"})
-    public ResponseEntity<List<ProductEntity>> search(
-            @PathVariable("min") String min, @PathVariable("max") String max
+    public ResponseEntity<Page<ProductEntity>> search(
+            @PathVariable("min") String min, @PathVariable("max") String max,
+            @RequestParam(value = "page",
+                    required = false,
+                    defaultValue = "0")
+                    Integer page,
+            @RequestParam(name = "property", defaultValue = "all") String property
     ) {
 
-        if (min == "$0" || max == "$100") {
-             return new ResponseEntity<List<ProductEntity>>(HttpStatus.BAD_REQUEST);
-        }
             try {
-                List<ProductEntity> products = productService.getProducts(min, max);
-                return new ResponseEntity<List<ProductEntity>>(products, HttpStatus.OK);
+                Page<ProductEntity> products = productService.getProducts(page,min, max);
+                return new ResponseEntity<Page<ProductEntity>>(products, HttpStatus.OK);
             } catch (Exception e) {
-                return new ResponseEntity<List<ProductEntity>>(HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<Page<ProductEntity>>(HttpStatus.BAD_REQUEST);
             }
         }
 

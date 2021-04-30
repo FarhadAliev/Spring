@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.IntStream;
@@ -22,10 +23,11 @@ public class ShopProductController {
 
 
 
-    @RequestMapping (value = "/shop")
+    @RequestMapping (value = "/shop", produces = {MimeTypeUtils.APPLICATION_JSON_VALUE},
+            headers = {"Accept=application/json"})
     public String shopPage(@RequestParam(name = "direction", defaultValue = "DESC") String direction,
                            @RequestParam(name = "property", defaultValue = "all") String property,
-                           @RequestParam(name = "sort" , defaultValue = "all") String sort,
+                           @RequestParam(name = "sort",defaultValue = "Sort by") String sort,
                            @RequestParam(value = "page",
                                    required = false,
                                    defaultValue = "0")
