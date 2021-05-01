@@ -3,23 +3,23 @@
 <div th:fragment="content">
 
 
-  <div class="container page-link-class">
+    <div class="container page-link-class">
 
-    <div class="indicator-page">
-      <ul class="pagination" th:if="${products.totalPages > 1}" >
+        <div class="indicator-page">
+            <ul class="pagination" th:if="${products.totalPages > 1}">
 
-        <li class="page-item " th:each="pageNumber : ${numbers}"
-        th:class="${pageNumber == products.number} ? active"
-        >
-          <a class="page-link" th:href="@{'/shop?page='+${pageNumber}+'&property='+${property}}"
-          th:text="${pageNumber+1}">1</a>
-        </li>
+                <li class="page-item " th:each="pageNumber : ${numbers}"
+                    th:class="${pageNumber == products.number} ? active"
+                >
+                    <a class="page-link" th:href="@{'/shop?page='+${pageNumber}+'&property='+${property}}"
+                       th:text="${pageNumber+1}">1</a>
+                </li>
 
 
-      </ul>
+            </ul>
+        </div>
+
     </div>
-
-  </div>
 
 
 </div>

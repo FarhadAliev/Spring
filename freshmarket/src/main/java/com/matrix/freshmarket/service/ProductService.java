@@ -79,11 +79,11 @@ public class ProductService{
     }
 
 
-   public Page<ProductEntity> getProducts(Integer page,String min,String max){
+   public Page<ProductEntity> getProducts(Integer page, String productType, String min,String max){
 
        String first=min.substring(1);
        String second=max.substring(1);
-       return  productRepository.findPrice(PageRequest.of(page, 8),first,second);
+       return  productRepository.findByPriceAndProductCategory(PageRequest.of(page, 8),first,second, productType);
    }
 
 
