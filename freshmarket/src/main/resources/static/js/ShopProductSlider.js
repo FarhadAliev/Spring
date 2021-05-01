@@ -117,21 +117,26 @@ $(document).ready(function() {
             console.log(values[1])
             var min = values[0];
             var max = values[1];
+            var productType = $('#product_type').val();
+
+            console.log('productType: ' + productType)
+
             $.ajax({
                 type: "GET",
-                url: "api/product/filter/" + min + "/" + max,
+                url: "api/product/filter/" + productType + "/" + min + "/" + max,
                 success : function(result){
                     JSON.stringify(result)
                     console.log(result)
 
 
-                    $(".page-link-class").hide(1000)
+                    // $(".page-link-class").hide(1000)
                         $('.shop-cards').html("")
 
 
                     var s=""
                     var i;
 
+                    console.log("--------result: " + result.totalPages)
 
                     for (i=0;i<result.content.length;i++) {
                         s += '<div class="col-3 column-shop">'
