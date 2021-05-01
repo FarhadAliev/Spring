@@ -11,15 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/product/filter/")
-public class ProductPriceController {
+public class PriceController {
 
     @Autowired
     private ProductService productService;
 
 
-//    @RequestMapping(value = "filter/{min}/{max}", method = RequestMethod.GET,
-//            produces = {MimeTypeUtils.APPLICATION_JSON_VALUE},
-//            headers = {"Accept=application/json"})
     @GetMapping("{productType}/{min}/{max}")
     public ResponseEntity<Page<ProductEntity>> search(
             @PathVariable("min") String min, @PathVariable("max") String max,
