@@ -59,6 +59,28 @@ public class ProductService{
     }
 
 
+
+    public Page<ProductEntity> getProductPrice(Integer page,String direction,String property,String min,String max){
+
+        String first=min.substring(1);
+        String second=max.substring(1);
+
+        if(property.equals("food")){
+            return productRepository.findFoodPrice(PageRequest.of(page, 8),first,second);
+        } else  if(property.equals("drink")){
+            return productRepository.findDrinkPrice(PageRequest.of(page, 8),first,second);
+        }else  if(property.equals("Personal Care")){
+            return productRepository.findPersonalCarePrice(PageRequest.of(page, 8),first,second);
+        }else  if(property.equals("Cleaning Supplies")){
+            return productRepository.findCleaningSuppliesPrice(PageRequest.of(page, 8),first,second);
+        }
+
+
+        return productRepository.findAllPrice(PageRequest.of(page, 8),first,second);
+
+    }
+
+
    public Page<ProductEntity> getProducts(Integer page, String productType, String min,String max){
 
        String first=min.substring(1);

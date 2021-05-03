@@ -33,8 +33,6 @@ List<ProductEntity> findNotNulltop4();
     Page<ProductEntity> findAll(Pageable pageable);
 
 
-
-
     @Query(value = "select * from product WHERE product_category='Food'", nativeQuery = true)
     Page<ProductEntity> findFood(Pageable pageable);
 
@@ -64,5 +62,34 @@ List<ProductEntity> findNotNulltop4();
 
 
 
+
+
+
+
+
+
+ @Query(value = "SELECT * FROM product WHERE product_price Between :startPrice and :endPrice", nativeQuery = true)
+ Page<ProductEntity> findAllPrice(Pageable pageable,@Param("startPrice") String minPrice,
+                                  @Param("endPrice")String maxPrice);
+
+
+ @Query(value = "SELECT * FROM product WHERE product_category='Food' and product_price BETWEEN :startPrice and :endPrice", nativeQuery = true)
+ Page<ProductEntity> findFoodPrice(Pageable pageable,@Param("startPrice") String minPrice,
+                              @Param("endPrice")String maxPrice);
+
+
+ @Query(value = "SELECT * FROM product WHERE product_category='Drink' and product_price BETWEEN :startPrice and :endPrice", nativeQuery = true)
+ Page<ProductEntity> findDrinkPrice(Pageable pageable,@Param("startPrice") String minPrice,
+                               @Param("endPrice")String maxPrice);
+
+
+ @Query(value = "SELECT * FROM product WHERE product_category='Personal Care' and product_price BETWEEN :startPrice and :endPrice", nativeQuery = true)
+ Page<ProductEntity> findPersonalCarePrice(Pageable pageable,@Param("startPrice") String minPrice,
+                                      @Param("endPrice")String maxPrice);
+
+
+ @Query(value = "SELECT * FROM product WHERE product_category='Cleaning Supplies' and product_price BETWEEN :startPrice and :endPrice", nativeQuery = true)
+ Page<ProductEntity> findCleaningSuppliesPrice(Pageable pageable,@Param("startPrice") String minPrice,
+                                          @Param("endPrice")String maxPrice);
 
 }

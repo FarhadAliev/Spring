@@ -28,21 +28,33 @@ public class ShopProductController {
     public String shopPage(@RequestParam(name = "direction", defaultValue = "DESC") String direction,
                            @RequestParam(name = "property", defaultValue = "all") String property,
                            @RequestParam(name = "sort", defaultValue = "sort") String sort,
+                           @RequestParam(name = "min", defaultValue = "$0") String min,
+                           @RequestParam(name = "max", defaultValue = "$100") String max,
                            @RequestParam(value = "page",
                                    required = false,
                                    defaultValue = "0")
                                    Integer page,
 
                            Model model) {
-        System.out.println(sort);
-        Page<ProductEntity> productPage =
-                productService.getProduct(page, direction, property);
-
+       if(!min.equals("$0") || !max.equals("$100")){
+           Page<ProductEntity> productPage =
+                   productService.getProductPrice(page, direction, property,min,max);
+           model.addAttribute("min",min);
+           model.addAttribute("max",max);
+           model.addAttribute("sort", sort);
+           model.addAttribute("property", property);
+           model.addAttribute("products", productPage);
+           model.addAttribute("numbers", IntStream.range(0, productPage.getTotalPages()).toArray());
+       }else {
+           Page<ProductEntity> productPage =
+                   productService.getProduct(page, direction, property);
+           model.addAttribute("min",min);
+           model.addAttribute("max",max);
         model.addAttribute("sort", sort);
         model.addAttribute("property", property);
         model.addAttribute("products", productPage);
         model.addAttribute("numbers", IntStream.range(0, productPage.getTotalPages()).toArray());
-
+       }
         return "FreshMarketShop-1";
     }
 

@@ -1,15 +1,8 @@
-
-
-
-
-
-
 $('.plus-icon').click(function () {
     $('.list-collection').slideDown(700);
     $('.plus-icon').hide(700);
     $('.minus-icon').show(700);
 });
-
 $('.minus-icon').click(function () {
     $('.list-collection').slideUp(700);
     $('.minus-icon').hide(700);
@@ -189,19 +182,21 @@ $(document).ready(function() {
                                 activePage = ""
                             }
                             p += '<li class="page-item "    ' + activePage + ' >'
-                            p += ' <a class="page-link" href="/shop?page=' + pageFirst + '&property=' + productType + '&min=' + min + '&max=' + max + '">' + pageNum + '</a>'
+                            p += ' <a class="page-link"  href="/shop?page=' + pageFirst + '&property=' + productType + '&min=' + min + '&max=' + max + '">' + pageNum + '</a>'
+
                             p += ' </li>'
                         }
 
                         p += ' </ul>'
-
-
 
                         $('.indicator-page').html(p)
                     }
                 }
 
             })
+
+
+
 
         }
 

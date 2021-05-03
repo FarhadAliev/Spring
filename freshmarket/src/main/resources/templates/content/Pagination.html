@@ -10,7 +10,7 @@
 
                 <li class="page-item " th:each="pageNumber : ${numbers}"
                     th:class="${pageNumber == products.number} ? active">
-                    <a class="page-link" th:href="@{'/shop?page='+${pageNumber}+'&property='+${property}}"
+                    <a class="page-link" th:href="@{'/shop?page='+${pageNumber}+'&property='+${property}+'&min='+${min}+'&max='+${max}}"
                        th:text="${pageNumber+1}">1</a>
                 </li>
 

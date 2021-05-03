@@ -31,8 +31,7 @@ public class PriceController {
         Page<ProductEntity> products;
         try {
              products = productService.getProducts(page, productType, min, max);
-            model.addAttribute("products", products);
-            model.addAttribute("numbers", IntStream.range(0, products.getTotalPages()).toArray());
+
 
             return new ResponseEntity<Page<ProductEntity>>(products, HttpStatus.OK);
         } catch (Exception e) {
