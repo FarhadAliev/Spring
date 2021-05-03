@@ -40,37 +40,17 @@ public class ProductService{
 
 
 
-    public Page<ProductEntity> getProduct(Integer page,String direction,String property,String sort){
+    public Page<ProductEntity> getProduct(Integer page,String direction,String property){
 
 
         if(property.equals("food")){
-       if (sort.equals("Name A-Z")){
-           return productRepository.findFood(PageRequest.of(page, 8, Sort.by("product_name").descending()));
-       }else if (sort.equals("Name Z-A")){
-                return productRepository.findFood(PageRequest.of(page, 8,Sort.by("product_name").descending()));
-            }
-            return productRepository.findFood(PageRequest.of(page, 8,Sort.by("product_name").descending()));
-       } else  if(property.equals("drink")){
-            if (sort.equals("Name A-Z")){
-                return productRepository.findDrink(PageRequest.of(page, 8, Sort.by("product_name").descending()));
-            }else if (sort.equals("Name Z-A")){
-                return productRepository.findDrink(PageRequest.of(page, 8,Sort.by("product_name").descending()));
-            }
-            return productRepository.findDrink(PageRequest.of(page, 8,Sort.by("product_name").descending()));
-        }else  if(property.equals("personalCare")){
-            if (sort.equals("Name A-Z")){
-                return productRepository.findPersonalCare(PageRequest.of(page, 8, Sort.by("product_name").descending()));
-            }else if (sort.equals("Name Z-A")){
-                return productRepository.findPersonalCare(PageRequest.of(page, 8,Sort.by("product_name").descending()));
-            }
-            return productRepository.findPersonalCare(PageRequest.of(page, 8,Sort.by("product_name").descending()));
-        }else  if(property.equals("cleaningSupplies")){
-            if (sort.equals("Name A-Z")){
-                return productRepository.findCleaningSupplies(PageRequest.of(page, 8, Sort.by("product_name").descending()));
-            }else if (sort.equals("Name Z-A")){
-                return productRepository.findCleaningSupplies(PageRequest.of(page, 8,Sort.by("product_name").descending()));
-            }
-            return productRepository.findCleaningSupplies(PageRequest.of(page, 8,Sort.by("product_name").descending()));
+            return productRepository.findFood(PageRequest.of(page, 8));
+        } else  if(property.equals("drink")){
+            return productRepository.findDrink(PageRequest.of(page, 8));
+        }else  if(property.equals("Personal Care")){
+            return productRepository.findPersonalCare(PageRequest.of(page, 8));
+        }else  if(property.equals("Cleaning Supplies")){
+            return productRepository.findCleaningSupplies(PageRequest.of(page, 8));
         }
 
 
@@ -83,6 +63,13 @@ public class ProductService{
 
        String first=min.substring(1);
        String second=max.substring(1);
+
+
+
+       if(productType.equals("all")){
+           return  productRepository.findAllByPriceAndProductCategory(PageRequest.of(page, 8),first,second);
+       }
+
        return  productRepository.findByPriceAndProductCategory(PageRequest.of(page, 8),first,second, productType);
    }
 

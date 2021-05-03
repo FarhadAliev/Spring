@@ -37,18 +37,14 @@ $('.minus-icon-price').click(function () {
 
 
 
-
+    var selectedValue;
     function getSelectValue() {
-        var selectedValue = $("#PRODUCTS").val();
-        console.log(selectedValue)
-
+        selectedValue = $("#PRODUCTS").val();
         $.ajax({
             type: "GET",
-            url: "shop?sort=" + selectedValue
+            url: "/shop?sort=" + selectedValue,
 
         })
-        $(".column-shop").hide().fadeIn(2000);
-
     }
 
     var sort = getSelectValue();
@@ -118,25 +114,27 @@ $(document).ready(function() {
             var min = values[0];
             var max = values[1];
             var productType = $('#product_type').val();
-
-            console.log('productType: ' + productType)
+            var sort=$('#sortBy').val();
+            console.log(sort)
 
             $.ajax({
                 type: "GET",
-                url: "api/product/filter/" + productType + "/" + min + "/" + max,
+                url: "api/product/filter/" + productType + "/" + min + "/" + max ,
                 success : function(result){
                     JSON.stringify(result)
                     console.log(result)
 
 
-                    // $(".page-link-class").hide(1000)
                         $('.shop-cards').html("")
+
+
+
 
 
                     var s=""
                     var i;
 
-                    console.log("--------result: " + result.totalPages)
+
 
                     for (i=0;i<result.content.length;i++) {
                         s += '<div class="col-3 column-shop">'
@@ -162,7 +160,6 @@ $(document).ready(function() {
                         s += ' </div>'
                         s += ' </div>'
 
-                        console.log(result.content[i].productName)
                     }
 
                     $('.row-shop').html(s)
@@ -172,8 +169,36 @@ $(document).ready(function() {
                     $(".column-shop").hide().fadeIn(2000);
 
 
+                     $('.indicator-page').html("")
+                    var p=""
+
+                    var allPages=Boolean(result.totalPages>1)
+
+                    if(allPages) {
+
+                        p += ' <ul class="pagination" >'
+
+                        for (var i = 0; i < result.totalPages; i++) {
+                            var pageFirst = i;
+                            var pageNum = i + 1;
+                            var pageRes = Boolean(pageFirst == result.number);
+                            var activePage = ""
+                            if (pageRes) {
+                                activePage = "active"
+                            } else {
+                                activePage = ""
+                            }
+                            p += '<li class="page-item "    ' + activePage + ' >'
+                            p += ' <a class="page-link" href="/shop?page=' + pageFirst + '&property=' + productType + '&min=' + min + '&max=' + max + '">' + pageNum + '</a>'
+                            p += ' </li>'
+                        }
+
+                        p += ' </ul>'
 
 
+
+                        $('.indicator-page').html(p)
+                    }
                 }
 
             })

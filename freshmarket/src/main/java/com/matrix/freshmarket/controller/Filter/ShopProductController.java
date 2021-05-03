@@ -27,18 +27,18 @@ public class ShopProductController {
             headers = {"Accept=application/json"})
     public String shopPage(@RequestParam(name = "direction", defaultValue = "DESC") String direction,
                            @RequestParam(name = "property", defaultValue = "all") String property,
-                           @RequestParam(name = "sort",defaultValue = "Sort by") String sort,
+                           @RequestParam(name = "sort", defaultValue = "sort") String sort,
                            @RequestParam(value = "page",
                                    required = false,
                                    defaultValue = "0")
                                    Integer page,
 
                            Model model) {
-
         System.out.println(sort);
         Page<ProductEntity> productPage =
-                productService.getProduct(page, direction, property,sort);
+                productService.getProduct(page, direction, property);
 
+        model.addAttribute("sort", sort);
         model.addAttribute("property", property);
         model.addAttribute("products", productPage);
         model.addAttribute("numbers", IntStream.range(0, productPage.getTotalPages()).toArray());

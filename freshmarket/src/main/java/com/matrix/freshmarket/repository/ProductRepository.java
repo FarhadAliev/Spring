@@ -55,4 +55,14 @@ List<ProductEntity> findNotNulltop4();
     Page<ProductEntity> findByPriceAndProductCategory(Pageable pageable,@Param("startPrice") String minPrice,
                                   @Param("endPrice")String maxPrice, @Param("productCategory") String productCategory);
 
+
+
+
+ @Query(value = "SELECT * FROM product WHERE product_price Between :startPrice and :endPrice   " ,nativeQuery = true)
+ Page<ProductEntity> findAllByPriceAndProductCategory(Pageable pageable,@Param("startPrice") String minPrice,
+                                                   @Param("endPrice")String maxPrice);
+
+
+
+
 }
