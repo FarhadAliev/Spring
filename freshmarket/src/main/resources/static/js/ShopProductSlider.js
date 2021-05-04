@@ -28,19 +28,101 @@ $('.minus-icon-price').click(function () {
 
 
 
+ var productType= $('#product_type').val();
+ var min="0$";
+ var max="$100";
 
 
-    var selectedValue;
-    function getSelectValue() {
-        selectedValue = $("#PRODUCTS").val();
-        $.ajax({
-            type: "GET",
-            url: "/shop?sort=" + selectedValue,
 
-        })
-    }
 
-    var sort = getSelectValue();
+
+
+
+       function getSelectValue() {
+           var sort = $("#PRODUCTS").val();
+           console.log(sort)
+           $.ajax({
+               type: "GET",
+               url: "/sort/" + productType + "/" + min + "/" + max + "/" + sort,
+               success: function (result) {
+                   JSON.stringify(result)
+
+
+                   $('.shop-cards').html("")
+
+
+                   var s = ""
+                   var i;
+
+
+                   for (i = 0; i < result.content.length; i++) {
+                       s += '<div class="col-3 column-shop">'
+                       s += ' <div class="card shop-cards box">'
+                       s += '<a href="ProductsInfo.html">'
+                       s += ' <img class="shop-img-top"  alt="" src=' + result.content[i].productImg + '>'
+                       s += '</a>'
+                       s += '<hr class="hr-card">'
+                       s += '<div class="card-body">'
+                       s += '<h5 class="card-title  products-name-shop" >' + result.content[i].productName + '</h5>'
+                       s += ' <p class="card-text products-price-shop">' + result.content[i].productPrice + '</p>'
+                       s += ' <div  class="summ-product-btn-shop ">'
+                       s += '<div class="counter-shop">'
+                       s += '<button class="minus  btn light">-</button>'
+                       s += '  <input class="summ-products-input-shop btn light" type="number" min="0" max="1000000" step="1" value="0" >'
+                       s += '<button class="plus  btn light">+</button>'
+                       s += '</div>'
+                       s += '</div>'
+                       s += '<div>'
+                       s += '<button class="btn light add-to-card-shop">Add to Cart</button>'
+                       s += '</div>'
+                       s += '</div>'
+                       s += ' </div>'
+                       s += ' </div>'
+
+                   }
+
+                   $('.row-shop').html(s)
+
+
+                   $(".column-shop").hide().fadeIn(2000);
+
+
+                   $('.indicator-page').html("")
+                   var p = ""
+
+                   var allPages = Boolean(result.totalPages > 1)
+
+                   if (allPages) {
+
+                       p += ' <ul class="pagination" >'
+
+                       for (var i = 0; i < result.totalPages; i++) {
+                           var pageFirst = i;
+                           var pageNum = i + 1;
+                           var pageRes = Boolean(pageFirst == result.number);
+                           var activePage = ""
+                           if (pageRes) {
+                               activePage = "active"
+                           } else {
+                               activePage = ""
+                           }
+                           p += '<li class="page-item "    ' + activePage + ' >'
+                           p += ' <a class="page-link"  href="/shop?page=' + pageFirst + '&property=' + productType + '&min=' + min + '&max=' + max + '&sort='+sort+'">' + pageNum + '</a>'
+
+                           p += ' </li>'
+                       }
+
+                       p += ' </ul>'
+
+                       $('.indicator-page').html(p)
+                   }
+
+
+               }
+           });
+
+   }
+     getSelectValue();
 
 
 
@@ -104,18 +186,19 @@ $(document).ready(function() {
 
             console.log(values[0])
             console.log(values[1])
-            var min = values[0];
-            var max = values[1];
-            var productType = $('#product_type').val();
-            var sort=$('#sortBy').val();
-            console.log(sort)
+             min = values[0];
+             max = values[1];
+             productType = $('#product_type').val();
+
+
 
             $.ajax({
                 type: "GET",
-                url: "api/product/filter/" + productType + "/" + min + "/" + max ,
+                url: "/api/product/filter/" + productType + "/" + min + "/" + max,
                 success : function(result){
                     JSON.stringify(result)
                     console.log(result)
+
 
 
                         $('.shop-cards').html("")

@@ -40,7 +40,10 @@ public class ProductService{
 
 
 
-    public Page<ProductEntity> getProduct(Integer page,String direction,String property){
+    public Page<ProductEntity> getProduct(Integer page,String direction,String property,String sort){
+
+
+
 
 
         if(property.equals("food")){
@@ -60,7 +63,10 @@ public class ProductService{
 
 
 
-    public Page<ProductEntity> getProductPrice(Integer page,String direction,String property,String min,String max){
+    public Page<ProductEntity> getProductPrice(Integer page,String direction,String property,String min,String max,String sort){
+
+
+
 
         String first=min.substring(1);
         String second=max.substring(1);
@@ -83,6 +89,27 @@ public class ProductService{
 
    public Page<ProductEntity> getProducts(Integer page, String productType, String min,String max){
 
+
+
+//
+//       String findBy = null;
+//       Sort.Direction order = null;
+//
+//       if (sort.equals("Price (low to high)")){
+//           findBy="product_price";
+//           order=Sort.Direction.ASC;
+//       }else if (sort.equals("Price (high to low)")){
+//           findBy="product_price";
+//           order=Sort.Direction.DESC;
+//       }else if (sort.equals("Name Z-A")){
+//           findBy="product_price";
+//           order=Sort.Direction.DESC;
+//       }else if (sort.equals("Name A-Z")){
+//           findBy="product_name";
+//           order=Sort.Direction.ASC;
+//       }
+
+
        String first=min.substring(1);
        String second=max.substring(1);
 
@@ -94,6 +121,53 @@ public class ProductService{
 
        return  productRepository.findByPriceAndProductCategory(PageRequest.of(page, 8),first,second, productType);
    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public Page<ProductEntity> getProductSort(Integer page, String productType, String min,String max,String sort){
+
+
+
+
+       String findBy = null;
+       Sort.Direction order = null;
+
+       if (sort.equals("Price (low to high)")){
+           findBy="product_price";
+           order=Sort.Direction.ASC;
+       }else if (sort.equals("Price (high to low)")){
+           findBy="product_price";
+           order=Sort.Direction.DESC;
+       }else if (sort.equals("Name Z-A")){
+           findBy="product_price";
+           order=Sort.Direction.DESC;
+       }else if (sort.equals("Name A-Z")){
+           findBy="product_name";
+           order=Sort.Direction.ASC;
+       }
+
+
+        String first=min.substring(1);
+        String second=max.substring(1);
+
+
+
+        if(productType.equals("all")){
+            return  productRepository.findAllByPriceAndProductCategory(PageRequest.of(page, 8,Sort.by(order,findBy)),first,second);
+        }
+
+        return  productRepository.findByPriceAndProductCategory(PageRequest.of(page, 8,Sort.by(order,findBy)),first,second, productType);
+    }
 
 
 

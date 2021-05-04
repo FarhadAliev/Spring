@@ -36,9 +36,11 @@ public class ShopProductController {
                                    Integer page,
 
                            Model model) {
+
+
        if(!min.equals("$0") || !max.equals("$100")){
            Page<ProductEntity> productPage =
-                   productService.getProductPrice(page, direction, property,min,max);
+                   productService.getProductPrice(page, direction, property,min,max,sort);
            model.addAttribute("min",min);
            model.addAttribute("max",max);
            model.addAttribute("sort", sort);
@@ -47,7 +49,7 @@ public class ShopProductController {
            model.addAttribute("numbers", IntStream.range(0, productPage.getTotalPages()).toArray());
        }else {
            Page<ProductEntity> productPage =
-                   productService.getProduct(page, direction, property);
+                   productService.getProduct(page, direction, property,sort);
            model.addAttribute("min",min);
            model.addAttribute("max",max);
         model.addAttribute("sort", sort);
