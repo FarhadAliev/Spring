@@ -87,10 +87,14 @@ html{
 
 .sort-slider{
     width: 20%;
-  
+
 }
 
-
+.pagination li.active a{
+    background-color: #01321d;
+     color: white;
+    border-color: #003b22 ;
+}
 
 .shop-text{
     margin-left: 20%;

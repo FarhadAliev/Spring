@@ -1,4 +1,4 @@
-package com.matrix.freshmarket.controller.Filter;
+package com.matrix.freshmarket.controller;
 import com.matrix.freshmarket.entity.ProductEntity;
 import com.matrix.freshmarket.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,24 +34,37 @@ public class ShopProductController {
                                    required = false,
                                    defaultValue = "0")
                                    Integer page,
+                                   Model model) {
 
-                           Model model) {
 
+           if(!min.equals("$0") || !max.equals("$100")){
 
-       if(!min.equals("$0") || !max.equals("$100")){
            Page<ProductEntity> productPage =
                    productService.getProductPrice(page, direction, property,min,max,sort);
+
            model.addAttribute("min",min);
            model.addAttribute("max",max);
            model.addAttribute("sort", sort);
            model.addAttribute("property", property);
            model.addAttribute("products", productPage);
            model.addAttribute("numbers", IntStream.range(0, productPage.getTotalPages()).toArray());
-       }else {
-           Page<ProductEntity> productPage =
+           }else if(!sort.equals("sort")){
+            Page<ProductEntity> productPage =
+                    productService.getProductSortDropDown(page, direction, property,min,max,sort);
+
+            model.addAttribute("min",min);
+            model.addAttribute("max",max);
+            model.addAttribute("sort", sort);
+            model.addAttribute("property", property);
+            model.addAttribute("products", productPage);
+            model.addAttribute("numbers", IntStream.range(0, productPage.getTotalPages()).toArray());
+           } else {
+
+            Page<ProductEntity> productPage =
                    productService.getProduct(page, direction, property,sort);
-           model.addAttribute("min",min);
-           model.addAttribute("max",max);
+
+            model.addAttribute("min",min);
+            model.addAttribute("max",max);
         model.addAttribute("sort", sort);
         model.addAttribute("property", property);
         model.addAttribute("products", productPage);

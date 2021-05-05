@@ -68,23 +68,44 @@ public class ProductService{
 
 
 
+        String findBy ="product_name";
+        Sort.Direction order = Sort.Direction.ASC;
+
+        if (sort.equals("Price (low to high)")){
+            findBy="product_price";
+            order=Sort.Direction.ASC;
+        }else if (sort.equals("Price (high to low)")){
+            findBy="product_price";
+            order=Sort.Direction.DESC;
+        }else if (sort.equals("Name Z-A")){
+            findBy="product_price";
+            order=Sort.Direction.DESC;
+        }else if (sort.equals("Name A-Z")){
+            findBy="product_name";
+            order=Sort.Direction.ASC;
+        }
+
+
         String first=min.substring(1);
         String second=max.substring(1);
 
         if(property.equals("food")){
-            return productRepository.findFoodPrice(PageRequest.of(page, 8),first,second);
+            return productRepository.findFoodPrice(PageRequest.of(page, 8,Sort.by(order,findBy)),first,second);
         } else  if(property.equals("drink")){
-            return productRepository.findDrinkPrice(PageRequest.of(page, 8),first,second);
+            return productRepository.findDrinkPrice(PageRequest.of(page, 8,Sort.by(order,findBy)),first,second);
         }else  if(property.equals("Personal Care")){
-            return productRepository.findPersonalCarePrice(PageRequest.of(page, 8),first,second);
+            return productRepository.findPersonalCarePrice(PageRequest.of(page, 8,Sort.by(order,findBy)),first,second);
         }else  if(property.equals("Cleaning Supplies")){
-            return productRepository.findCleaningSuppliesPrice(PageRequest.of(page, 8),first,second);
+            return productRepository.findCleaningSuppliesPrice(PageRequest.of(page, 8,Sort.by(order,findBy)),first,second);
         }
 
 
-        return productRepository.findAllPrice(PageRequest.of(page, 8),first,second);
+        return productRepository.findAllPrice(PageRequest.of(page, 8,Sort.by(order,findBy)),first,second);
 
     }
+
+
+
 
 
    public Page<ProductEntity> getProducts(Integer page, String productType, String min,String max){
@@ -183,4 +204,67 @@ public class ProductService{
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public Page<ProductEntity> getProductSortDropDown(Integer page, String direction, String productType, String min, String max, String sort){
+
+
+
+
+        String findBy = null;
+        Sort.Direction order = null;
+
+        if (sort.equals("Price (low to high)")){
+            findBy="product_price";
+            order=Sort.Direction.ASC;
+        }else if (sort.equals("Price (high to low)")){
+            findBy="product_price";
+            order=Sort.Direction.DESC;
+        }else if (sort.equals("Name Z-A")){
+            findBy="product_price";
+            order=Sort.Direction.DESC;
+        }else if (sort.equals("Name A-Z")){
+            findBy="product_name";
+            order=Sort.Direction.ASC;
+        }
+
+
+        String first=min.substring(1);
+        String second=max.substring(1);
+
+
+
+
+        if(productType.equals("food")){
+            return productRepository.findFoodPrice(PageRequest.of(page, 8,Sort.by(order,findBy)),first,second);
+        } else  if(productType.equals("drink")){
+            return productRepository.findDrinkPrice(PageRequest.of(page, 8,Sort.by(order,findBy)),first,second);
+        }else  if(productType.equals("Personal Care")){
+            return productRepository.findPersonalCarePrice(PageRequest.of(page, 8,Sort.by(order,findBy)),first,second);
+        }else  if(productType.equals("Cleaning Supplies")){
+            return productRepository.findCleaningSuppliesPrice(PageRequest.of(page, 8,Sort.by(order,findBy)),first,second);
+        }
+
+
+        return productRepository.findAllPrice(PageRequest.of(page, 8,Sort.by(order,findBy)),first,second);
+
+
+
+
+    }
 }

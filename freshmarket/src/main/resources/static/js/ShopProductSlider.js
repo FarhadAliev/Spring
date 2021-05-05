@@ -29,9 +29,9 @@ $('.minus-icon-price').click(function () {
 
 
  var productType= $('#product_type').val();
- var min="0$";
+ var min="$0";
  var max="$100";
-
+var sort="sort" ;
 
 
 
@@ -39,7 +39,7 @@ $('.minus-icon-price').click(function () {
 
 
        function getSelectValue() {
-           var sort = $("#PRODUCTS").val();
+           sort = $("#PRODUCTS").val();
            console.log(sort)
            $.ajax({
                type: "GET",
@@ -99,7 +99,7 @@ $('.minus-icon-price').click(function () {
                        for (var i = 0; i < result.totalPages; i++) {
                            var pageFirst = i;
                            var pageNum = i + 1;
-                           var pageRes = Boolean(pageFirst == result.number);
+                           var pageRes = Boolean(pageFirst === result.number);
                            var activePage = ""
                            if (pageRes) {
                                activePage = "active"
@@ -108,13 +108,15 @@ $('.minus-icon-price').click(function () {
                            }
                            p += '<li class="page-item "    ' + activePage + ' >'
                            p += ' <a class="page-link"  href="/shop?page=' + pageFirst + '&property=' + productType + '&min=' + min + '&max=' + max + '&sort='+sort+'">' + pageNum + '</a>'
-
                            p += ' </li>'
+
                        }
 
                        p += ' </ul>'
 
                        $('.indicator-page').html(p)
+                       window.location.href = "/shop?page="+0+"&property="+productType +"&min="+ min +"&max=" + max +"&sort="+sort;
+                       console.log(sort)
                    }
 
 
@@ -122,13 +124,13 @@ $('.minus-icon-price').click(function () {
            });
 
    }
-     getSelectValue();
 
 
 
 
 
 
+getSelectValue();
 
 
 // Requires jQuery
@@ -190,8 +192,8 @@ $(document).ready(function() {
              max = values[1];
              productType = $('#product_type').val();
 
-
-
+             console.log(min)
+             console.log(max)
             $.ajax({
                 type: "GET",
                 url: "/api/product/filter/" + productType + "/" + min + "/" + max,
@@ -265,7 +267,7 @@ $(document).ready(function() {
                                 activePage = ""
                             }
                             p += '<li class="page-item "    ' + activePage + ' >'
-                            p += ' <a class="page-link"  href="/shop?page=' + pageFirst + '&property=' + productType + '&min=' + min + '&max=' + max + '">' + pageNum + '</a>'
+                            p += ' <a class="page-link"  href="/shop?page=' + pageFirst + '&property=' + productType + '&min=' + min + '&max=' + max +'">' + pageNum + '</a>'
 
                             p += ' </li>'
                         }

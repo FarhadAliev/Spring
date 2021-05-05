@@ -19,7 +19,7 @@ public class SortController {
     private ProductService productService;
 
 
-    @GetMapping("{productType}/{min}/{max}/{sort}")
+    @GetMapping("/{productType}/{min}/{max}/{sort}")
     public ResponseEntity<Page<ProductEntity>> searchAscDesc(
             @PathVariable("min") String min, @PathVariable("max") String max,
             @PathVariable(value = "productType") String productType,
