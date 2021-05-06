@@ -63,16 +63,22 @@
 
 
 
+
+
+
+
+
+        <form th:action="@{/contact}" method="post">
 <div class="container contact-inputs-block">
     <div class="container row first-row-input">
 
          <div class="First-name-input-block col-6">
             <label  class="labels-for-input" >First Name<span class="span-for-input">&nbsp;*</span></label>
-             <input class="input-contact"  value="" type="text">
+             <input  name="firstName" class="input-contact"  value="" type="text">
          </div>
          <div class="last-name-input-block col-6">
             <label class="labels-for-input" >Last Name <span class="span-for-input">&nbsp;*</span></label>
-             <input class="input-contact"  value="" type="text">
+             <input name="lastName" class="input-contact"  value="" type="text">
          </div>
 
 
@@ -84,11 +90,11 @@
 
         <div class="email-input-block col-6">
            <label class="labels-for-input" >Email<span class="span-for-input">&nbsp;*</span></label>
-            <input class="input-contact"  value="" type="email">
+            <input  name="email" class="input-contact"  value="" type="email">
         </div>
         <div class="subject-input-block col-6">
            <label class="labels-for-input" >Subject <span>&nbsp;*</span></label>
-            <input class="input-contact-subject input-contact"  value="" type="text" >
+            <input  name="subject" class="input-contact-subject input-contact"  value="" type="text" >
         </div>
 
 
@@ -102,7 +108,7 @@
 
     <div  class="contacts text-area-input-block ">
        <label class="label-for-text-area">Type your message here...<span>&nbsp;*</span></label>
-       <textarea  class="text-area input-contact" name="comment" ></textarea>
+       <textarea   class="text-area input-contact" name="comment" ></textarea>
     </div>
     
 
@@ -153,6 +159,8 @@
 
 
 </div>
+
+            </form>
 </div>
 </div>
 

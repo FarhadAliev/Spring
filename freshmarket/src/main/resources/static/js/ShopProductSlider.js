@@ -36,8 +36,6 @@ var sort="sort" ;
 
 
 
-
-
        function getSelectValue() {
            sort = $("#PRODUCTS").val();
            console.log(sort)
@@ -185,7 +183,7 @@ $(document).ready(function() {
 
 
         function pass(values) {
-
+            sort = $("#PRODUCTS").val();
             console.log(values[0])
             console.log(values[1])
              min = values[0];
@@ -196,7 +194,7 @@ $(document).ready(function() {
              console.log(max)
             $.ajax({
                 type: "GET",
-                url: "/api/product/filter/" + productType + "/" + min + "/" + max,
+                url: "/api/product/filter/" + productType + "/" + min + "/" + max +"/"+ sort ,
                 success : function(result){
                     JSON.stringify(result)
                     console.log(result)
@@ -259,7 +257,7 @@ $(document).ready(function() {
                         for (var i = 0; i < result.totalPages; i++) {
                             var pageFirst = i;
                             var pageNum = i + 1;
-                            var pageRes = Boolean(pageFirst == result.number);
+                            var pageRes = Boolean(pageFirst === result.number);
                             var activePage = ""
                             if (pageRes) {
                                 activePage = "active"
@@ -267,14 +265,14 @@ $(document).ready(function() {
                                 activePage = ""
                             }
                             p += '<li class="page-item "    ' + activePage + ' >'
-                            p += ' <a class="page-link"  href="/shop?page=' + pageFirst + '&property=' + productType + '&min=' + min + '&max=' + max +'">' + pageNum + '</a>'
-
+                            p += ' <a class="page-link"  href="/shop?page=' + pageFirst + '&property=' + productType + '&min=' + min + '&max=' + max +'&sort='+sort+'">' + pageNum + '</a>'
                             p += ' </li>'
                         }
 
                         p += ' </ul>'
 
                         $('.indicator-page').html(p)
+
                     }
                 }
 

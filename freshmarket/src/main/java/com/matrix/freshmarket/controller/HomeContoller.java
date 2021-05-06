@@ -49,11 +49,6 @@ public class HomeContoller {
     }
 
 
-    @GetMapping("/contact")
-    public String contactPage( Model model) {
-        model.addAttribute("title", "Contact");
-        return "Contact";
-    }
 
     @GetMapping("/password")
     public String createPasswordPage( Model model) {

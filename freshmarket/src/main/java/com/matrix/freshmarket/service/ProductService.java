@@ -108,27 +108,26 @@ public class ProductService{
 
 
 
-   public Page<ProductEntity> getProducts(Integer page, String productType, String min,String max){
+   public Page<ProductEntity> getProducts(Integer page, String productType, String min,String max,String sort){
+
+       String findBy ="product_name";
+       Sort.Direction order = Sort.Direction.ASC;
+
+       if (sort.equals("Price (low to high)")){
+           findBy="product_price";
+           order=Sort.Direction.ASC;
+       }else if (sort.equals("Price (high to low)")){
+           findBy="product_price";
+           order=Sort.Direction.DESC;
+       }else if (sort.equals("Name Z-A")){
+           findBy="product_price";
+           order=Sort.Direction.DESC;
+       }else if (sort.equals("Name A-Z")){
+           findBy="product_name";
+           order=Sort.Direction.ASC;
+       }
 
 
-
-//
-//       String findBy = null;
-//       Sort.Direction order = null;
-//
-//       if (sort.equals("Price (low to high)")){
-//           findBy="product_price";
-//           order=Sort.Direction.ASC;
-//       }else if (sort.equals("Price (high to low)")){
-//           findBy="product_price";
-//           order=Sort.Direction.DESC;
-//       }else if (sort.equals("Name Z-A")){
-//           findBy="product_price";
-//           order=Sort.Direction.DESC;
-//       }else if (sort.equals("Name A-Z")){
-//           findBy="product_name";
-//           order=Sort.Direction.ASC;
-//       }
 
 
        String first=min.substring(1);
@@ -137,10 +136,10 @@ public class ProductService{
 
 
        if(productType.equals("all")){
-           return  productRepository.findAllByPriceAndProductCategory(PageRequest.of(page, 8),first,second);
+           return  productRepository.findAllByPriceAndProductCategory(PageRequest.of(page, 8,Sort.by(order,findBy)),first,second);
        }
 
-       return  productRepository.findByPriceAndProductCategory(PageRequest.of(page, 8),first,second, productType);
+       return  productRepository.findByPriceAndProductCategory(PageRequest.of(page, 8,Sort.by(order,findBy)),first,second, productType);
    }
 
 

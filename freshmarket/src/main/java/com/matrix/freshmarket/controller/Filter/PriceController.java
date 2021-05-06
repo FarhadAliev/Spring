@@ -20,10 +20,11 @@ public class PriceController {
     private ProductService productService;
 
 
-    @GetMapping("{productType}/{min}/{max}")
+    @GetMapping("{productType}/{min}/{max}/{sort}")
     public ResponseEntity<Page<ProductEntity>> search(
             @PathVariable("min") String min, @PathVariable("max") String max,
             @PathVariable(value = "productType") String productType,
+            @PathVariable(value = "sort") String sort,
             @RequestParam(value = "page",
                     required = false,
                     defaultValue = "0")
@@ -31,7 +32,7 @@ public class PriceController {
         Page<ProductEntity> products;
 
         try {
-             products = productService.getProducts(page, productType, min, max);
+             products = productService.getProducts(page, productType, min, max,sort);
 
 
             return new ResponseEntity<Page<ProductEntity>>(products, HttpStatus.OK);
