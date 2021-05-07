@@ -45,30 +45,14 @@
 
 
 
-    <div class="container info-block">
-
-        <div class="container contact-text-block">
-            <div class="contact-text-block-title">
-            <h6 class="contact-first-title">CONTACT</h6>
-        </div>
-        <div class="contact-body-text-block">
-            <p class="contact-body-text">Tel: +994(50) 212-91-36 </p>
-        </div>
-        <div  class="contact-body-text-block">
-            <p class="contact-body-text" >Email: farhad.aliev2020@gmail.com</p>
-        </div>
-        </div>
-
-    </div>
-
-
-
-
-
-
-
 
         <form th:action="@{/contact}" method="post">
+
+            <div class="container alert-message">
+
+                <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+            </div>
+
 <div class="container contact-inputs-block">
     <div class="container row first-row-input">
 
@@ -107,7 +91,7 @@
    <div class="container  text-input-block ">
 
     <div  class="contacts text-area-input-block ">
-       <label class="label-for-text-area">Type your message here...<span>&nbsp;*</span></label>
+       <label class="label-for-text-area">Type your message here...<span class="span-for-input">&nbsp;*</span></label>
        <textarea   class="text-area input-contact" name="comment" ></textarea>
     </div>
     
