@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -46,7 +47,7 @@
 
 
 
-        <form th:action="@{/contact}" method="post">
+        <form th:action="@{/contact}" method="post" th:object="${contact}">
 
             <div class="container alert-message">
 
@@ -58,11 +59,13 @@
 
          <div class="First-name-input-block col-6">
             <label  class="labels-for-input" >First Name<span class="span-for-input">&nbsp;*</span></label>
-             <input  name="firstName" class="input-contact"  value="" type="text">
+             <input th:field="*{firstName}" name="firstName" id="firstName" class="input-contact"  value="" type="text">
+             <div style="color: red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">No error</div>
          </div>
          <div class="last-name-input-block col-6">
             <label class="labels-for-input" >Last Name <span class="span-for-input">&nbsp;*</span></label>
-             <input name="lastName" class="input-contact"  value="" type="text">
+             <input th:field="*{lastName}" name="lastName" id="lastName" class="input-contact"  value="" type="text">
+             <div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">No error</div>
          </div>
 
 
@@ -74,11 +77,12 @@
 
         <div class="email-input-block col-6">
            <label class="labels-for-input" >Email<span class="span-for-input">&nbsp;*</span></label>
-            <input  name="email" class="input-contact"  value="" type="email">
+            <input  th:field="*{email}"  name="email" id="email" class="input-contact"  value="" >
+            <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">No error</div>
         </div>
         <div class="subject-input-block col-6">
            <label class="labels-for-input" >Subject <span>&nbsp;*</span></label>
-            <input  name="subject" class="input-contact-subject input-contact"  value="" type="text" >
+            <input  name="subject" id="subject" class="input-contact-subject input-contact"  value="" type="text" >
         </div>
 
 
@@ -92,7 +96,7 @@
 
     <div  class="contacts text-area-input-block ">
        <label class="label-for-text-area">Type your message here...<span class="span-for-input">&nbsp;*</span></label>
-       <textarea   class="text-area input-contact" name="comment" ></textarea>
+       <textarea   class="text-area input-contact" id="comment" name="comment" ></textarea>
     </div>
     
 

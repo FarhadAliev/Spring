@@ -5,17 +5,18 @@ import com.matrix.freshmarket.entity.ContactEntity;
 import com.matrix.freshmarket.repository.ContactRepository;
 import com.matrix.freshmarket.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @Controller
 public class ContactController {
@@ -29,19 +30,27 @@ public class ContactController {
     @Autowired
     private JavaMailSender mailSender;
 
-    @RequestMapping("/contact")
+    @GetMapping("/contact")
     public String contact( Model model) {
         model.addAttribute("title", "Contact");
+        model.addAttribute("contact",new ContactEntity());
         return "Contact.html";
     }
 
 
-    @PostMapping("/contact")
-    public String submitContact(HttpServletRequest request,Model model) throws MessagingException {
+    @RequestMapping(value = "/contact",method = RequestMethod.POST)
+    public Object submitContact(@Valid @ModelAttribute("contact") ContactEntity contactEntity, BindingResult result,
+                                HttpServletRequest request, Model model) throws MessagingException {
         String firstName=request.getParameter("firstName");
         String lastName=request.getParameter("lastName");
         String email=request.getParameter("email");
         String comment=request.getParameter("comment");
+
+        if (result.hasErrors()) {
+
+             return "Contact.html";
+        }
+
 
 
         MimeMessage message=mailSender.createMimeMessage();
@@ -62,9 +71,10 @@ public class ContactController {
        model.addAttribute("success", "Thank you for contacting us . We'll get back to you shortly !");;
 
 
-        ContactEntity contactEntity=new ContactEntity(firstName,lastName,email);
-        contactRepository.saveAndFlush(contactEntity);
+        ContactEntity contact=new ContactEntity(firstName,lastName,email);
+        contactRepository.saveAndFlush(contact);
         return "Contact.html";
+//        return new RedirectView("/contact");
     }
 
 
