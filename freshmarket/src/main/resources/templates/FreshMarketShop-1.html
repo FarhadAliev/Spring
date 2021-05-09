@@ -35,9 +35,7 @@
                 prices on award-winning products at Fresh Market. View our weekly specials, find recipes, and
                 shop quality brands in store or online.</p>
         </div>
-        <div>
-            <p class="t"></p>
-        </div>
+
         <!-- ----------------------------------------------------------------------------------------- -->
 
         <div class="-shop-all-products-body">
@@ -186,11 +184,11 @@
                     <div class="row row-shop">
                         <div class="col-3 column-shop" th:each="product : ${products}">
                             <div class="card shop-cards box">
-                                <a href="ProductsInfo.html">
+                                <a class="linkProductShop" href="">
                                     <img class="shop-img-top" src="" alt="" th:src="${product.productImg}">
                                 </a>
                                 <hr class="hr-card">
-                                <div class="card-body">
+                                    <div class="card-body">
                                     <h5 class="card-title  products-name-shop" th:text="${product.productName}"></h5>
                                     <p class="card-text products-price-shop" th:text="${product.productPrice}"></p>
                                     <div class="summ-product-btn-shop ">
@@ -234,7 +232,7 @@
 
     </div>
     <!-- -------------------------------------------------------------------------------------------------------------- -->
-
+</div>
 
     <!-- chat -->
     <div th:replace="content/Chat :: content"></div>

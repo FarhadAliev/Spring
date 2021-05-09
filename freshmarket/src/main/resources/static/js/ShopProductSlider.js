@@ -1,3 +1,16 @@
+$(document).ready(function() {
+
+    $('.linkProductShop').mouseover(function () {
+        var productName = $(this).next().next().children(".products-name-shop").text()
+        console.log(productName)
+        $(".linkProductShop").attr("href","product?productName="+productName+"")
+
+    })
+
+});
+
+
+
 $('.plus-icon').click(function () {
     $('.list-collection').slideDown(700);
     $('.plus-icon').hide(700);

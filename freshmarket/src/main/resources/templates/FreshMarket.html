@@ -108,10 +108,10 @@
                     <div class="row row-slider">
 
                     <div class="card box products-box col-3 column-slider c-1">
-                        <a href="../ProductsInfo.html">
+                        <button class="btn card-special-price">Special Price</button>
+                        <a class="linkProduct" href="">
                         <img class="card-img-top img-z-1"  alt="" >
                         </a>
-                        <button class="btn card-special-price">Special Price</button>
                         <hr>
                         <div class="card-body">
                             <h5 class="card-title title-z-1 products-name"></h5>
@@ -131,10 +131,10 @@
                     </div>
 
                         <div class="card box products-box col-3 column-slider c-2">
-                        <a href="../ProductsInfo.html">
+                            <button class="btn card-special-price">Special Price</button>
+                            <a class="linkProduct" href="">
                         <img class="card-img-top img-z-2" src="" alt="">
                         </a>
-                        <button class="btn card-special-price">Special Price</button>
                         <hr>
                         <div class="card-body">
                             <h5 class="card-title title-z-2  products-name" ></h5>
@@ -154,10 +154,10 @@
                     </div>
 
                     <div class="card box products-box col-3 column-slider c-3">
-                        <a href="../ProductsInfo.html">
+                        <button class="btn card-special-price">Special Price</button>
+                        <a class="linkProduct" href="">
                         <img class="card-img-top img-z-3"  alt="">
                         </a>
-                        <button class="btn card-special-price">Special Price</button>
                         <hr>
                         <div class="card-body">
                             <h5 class="card-title title-z-3  products-name" ></h5>
@@ -179,7 +179,7 @@
 
                     <div class="card box products-box col-3 column-slider c-4">
                         <button class="btn card-special-price">Special Price</button>
-                        <a href="../ProductsInfo.html">
+                        <a class="linkProduct" href="">
                         <img class="card-img-top  img-z-4" src="" alt="">
                         </a>
                         <hr>
@@ -249,7 +249,7 @@
                     <div class="row row-Grab"  >
                     <div class="col-3 column"  th:each="product : ${firstLine}">
                     <div class="card Grab-cards box " >
-                        <a href="../ProductsInfo.html">
+                            <a class="linkProduct" href="">
                         <img class="card-img-top" th:src="${product.productImg}" alt="" >
                         </a>
                         <hr>

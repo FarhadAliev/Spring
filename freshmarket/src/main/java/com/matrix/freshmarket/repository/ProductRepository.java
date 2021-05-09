@@ -92,4 +92,7 @@ List<ProductEntity> findNotNulltop4();
  Page<ProductEntity> findCleaningSuppliesPrice(Pageable pageable,@Param("startPrice") String minPrice,
                                           @Param("endPrice")String maxPrice);
 
+ @Query(value = "SELECT * FROM product WHERE product_name=:productName", nativeQuery = true )
+ List<ProductEntity> findbyName(@Param("productName") String productName);
+
 }

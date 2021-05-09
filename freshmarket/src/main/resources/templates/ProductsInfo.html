@@ -27,16 +27,16 @@
 
 
 
-<div>
+<div class="pro" th:each="product : ${product}">
        <div class="container product-info">
 <div class="row">
         <div class="home-block col-7">
     <div class="home">
         <div class="home-link-block">
-        <a class="home-link" href="FreshMarket.html"> <b> Home</b></a>
+        <a class="home-link" href="FreshMarket.html"> <b> Home  &nbsp;/ &nbsp;</b></a>
     </div>
-    <div >
-    <p>/ ProductName</p>
+    <div>
+        <p class="productName" th:text="${product.productName}"></p>
     </div>
 
 
@@ -44,15 +44,11 @@
 
 
 <div class="img-block">
-<img class="img-product" src="../gallery/z-1.jpg" alt="">
+<img class="img-product" th:src="${product.productImg}" alt="">
 </div>
 
 <div  class="container product-details-block">
-    <p class="products-details-text">
-        POLAND SPRING Brand 100% Natural Spring Water has been a local favorite in the Northeast for generations. 
-        Sourced from carefully selected springs in Maine since 1845, POLAND SPRING Spring Water contains naturally
-         occurring minerals for a crisp, refreshing taste. So when you're looking for a trusted source of hydration 
-        for any occasion, choose POLAND SPRING.
+    <p class="products-details-text" th:text="${product.productInfo}">
     </p>
 </div>
         </div>
@@ -64,18 +60,18 @@
     <div class="next-prev-block">
         <a class="link-prev" href="">
         <p class="prev-text">
-            Prev 
+
         </p>
         </a>
     </div>
     <div style="float: left;">
         <p>
-            &nbsp;  | &nbsp;        </p>
+        </p>
     </div>
     <div >
        <a class="next-link" href="">
         <P class="next-text">
-            Next
+
         </P>
     </a>
     </div>
@@ -85,8 +81,8 @@
    
     <div class="container block-info">
         <div>
-            <p class="text-product-name">
-                I'm a product
+            <p th:text="${product.productName}" class="text-product-name">
+
             </p>
         </div>
         <div>
@@ -96,8 +92,8 @@
         </div>
 
         <div>
-            <p class="price-text">
-                $9.99
+            <p th:text="${product.productPrice}" class="price-text">
+
             </p>
         </div>
 
@@ -143,11 +139,8 @@
         </a>
     </div>
     <div  class="list-collection container">
-        <p>
-            
-100% natural spring water
-zero calories, no sweeteners and no artificial colors or flavors
-Contains naturally balanced minerals for a crisp
+        <p th:text="${product.productIngredients}">
+
         </p>
     </div>
 </div>

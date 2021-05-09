@@ -88,11 +88,6 @@ public class HomeContoller {
         return "Policy";
     }
 
-    @GetMapping("/productInfo")
-    public String productInfoPage( Model model) {
-        model.addAttribute("title", "Product Info");
-        return "ProductsInfo";
-    }
 
     @GetMapping("/shipping")
     public String shippingPage( Model model) {

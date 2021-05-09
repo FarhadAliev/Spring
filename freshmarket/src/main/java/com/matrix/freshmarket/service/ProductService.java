@@ -212,7 +212,9 @@ public class ProductService{
 
 
 
-
+   public List<ProductEntity> findbyName(String productName){
+        return productRepository.findbyName(productName);
+   }
 
 
 

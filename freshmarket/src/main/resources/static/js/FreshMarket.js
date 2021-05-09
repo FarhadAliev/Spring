@@ -1,4 +1,12 @@
+$(document).ready(function() {
 
+    $('.linkProduct').mouseover(function () {
+       var productName = $(this).next().next().children(".products-name").text()
+        $(".linkProduct").attr("href","product?productName="+productName+"")
+
+    })
+
+});
 
 $('.chat-logo').click(function () {
     $('.chat').show();

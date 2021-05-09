@@ -33,9 +33,7 @@ public class PriceController {
 
         try {
              products = productService.getProducts(page, productType, min, max,sort);
-
-
-            return new ResponseEntity<Page<ProductEntity>>(products, HttpStatus.OK);
+             return new ResponseEntity<Page<ProductEntity>>(products, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<Page<ProductEntity>>(HttpStatus.BAD_REQUEST);
         }

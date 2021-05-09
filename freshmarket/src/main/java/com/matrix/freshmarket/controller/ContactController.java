@@ -47,8 +47,7 @@ public class ContactController {
         String comment=request.getParameter("comment");
 
         if (result.hasErrors()) {
-
-             return "Contact.html";
+            return "Contact.html";
         }
 
 
@@ -74,7 +73,7 @@ public class ContactController {
         ContactEntity contact=new ContactEntity(firstName,lastName,email);
         contactRepository.saveAndFlush(contact);
         return "Contact.html";
-//        return new RedirectView("/contact");
+
     }
 
 
