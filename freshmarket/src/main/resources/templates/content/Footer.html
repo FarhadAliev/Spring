@@ -80,14 +80,15 @@
               Email
             </p>
           </div>
+          <form action="/" method="post">
           <div class="footer-email">
-            <input class="footer-email email-btn" required id="email" pattern=".+@gmail.com"  type="email">
+            <input name="subscribe" class="footer-email email-btn" required id="email" pattern=".+@gmail.com"  type="email">
           </div>
           <div class="second-footer-text" >
-            <button class="btn btn-light btn-hover my-button">SUBSCRIBE
+            <button class="btn btn-light btn-hover my-button" type="submit">SUBSCRIBE
               NOW</button>
           </div>
-
+          </form>
           <div class="end-footer-icons ">
             <a th:href="@{https://www.youtube.com/user/TheFreshMarketInc/featured}" class="end-footer-icon-a" href="">
               <i class="fab fa-youtube end-footer-icon-i"></i></a>
@@ -104,6 +105,7 @@
 
         </div>
       </div>
+
     </div>
 
 
