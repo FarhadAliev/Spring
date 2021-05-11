@@ -7,6 +7,7 @@ import com.matrix.freshmarket.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,11 +32,13 @@ public class ContactController {
     private JavaMailSender mailSender;
 
     @GetMapping("/contact")
+    @PreAuthorize("hasAnyAuthority('user : moderate')")
     public String contact( Model model) {
         model.addAttribute("title", "Contact");
         model.addAttribute("contact",new ContactEntity());
         return "Contact.html";
     }
+
 
 
     @RequestMapping(value = "/contact",method = RequestMethod.POST)
