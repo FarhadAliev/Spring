@@ -82,6 +82,8 @@ public class HomeContoller {
         return "LogInWithEmail";
     }
 
+
+
     @GetMapping("/policy")
     public String policyPage( Model model) {
         model.addAttribute("title", "Policy");

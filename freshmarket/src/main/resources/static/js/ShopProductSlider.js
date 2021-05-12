@@ -1,3 +1,8 @@
+var x = document.cookie;
+console.log(x)
+
+
+
 $(document).ready(function() {
 
     $('.linkProductShop').mouseover(function () {

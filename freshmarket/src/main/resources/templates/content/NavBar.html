@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <body>
 <div th:fragment="content">
 
@@ -35,11 +35,16 @@
           </li>
 
 
-          <li class="navbar-item item-nav-words col">
+          <li sec:authorize="!isFullyAuthenticated()" class="navbar-item item-nav-words col">
             <a  th:href="@{/login}" class="nav-link log-in-link " style="display: flex">
                Login
             </a>
+          </li>
 
+          <li sec:authorize="isFullyAuthenticated()" class="navbar-item item-nav-words col">
+            <a  th:href="@{/}" class="nav-link log-in-link " style="display: flex">
+              Logout
+            </a>
           </li>
 
 

@@ -32,7 +32,6 @@ public class ContactController {
     private JavaMailSender mailSender;
 
     @GetMapping("/contact")
-    @PreAuthorize("hasAnyAuthority('user : moderate')")
     public String contact( Model model) {
         model.addAttribute("title", "Contact");
         model.addAttribute("contact",new ContactEntity());

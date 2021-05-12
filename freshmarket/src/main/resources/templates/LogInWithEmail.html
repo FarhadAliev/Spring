@@ -23,16 +23,16 @@
                     <i class="fas fa-times close-log" ></i>
                 </a>
                 <div class="card">
-                    <form onsubmit="event.preventDefault()" class="box">
+                    <form name="login" th:action="@{/loginWithEmail}"  method="post" class="box">
                         <h1>Login</h1>
                         <p class="log-in-already-text">New to this site?
                             <a class="log-in-text-2" th:href="@{/signUp}">&nbsp;Sing up</a></p>
                         <p class="text-muted"> Please enter your Email and password!</p> 
 
-                        <input type="text" name="" placeholder="Email">
-                         <input type="password" name="" placeholder="Password"> 
+                        <input type="text"  name="username" placeholder="email">
+                         <input type="password" name="password" placeholder="password">
                          <a class="forgot text-muted" th:href="@{/password}">Forgot password?</a>
-                         <input type="submit" name="" value="Login" href="#">
+                         <input type="submit" name="submit" value="Login" href="#">
                         <div class="col-md-12">
                             <ul class="social-network social-circle">
                                 <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
