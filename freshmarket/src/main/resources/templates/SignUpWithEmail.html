@@ -9,28 +9,28 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <link rel="stylesheet" th:href="@{/css/SignUpWithEmail.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/css/FreshMarket.css}" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap" rel="stylesheet">
         
     </head>
 <body>
-    
-    <div class="container">
+
+
+<div th:replace="content/NavBar  :: content"></div>
+    <div class="container signup-first-section">
         <div class="row">
             <div class="col-md-6">
-                <a th:href="@{/}" >
-                    <i class="fas fa-times close-log" ></i>
-                </a>
                 <div class="card">
                     <form onsubmit="event.preventDefault()" class="box">
                         <h1>Sign Up</h1>
                         <p class="Sign-up-already-text">Already a member?
-                            <a class="Sign-up-text-2" th:href="@{/login}">&nbsp;Log In</a></p>
+                            <a class="Sign-up-text-2" th:href="@{/loginWithEmail}">&nbsp;Log In</a></p>
                        
 
                         <input type="text" name="" placeholder="Email">
-                         <input type="password" name="" placeholder="Password">
+                        <input type="password" name="" placeholder="Password">
                          <input type="password" name="" placeholder="Confirm Password"> 
 
                          <input type="submit" name="" value="Sign Up" href="#">
@@ -60,5 +60,6 @@
         integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
         crossorigin="anonymous"></script>
     <script  th:src="@{/js/FreshMarket.js}"></script>
+<script  th:src="@{/js/Slider.js}"></script>
 </body>
 </html>

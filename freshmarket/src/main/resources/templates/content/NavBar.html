@@ -23,7 +23,7 @@
           </li>
 
           <li class="navbar-item item-nav-words col">
-            <a  th:href="@{/shop_1}" class="nav-link">Shop</a>
+            <a  th:href="@{/shop}" class="nav-link">Shop</a>
           </li>
 
           <li class="navbar-item item-nav-words col">
@@ -35,17 +35,22 @@
           </li>
 
 
-          <li sec:authorize="!isFullyAuthenticated()" class="navbar-item item-nav-words col">
-            <a  th:href="@{/login}" class="nav-link log-in-link " style="display: flex">
+          <li  class="navbar-item item-nav-words col">
+            <a sec:authorize="isAnonymous()"  th:href="@{/loginWithEmail}" class="nav-link log-in-link " style="display: flex">
                Login
             </a>
-          </li>
-
-          <li sec:authorize="isFullyAuthenticated()" class="navbar-item item-nav-words col">
-            <a  th:href="@{/}" class="nav-link log-in-link " style="display: flex">
+            <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="nav-link log-in-link " style="display: flex">
               Logout
             </a>
+
           </li>
+
+
+
+
+
+
+
 
 
 

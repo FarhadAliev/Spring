@@ -70,7 +70,7 @@ public class ShopProductController {
         model.addAttribute("products", productPage);
         model.addAttribute("numbers", IntStream.range(0, productPage.getTotalPages()).toArray());
        }
-        return "FreshMarketShop-1";
+        return "FreshMarketShop";
     }
 
 

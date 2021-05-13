@@ -35,12 +35,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/shop").hasRole("ADMIN")
+                .antMatchers("/**").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/loginWithEmail").permitAll()
                 .and()
-                .logout().logoutSuccessUrl("/logout");
+                .logout().logoutUrl("/logout")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
 
     }
 

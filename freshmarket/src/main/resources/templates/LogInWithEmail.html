@@ -9,29 +9,36 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <link rel="stylesheet" th:href="@{/css/LogInWithEmail.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/css/FreshMarket.css}" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap" rel="stylesheet">
         
     </head>
 <body>
+
+<div th:replace="content/NavBar  :: content"></div>
     
-    <div class="container">
+    <div class="container login-first-section">
         <div class="row">
             <div class="col-md-6">
-                <a th:href="@{/}" >
-                    <i class="fas fa-times close-log" ></i>
-                </a>
+
                 <div class="card">
                     <form name="login" th:action="@{/loginWithEmail}"  method="post" class="box">
                         <h1>Login</h1>
                         <p class="log-in-already-text">New to this site?
-                            <a class="log-in-text-2" th:href="@{/signUp}">&nbsp;Sing up</a></p>
-                        <p class="text-muted"> Please enter your Email and password!</p> 
+                            <a class="log-in-text-2" th:href="@{/signUpWithEmail}">&nbsp;Sing up</a></p>
+                        <p  class="text-muted"> Please enter your Email and password!</p>
+                        <div class="alert alert-danger" role="alert"  th:if="${param.error}">
+                            <i class="fas fa-exclamation-circle"></i>
+                            &nbsp; Invalid user name and password.</div>
+                       <div class="alert  alert-primary" role="alert"  th:if="${param.logout}">
+                           <i class="fas fa-check-circle"></i>
+                           &nbsp; You have been logged out.</div>
 
                         <input type="text"  name="username" placeholder="email">
                          <input type="password" name="password" placeholder="password">
-                         <a class="forgot text-muted" th:href="@{/password}">Forgot password?</a>
+                         <a class="forgot text-muted" th:href="@{/CreatePassword}">Forgot password?</a>
                          <input type="submit" name="submit" value="Login" href="#">
                         <div class="col-md-12">
                             <ul class="social-network social-circle">
@@ -59,5 +66,6 @@
         integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
         crossorigin="anonymous"></script>
     <script  th:src="@{/js/FreshMarket.js}"></script>
+<script  th:src="@{/js/Slider.js}"></script>
 </body>
 </html>

@@ -1,3 +1,15 @@
+.login-first-section{
+    margin-top: 7%;
+}
+
+.fa-exclamation-circle{
+    color: #d73131;
+}
+
+.fa-check-circle{
+    color: #1b8155;
+}
+
 body {
     margin: 0;
     padding: 0;

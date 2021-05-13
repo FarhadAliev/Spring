@@ -50,37 +50,12 @@ public class HomeContoller {
 
 
 
-    @GetMapping("/password")
-    public String createPasswordPage( Model model) {
-        model.addAttribute("title", "Contact");
-        return "CreateNewPassword";
-    }
-
     @GetMapping("/faq")
     public String faqPage( Model model) {
         model.addAttribute("title", "Faq");
         return "Faq";
     }
 
-
-
-    @GetMapping("/shop_2")
-    public String shopPage_2( Model model) {
-        model.addAttribute("title", "Shop");
-        return "FreshMarketShop-2";
-    }
-
-    @GetMapping("/login")
-    public String loginPage( Model model) {
-        model.addAttribute("title", "Login");
-        return "LogIn";
-    }
-
-    @GetMapping("/loginWithEmail")
-    public String loginWithEmailPage( Model model) {
-        model.addAttribute("title", "Login With Email");
-        return "LogInWithEmail";
-    }
 
 
 
@@ -97,11 +72,7 @@ public class HomeContoller {
         return "Shipping";
     }
 
-    @GetMapping("/signUp")
-    public String signUpPage( Model model) {
-        model.addAttribute("title", "Sign Up");
-        return "SignUp";
-    }
+
 
     @GetMapping("/signUpWithEmail")
     public String signUpWithEmailPage( Model model) {
