@@ -2,6 +2,7 @@ package com.matrix.freshmarket.controller;
 
 import com.matrix.freshmarket.entity.User;
 import com.matrix.freshmarket.repository.UserRepository;
+import com.matrix.freshmarket.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -24,14 +25,17 @@ public class PasswordController {
     @Autowired
     UserRepository repository;
 
+    @Autowired
+    UserService userService;
+
     @GetMapping("/CreatePassword")
     public String createPassword() {
         return "CreateNewPassword";
     }
 
-    @GetMapping("/CreatePasswordWithVerifyCode")
+    @GetMapping("/CreatePasswordWithEmailLink")
     public String createPasswordVerifyCode() {
-        return "CreatePasswordWithVerifyCode";
+        return "CreatePasswordWithEmailLink";
     }
 
 
@@ -56,20 +60,21 @@ public class PasswordController {
             String mailSubject="You can reset password by this verify code";
             String mailContent= "  <div  style=\"display : block; width: 90%;\">\n" +
                     "  <div>\n" +
-                    "       <p style=\"font-size: 30px; text-align: center; color: forestgreen;\"><b>Fresh Market</b></p><br>\n" +
-                    "        <p style=\"text-align: center;\">Hello</p>\n" +
-                    "       <p style=\"text-align: center;\">We've received a request to reset the password for Fresh Market account\n" +
-                    "    with email .</p>\n" +
-                    "    <p style=\"text-align: center;\">No changes have been made  to your  account yet .</p>\n" +
-                    "        <br><p style=\"text-align: center;\">You can reset password by this verify code : </p>\n" +
+                    "       <p style=\"font-size: 35px; text-align: center; color: forestgreen;\"><b>Fresh Market</b></p><br>\n" +
+                    "       <p style=\"text-align: center; color:black; font-size: 17px;\">Hello ! We've received a request to reset the password for Fresh Market account ." +
+                    " No changes have been made  to your  account yet . You can reset your password  by clicking the link below :\n" +
+                    "    </p>\n" +
                     "      \n" +
                     "        <br>\n" +
                     "       \n" +
-                    "          <div style=\"margin-left: 42%;\">\n" +
-                    "              <a href=\"http://localhost:8089/CreatePasswordWithVerifyCode/?email="+email+"\">\n" +
-                    "            <button class=\"btn-dark\"  style=\" border: none; background-color: black; color: white; padding-top: 3%; padding-bottom: 3%; padding-left: 6%; padding-right: 6%;\" >Verify email</button>\n" +
+                    "          <div style=\"margin-left: 38%;\">\n" +
+                    "              <a href=\"http://localhost:8089/CreatePasswordWithEmailLink/?email="+email+"\">\n" +
+                    "            <button class=\"btn-dark\"  style=\" border: none; background-color: black; color: white; padding-top: 3%; padding-bottom: 3%; padding-left: 6%; padding-right: 6%;\" >Reset your password</button>\n" +
                     "        </a>\n" +
-                    "        </div>\n" +
+                    "        </div><br>\n" +
+                    "       <p style=\"text-align: center; color:black; font-size: 17px;\"> If you did not request a new password " +
+                    " immediately by replying to this email. \n" +
+                    "    </p>\n" +
                     "        </div>\n" +
                     "\n" +
                     "        <br>\n" +
@@ -81,7 +86,8 @@ public class PasswordController {
 
 
             mailSender.send(message);
-            return "FreshMarket";
+            model.addAttribute("successful", "We have sent a reset password link to your email . Please check . ");
+            return "CreateNewPassword";
         }
 
         model.addAttribute("message", "Email is not  found");
@@ -91,24 +97,31 @@ public class PasswordController {
 
     }
 
-    @RequestMapping("/CreatePasswordWithVerifyCode/")
+    @RequestMapping("/CreatePasswordWithEmailLink/")
     public String udpdatePassword(Model model,@RequestParam(value = "email",defaultValue = "email") String email) {
-     model.addAttribute("email",email);
+
+        model.addAttribute("email",email);
 
 
-     return "/CreatePasswordWithVerifyCode";
+     return "/CreatePasswordWithEmailLink";
 
     }
 
 
 
+    @PostMapping("/reset_password")
+    public String processResetPassword(HttpServletRequest request, Model model) {
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
 
-    //        User emailUser=repository.findByEmail(email);
+        User user=repository.findByEmail(email);
+           userService.updatePassword(user, password);
 
-//        String password=request.getParameter("password");
-//        String confirmPassword=request.getParameter("confirmPassword");
-//
-//
-//        System.out.println(email);
-//        System.out.println(password);
+            model.addAttribute("message", "You have successfully changed your password.");
+
+
+        return "/CreatePasswordWithEmailLink";
+    }
+
+
 }
