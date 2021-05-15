@@ -1,8 +1,10 @@
 package com.matrix.freshmarket.entity;
 
+import com.github.ankurpathak.password.bean.constraints.PasswordMatches;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Collection;
 
@@ -21,6 +23,8 @@ public class User {
     private LocalDate regTime;
     @Column(name = "password")
     private String password;
+    @Transient
+    private String matchingPassword;
 
 
     @ManyToMany
