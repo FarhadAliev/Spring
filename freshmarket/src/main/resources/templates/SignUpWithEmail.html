@@ -23,17 +23,21 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                    <form onsubmit="event.preventDefault()" class="box">
+                    <form th:action="@{/signUpWithEmail}" method="post" th:object="${user}" class="box">
                         <h1>Sign Up</h1>
                         <p class="Sign-up-already-text">Already a member?
                             <a class="Sign-up-text-2" th:href="@{/loginWithEmail}">&nbsp;Log In</a></p>
-                       
 
-                        <input type="text" name="" placeholder="Email">
-                        <input type="password" name="" placeholder="Password">
-                         <input type="password" name="" placeholder="Confirm Password"> 
 
-                         <input type="submit" name="" value="Sign Up" href="#">
+
+                        <input th:field="*{email}" id="email" type="text" name="email" placeholder="Email">
+                        <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">No error</div>
+                        <input th:field="*{password}" id="password" type="password" name="password" placeholder="Password">
+                        <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">No error</div>
+                         <input th:field="*{matchingPassword}" id="matchingPassword" type="password" name="matchingPassword" placeholder="Confirm Password">
+                        <div style="color: red" th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}">No error</div>
+                         <input type="submit" name="submit" value="Submit">
+
                         <div class="col-md-12">
                             <ul class="social-network social-circle">
                                 <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>

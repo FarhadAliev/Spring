@@ -74,11 +74,7 @@ public class HomeContoller {
 
 
 
-    @GetMapping("/signUpWithEmail")
-    public String signUpWithEmailPage( Model model) {
-        model.addAttribute("title", "Sign Up With Email");
-        return "SignUpWithEmail";
-    }
+
 
     @GetMapping("/viewCart")
     public String viewCartPage( Model model) {

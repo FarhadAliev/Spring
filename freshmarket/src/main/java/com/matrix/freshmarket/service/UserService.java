@@ -1,8 +1,10 @@
 package com.matrix.freshmarket.service;
 
 
+import com.matrix.freshmarket.dao.RegistrationDao;
 import com.matrix.freshmarket.entity.Role;
 import com.matrix.freshmarket.entity.User;
+import com.matrix.freshmarket.repository.RoleRepository;
 import com.matrix.freshmarket.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,14 +16,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService   {
 
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
     private UserRepository userRepository;
+
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -59,6 +68,22 @@ public class UserService implements UserDetailsService   {
         userRepository.save(user);
 
     }
+
+
+    public void saveUserRegister(RegistrationDao registrationDao) {
+
+        User newUser=new User();
+             newUser.setEmail(registrationDao.getEmail());
+             newUser.setRegTime(LocalDate.now());
+             newUser.setPassword(registrationDao.getPassword());
+             newUser.setRoles(Arrays.asList(new Role("ROLE_USER")));
+
+
+             userRepository.saveAndFlush(newUser);
+    }
+
+
+
 
 
 
