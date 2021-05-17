@@ -1,6 +1,7 @@
 package com.matrix.freshmarket.controller.Registration;
 
 import com.matrix.freshmarket.dao.RegistrationDao;
+import com.matrix.freshmarket.entity.User;
 import com.matrix.freshmarket.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -37,23 +39,28 @@ public class RegistrationController {
 
     @RequestMapping(value = "/signUpWithEmail",method = RequestMethod.POST)
     public Object register(@Valid @ModelAttribute("user") RegistrationDao registrationDao, BindingResult result,
-                           HttpServletRequest request, Model model){
+                           HttpServletRequest request, Model model) throws MessagingException {
 
-        String email=request.getParameter("email");
-        String password=request.getParameter("password");
-        String matchingPassword=request.getParameter("matchingPassword");
-        System.out.println(email);
-        System.out.println(password);
-        System.out.println(matchingPassword);
-        System.out.println( LocalDate.now());
+        String password=registrationDao.getPassword();
+        String passwordMatching=registrationDao.getMatchingPassword();
 
+
+        User existing = userService.findByUsername(registrationDao.getEmail());
+        if (existing != null) {
+            result.rejectValue("email", null, "There is already an account registered with that email");
+        }
+        if(!password.equals(passwordMatching)){
+            result.rejectValue("matchingPassword", null, "Passwords don't match");
+        }
 
         if (result.hasErrors()) {
             return "signUpWithEmail";
         }
 
-       userService.saveUserRegister(registrationDao);
 
+       userService.sendRegistrationMessage(registrationDao);
+       userService.saveUserRegister(registrationDao);
+        model.addAttribute("success", "Thank you for your registration!");
 
         return  "signUpWithEmail";
     }

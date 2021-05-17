@@ -33,6 +33,8 @@
         </dependency>
 
 
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -78,6 +80,11 @@
             <version>2.4.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.passay</groupId>
+            <artifactId>passay</artifactId>
+            <version>1.0</version>
+        </dependency>
 
 
         <!-- Thanks for using https://jar-download.com -->
@@ -92,11 +99,7 @@
 
 
 
-        <dependency>
-            <groupId>org.passay</groupId>
-            <artifactId>passay</artifactId>
-            <version>1.0</version>
-        </dependency>
+
         <!-- Thanks for using https://jar-download.com -->
 
         <!-- https://mvnrepository.com/artifact/com.github.ankurpathak.password/password-validation -->

@@ -69,7 +69,7 @@ public class ContactController {
         helper.setText(mailContent,true);
 
         mailSender.send(message);
-       model.addAttribute("success", "Thank you for contacting us . We'll get back to you shortly !");;
+       model.addAttribute("success", "Thank you for contacting us . We'll get back to you shortly !");
 
 
         ContactEntity contact=new ContactEntity(firstName,lastName,email);

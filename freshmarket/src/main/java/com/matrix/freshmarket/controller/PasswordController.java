@@ -57,7 +57,7 @@ public class PasswordController {
             help.setFrom("freshmarket.message@gmail.com");
             help.setTo(email);
 
-            String mailSubject="You can reset password by this verify code";
+            String mailSubject="You can reset password by Link";
             String mailContent= "  <div  style=\"display : block; width: 90%;\">\n" +
                     "  <div>\n" +
                     "       <p style=\"font-size: 35px; text-align: center; color: forestgreen;\"><b>Fresh Market</b></p><br>\n" +

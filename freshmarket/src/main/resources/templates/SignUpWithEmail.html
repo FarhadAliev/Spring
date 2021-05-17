@@ -29,13 +29,23 @@
                             <a class="Sign-up-text-2" th:href="@{/loginWithEmail}">&nbsp;Log In</a></p>
 
 
+                        <div class="container alert-message">
+
+                            <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}">
+                            </div>
+                        </div>
+
+
+                        <div class="alert alert-danger" role="alert" style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">No error</div>
+                        <div class="alert alert-danger" role="alert" style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">No error</div>
+                        <div class="alert alert-danger" role="alert" style="color: red" th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}">No error</div>
 
                         <input th:field="*{email}" id="email" type="text" name="email" placeholder="Email">
-                        <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">No error</div>
+
                         <input th:field="*{password}" id="password" type="password" name="password" placeholder="Password">
-                        <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">No error</div>
+
                          <input th:field="*{matchingPassword}" id="matchingPassword" type="password" name="matchingPassword" placeholder="Confirm Password">
-                        <div style="color: red" th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}">No error</div>
+
                          <input type="submit" name="submit" value="Submit">
 
                         <div class="col-md-12">

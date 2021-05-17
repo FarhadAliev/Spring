@@ -1,11 +1,20 @@
 package com.matrix.freshmarket.dao;
 
 
+import com.matrix.freshmarket.validation.ValidEmail;
+import com.matrix.freshmarket.validation.ValidPassword;
+
+import javax.validation.constraints.NotNull;
 
 public class RegistrationDao {
 
+    @ValidEmail
+    @NotNull
     private  String email;
+    @NotNull
+    @ValidPassword
     private String password;
+    @NotNull
     private  String matchingPassword;
 
 
