@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -18,7 +19,7 @@ public class User<roles> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "user_id")
     private Long id;
     @NotEmpty
     @Column(name = "email", unique = true)
@@ -27,6 +28,8 @@ public class User<roles> {
     private LocalDate regTime;
     @Column(name = "password")
     private String password;
+    @Column(name = "enabled")
+    private boolean isEnabled;
 
     @ManyToMany(fetch = FetchType.EAGER,cascade={CascadeType.ALL})
     @JoinTable(name = "user_roles",
@@ -37,17 +40,26 @@ public class User<roles> {
 
 
 
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
+    }
+
     public User() {
     }
 
-    public User( String email, LocalDate regTime, String password, List<Role> roles) {
+    public User( String email, LocalDate regTime, String password, List<Role> roles,Boolean isEnabled) {
         this.email = email;
         this.regTime = regTime;
         this.password = password;
         this.roles = roles;
+        this.isEnabled=isEnabled;
     }
 
-    public Collection<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 

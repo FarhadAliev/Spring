@@ -71,6 +71,7 @@ public class HomeContoller {
         model.addAttribute("title", "Shipping");
         return "Shipping";
     }
+    
 
 
 

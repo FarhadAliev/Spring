@@ -1,16 +1,17 @@
 package com.matrix.freshmarket.controller.Registration;
 
 import com.matrix.freshmarket.dao.RegistrationDao;
+import com.matrix.freshmarket.entity.ConfirmationToken;
 import com.matrix.freshmarket.entity.User;
+import com.matrix.freshmarket.repository.ConfirmationTokenRepository;
+import com.matrix.freshmarket.repository.UserRepository;
 import com.matrix.freshmarket.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,13 @@ public class RegistrationController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    UserRepository repository;
+
+
+    @Autowired
+    private ConfirmationTokenRepository confirmationTokenRepository;
 
 
 
@@ -37,7 +45,7 @@ public class RegistrationController {
 
 
 
-    @RequestMapping(value = "/signUpWithEmail",method = RequestMethod.POST)
+    @PostMapping(value = "/signUpWithEmail")
     public Object register(@Valid @ModelAttribute("user") RegistrationDao registrationDao, BindingResult result,
                            HttpServletRequest request, Model model) throws MessagingException {
 
@@ -57,13 +65,52 @@ public class RegistrationController {
             return "signUpWithEmail";
         }
 
-
-       userService.sendRegistrationMessage(registrationDao);
        userService.saveUserRegister(registrationDao);
-        model.addAttribute("success", "Thank you for your registration!");
+        model.addAttribute("success", "Verification email has sent to   "+registrationDao.getEmail()+"!");
 
         return  "signUpWithEmail";
+
     }
+
+
+
+
+
+
+
+
+    @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
+    public String confirmUserAccount(Model model, @RequestParam("token")String confirmationToken)
+    {
+        ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
+
+        if(token != null)
+        {
+            User user = repository.findByEmail(token.getUser().getEmail());
+            user.setEnabled(true);
+            repository.save(user);
+            model.addAttribute("success","Congratulations ! Your account has been activated and email is verified.");
+        }
+        else
+        {
+            model.addAttribute("error","The link is invalid or broken!");
+
+        }
+
+        return "RegisterMessage";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

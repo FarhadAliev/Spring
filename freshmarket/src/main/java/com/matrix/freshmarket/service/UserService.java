@@ -2,8 +2,10 @@ package com.matrix.freshmarket.service;
 
 
 import com.matrix.freshmarket.dao.RegistrationDao;
+import com.matrix.freshmarket.entity.ConfirmationToken;
 import com.matrix.freshmarket.entity.Role;
 import com.matrix.freshmarket.entity.User;
+import com.matrix.freshmarket.repository.ConfirmationTokenRepository;
 import com.matrix.freshmarket.repository.RoleRepository;
 import com.matrix.freshmarket.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,8 @@ public class UserService implements UserDetailsService   {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ConfirmationTokenRepository confirmationTokenRepository;
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -78,24 +82,21 @@ public class UserService implements UserDetailsService   {
     }
 
 
-    public void saveUserRegister(RegistrationDao registrationDao) {
+    public void saveUserRegister(RegistrationDao registrationDao) throws MessagingException {
         BCryptPasswordEncoder bc=new BCryptPasswordEncoder();
         String encodePassword=bc.encode(registrationDao.getPassword());
         User newUser=new User();
              newUser.setEmail(registrationDao.getEmail());
              newUser.setRegTime(LocalDate.now());
              newUser.setPassword(encodePassword);
+             newUser.setEnabled(false);
              newUser.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")  ));
 
 
              userRepository.saveAndFlush(newUser);
-    }
 
-
-
-
-   public void sendRegistrationMessage(RegistrationDao registrationDao) throws MessagingException {
-
+        ConfirmationToken confirmationToken = new ConfirmationToken(newUser);
+        confirmationTokenRepository.save(confirmationToken);
 
 
        MimeMessage message=mailSender.createMimeMessage();
@@ -104,25 +105,22 @@ public class UserService implements UserDetailsService   {
        help.setFrom("freshmarket.message@gmail.com");
        help.setTo(registrationDao.getEmail());
 
-       String mailSubject="Thank you for Registration";
+       String mailSubject="Complete Registration !";
        String mailContent= "  <div  style=\"display : block; width: 90%;\">\n" +
                "  <div>\n" +
                "       <p style=\"font-size: 35px; text-align: center; color: forestgreen;\"><b>Fresh Market</b></p><br>\n" +
                "       <p style=\"text-align: center; color:black; font-size: 17px;\">Thank you for Registration and Welcome to Fresh Market family" +
-               " You've signed up to bethe first to know about our exclusive offers, new products, and recipes.\" +\n" +
-               "                \"You've signed up to bethe first to know about.\n" +
-               "    </p>\n" +
-               "      \n" +
-               "        <br>\n" +
-               "       \n" +
-               "          <div style=\"margin-left: 38%;\">\n" +
-               "              <a href=\"http://localhost:8089/loginWithEmail>\n" +
-               "            <button class=\"btn-dark\"  style=\" border: none; background-color: black; color: white; padding-top: 3%; padding-bottom: 3%; padding-left: 6%; padding-right: 6%;\" >Login</button>\n" +
-               "        </a>\n" +
-               "        </div><br>\n";
+               " You've signed up to bethe first to know about our exclusive offers, new products, and recipes.\n" +
+               "                \"Confirm your account , please click button !\n" +
+               "    </p>\n";
+               mailContent+="<br><br><div style=\"margin-left: 40%;\">\n"+
+                "<a href=\"http://localhost:8089/confirm-account?token=" + confirmationToken.getConfirmationToken()+"\">\n" +
+                "            <button class=\"btn-dark\"  style=\" border: none; background-color: black; color: white; padding-top: 3%; padding-bottom: 3%; padding-left: 6%; padding-right: 6%;\" >Confirm account</button>\n" +
+                "        </a>\n" +
+                "        </div><br>\n" ;
 
-       help.setSubject(mailSubject);
-       help.setText(mailContent,true);
+                help.setSubject(mailSubject);
+        help.setText(mailContent,true);
 
 
        mailSender.send(message);
