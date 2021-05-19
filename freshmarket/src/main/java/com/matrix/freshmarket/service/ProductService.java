@@ -37,7 +37,9 @@ public class ProductService{
         return products;
     }
 
-
+    public ProductEntity getProduct(Long id) {
+        return productRepository.findById(id).orElseGet(null);
+    }
 
 
 
@@ -105,9 +107,13 @@ public class ProductService{
 
     }
 
+    public void deleteProduct(Long id) {
+        productRepository.deleteById(id);
+    }
 
-
-
+    public List<ProductEntity> findAll () {
+        return productRepository.findAll();
+    }
 
    public Page<ProductEntity> getProducts(Integer page, String productType, String min,String max,String sort){
 
