@@ -1,0 +1,189 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #FBF9F1;
+    font-family: 'Open Sans', sans-serif;
+}
+table {
+    background: #012B39;
+    border-radius: 0.25em;
+    border-collapse: collapse;
+    margin: 1em;
+
+}
+th {
+
+    border-bottom: 4px solid #FBF9F1;
+    color: #c49412;
+    font-size: 1em;
+    font-weight: 700;
+    padding: 0.5em 0.8em;
+    text-align: center;
+
+}
+
+
+
+td {
+    color: #fff;
+    font-weight: 300;
+    padding: 0.5em 0.8em;
+    font-size: 0.8rem;
+    text-align: center;
+    border: 1px solid  #FBF9F1;
+    border-bottom: 5px solid  #FBF9F1;
+
+}
+.disabled td {
+    color: #4F5F64;
+}
+tbody tr {
+    transition: background 0.25s ease;
+
+}
+tbody tr:hover {
+    background: #014055;
+}
+
+
+
+
+.box-link{
+    color: #000000;
+}
+
+
+
+
+.box{
+    padding: 2%;
+    border: 1px solid #c49412;
+    text-align: center;
+    width: 20%;
+    float: left;
+    margin-left: 5%;
+    background-color:#c49412 ;
+    font: 1em sans-serif;
+}
+
+.box:hover{
+    color: #c49412;
+    font: 1em sans-serif;
+    background-color: black;
+}
+
+.page-item{
+    background-color: #FBF9F1;
+    border: none;
+}
+
+.page-link{
+    background-color:#c49412 ;
+    color: #000000;
+    border: 1px solid  #FBF9F1;
+}
+
+.page-link:hover{
+    background-color:black ;
+    border: 1px solid  black;
+    color: #c49412;
+}
+
+.box-block{
+    padding-left: 17%;
+    display:inline-block;
+    width: 100%;
+    height: 20%;
+    background-color: #FBF9F1;
+    margin-top: 15%;
+    margin-bottom: 5%;
+}
+
+
+.border-hr{
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border: 1px solid #c49412;
+}
+
+
+.table-admin{
+    width: 16%;
+    float: left;
+    margin-left: 3%;
+}
+
+.table-td{
+    text-decoration: none;
+    color: white;
+}
+
+.table-td:hover{
+    color: white;
+}
+
+.table-product{
+    width: 75%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 10%;
+    float: left;
+}
+
+.pagination{
+    padding-left: 54%;
+}
+
+.pagination-div{
+    width: 100%;
+    display: block;
+    float:left;
+    margin-bottom: 10%;
+}
+
+.dark{
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-size: 0.6rem;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.dark:hover{
+    color: white;
+}
+
+.danger{
+    width: 100%;
+    background-color: brown;
+    color: white;
+    font-size: 0.6rem;
+    margin-bottom: 6%;
+    margin-top: 10%;
+}
+
+.createProducts{
+    text-decoration: none;
+    color: #c49412
+}
+
+.createProducts:hover{
+    color: #c49412
+}
+
+.th-admin{
+    padding-bottom: 6%;
+    padding-top: 6.7%;
+}
+
+.sr-only{
+    color: black;
+    background-color:#000000 ;
+}

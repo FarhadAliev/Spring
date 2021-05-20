@@ -27,7 +27,7 @@
                     <form name="login" th:action="@{/loginWithEmail}"  method="post" class="box">
                         <h1>Login</h1>
                         <p class="log-in-already-text">New to this site?
-                            <a class="log-in-text-2" th:href="@{/signUpWithEmail}">&nbsp;Sing up</a></p>
+                            <a class="log-in-text-2" th:href="@{/signUpWithEmail}">&nbsp;Sign up</a></p>
                         <p  class="text-muted"> Please enter your Email and password!</p>
                         <div class="alert alert-danger" role="alert"  th:if="${param.error}">
                             <i class="fas fa-exclamation-circle"></i>
@@ -43,8 +43,9 @@
                         <div class="col-md-12">
                             <ul class="social-network social-circle">
                                 <li><a th:href="@{/login}" class="icoFacebook authenticated" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a th:href="@{/login}"  class="icoTwitter" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                <li><a th:href="@{/login}"  class="icoGoogle" title="Google +"><i class="fab fa-google-plus"></i></a></li>
+
+                                <li><a th:href="@{/login}"  class="icoGoogle authenticated" title="Google +"><i class="fab fa-google-plus"></i></a></li>
+
                             </ul>
                         </div>
                     </form>
@@ -57,21 +58,14 @@
 <script type="text/javascript">
     $.get("/user", function(data) {
         $(".icoFacebook").html(data.userAuthentication.details.name);
-
         console.log(data)
     });
 
     $.get("/user", function(data) {
         $(".icoGoogle").html(data.userAuthentication.details.name);
-
         console.log(data)
     });
 
-    $.get("/user", function(data) {
-        $(".icoTwitter").html(data.userAuthentication.details.name);
-
-        console.log(data)
-    });
 
 </script>
     

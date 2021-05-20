@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title th:text="${title}">Fresh Market</title>
+  <script src="https://kit.fontawesome.com/44a5bc4613.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/css/FreshMarket.css}" type="text/css">
+  <link rel="stylesheet" th:href="@{/css/AdminPage.css}" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<div th:replace="content/NavBar  :: content"></div>
+
+
+
+<div class="box-block">
+  <a class="box-link" href="" style="text-decoration: none;">
+    <div class="box">
+      Products
+    </div>
+  </a>
+  <a  class="box-link" href="" style="text-decoration: none;">
+    <div class="box" >
+      Inbox
+    </div>
+  </a>
+  <a  class="box-link" href="" style="text-decoration: none;">
+    <div class="box">
+    Statistic
+</div>
+</a>
+
+</div>
+
+
+
+<hr class="border-hr">
+
+<div class="container">
+
+<div >
+  <table class="table-admin">
+    <thead>
+    <tr  >
+      <th class="th-admin"> <a class="createProducts" href=""> Create New Product</a>
+    </thead>
+    <thead>
+    <tr >
+      <th class="th-admin" >Sort
+    </thead>
+    <tbody>
+    <tr>
+      <td> <a class="table-td" th:href="@{'/admin/products?page=0'+'&property=all'}" > All</a>
+    <tr>
+      <td><a class="table-td"  th:href="@{'/admin/products?page=0'+'&property=food'}" > Food</a>
+    <tr>
+      <td><a class="table-td" th:href="@{'/admin/products?page=0'+'&property=drink'}" >Drink</a>
+    <tr>
+      <td><a class="table-td" th:href="@{'/admin/products?page=0'+'&property=Personal Care'}" >Personal Care</a>
+    <tr>
+      <td><a class="table-td" th:href="@{'/admin/products?page=0'+'&property=Cleaning Supplies'}" >Cleaning Supplies</a>
+    <tr>
+    </tbody>
+
+
+  </table>
+
+
+
+  <table class="table-product">
+    <thead>
+    <tr>
+      <th >ID
+      <th>Name
+      <th>Category
+      <th>Price
+      <th>Discount
+      <th>Image
+      <th>Product Information
+      <th>Product Ingredients
+      <th>Action
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+      <td th:text="${product.id}">1
+      <td th:text="${product.productName}">Hellmann's Mayonnaise
+      <td th:text="${product.productCategory}">Food
+      <td th:text="${product.productPrice}">$ 32,50
+      <td th:text="${product.specialPrice}">$ 30,99
+      <td th:text="${product.productImg}">../gallery/z-3.jpg
+      <td th:text="${product.productInfo}">
+        Hellmann's Real Mayonnaise is proudly made with real,
+        simple ingredients like cage-free eggs, oil and vinegar.
+        We know that to really "Bring Out The Best," we need to do more
+        than just taste great. That’s why our delicious Blue Ribbon Quality
+        Mayonnaise is made with real eggs, oil and vinegar sourced from trusted
+        American farms. Even after 100 years, we’re still committed to using premium ingredients
+        to craft the highest quality mayonnaise.
+      <td th:text="${product.productIngredients}">SOYBEAN OIL, WATER, WHOLE EGGS AND EGG YOLKS, VINEGAR, SALT, SUGAR, LEMON JUICE, CALCIUM DISODIUM EDTA (USED TO PROTECT QUALITY), NATURAL FLAVORS.
+      <td>
+        <div class="container">
+          <a th:href="${'/deleteProduct/' + product.id}">
+          <button class="btn danger">Delete</button>
+          </a><br>
+          <button class="btn dark">Edit</button>
+        </div>
+      </td>
+    <tr>
+
+
+    </tbody>
+
+
+
+  </table>
+
+</div>
+
+<br>
+
+<div class="pagination-div">
+  <nav aria-label="Page navigation example" >
+    <ul class="pagination" th:if="${products.totalPages > 1}" >
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+      <li class="page-item" th:each="pageNumber : ${numbers}"
+          th:class="${pageNumber == products.number} ? active">
+        <a class="page-link" href="#" th:href="@{'/admin/products?page='+${pageNumber}+'&property='+${property}+'&min='+${min}+'&max='+${max}+'&sort='+${sort}}"
+           th:text="${pageNumber+1}">1</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+
+</div>
+
+
+
+<div th:replace="content/Footer :: content"></div>
+
+
+<!-- chat -->
+<div th:replace="content/Chat :: content"></div>
+
+
+
+
+<!-- View Cart -->
+<div th:replace="content/ViewCart :: content"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
+        integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
+        integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
+        crossorigin="anonymous"></script>
+<script  th:src="@{/js/FreshMarket.js}"></script>
+
+</body>
+</html>
