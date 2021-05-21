@@ -17,6 +17,13 @@ table {
     margin: 1em;
 
 }
+
+
+.addProductTh{
+    color: #FBF9F1;
+    border-bottom: none;
+}
+
 th {
 
     border-bottom: 4px solid #FBF9F1;
@@ -28,6 +35,14 @@ th {
 
 }
 
+.td-admin{
+    color: #fff;
+    font-weight: 300;
+    padding: 0.5em 0.8em;
+    font-size: 0.8rem;
+    text-align: center;
+    border-bottom: 1px solid  #FBF9F1;
+}
 
 
 td {
@@ -40,6 +55,9 @@ td {
     border-bottom: 5px solid  #FBF9F1;
 
 }
+
+
+
 .disabled td {
     color: #4F5F64;
 }
@@ -157,6 +175,10 @@ tbody tr:hover {
 }
 
 .dark:hover{
+    color: white;
+}
+
+.create-btn:hover{
     color: white;
 }
 
