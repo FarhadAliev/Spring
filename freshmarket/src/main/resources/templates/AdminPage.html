@@ -23,7 +23,7 @@
 
 
 <div class="box-block">
-  <a class="box-link" href="" style="text-decoration: none;">
+  <a class="box-link" th:href="@{/admin/products}" style="text-decoration: none;">
     <div class="box">
       Products
     </div>
@@ -41,17 +41,23 @@
 
 </div>
 
+<div class="alert alert-primary" role="alert" style="text-align:center; width: 25%; margin-left: 37.5%;"  th:if="${success}">
+  <i class="fas fa-check-circle" style="color: green; font-size: 1.4rem;"></i>
+  &nbsp; <p  style="text-align: center;  padding-top: 4%;
+          ">Product successfully deleted from Database</p></div>
 
 
-<hr class="border-hr">
 
+<div class="container">
+ <hr class="border-hr">
+</div>
 <div class="container">
 
 <div >
   <table class="table-admin">
     <thead>
     <tr  >
-      <th class="th-admin"> <a class="createProducts" href=""> Create New Product</a>
+      <th class="th-admin"> <a class="createProducts" th:href="@{'/addNewProduct'}"> Create New Product</a>
     </thead>
     <thead>
     <tr >
@@ -111,7 +117,9 @@
           <a th:href="${'/deleteProduct/' + product.id}">
           <button class="btn danger">Delete</button>
           </a><br>
+          <a th:href="${'/editProduct/' + product.id}">
           <button class="btn dark">Edit</button>
+          </a>
         </div>
       </td>
     <tr>
@@ -131,7 +139,7 @@
   <nav aria-label="Page navigation example" >
     <ul class="pagination" th:if="${products.totalPages > 1}" >
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous">
+        <a class="page-link" href="##" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
           <span class="sr-only">Previous</span>
         </a>
@@ -141,7 +149,7 @@
         <a class="page-link" href="#" th:href="@{'/admin/products?page='+${pageNumber}+'&property='+${property}+'&min='+${min}+'&max='+${max}+'&sort='+${sort}}"
            th:text="${pageNumber+1}">1</a></li>
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
+        <a class="page-link" href="##" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
           <span class="sr-only">Next</span>
         </a>

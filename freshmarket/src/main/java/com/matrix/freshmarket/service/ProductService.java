@@ -275,4 +275,30 @@ public class ProductService{
 
 
     }
+
+
+
+
+
+    public  void findProductAndSave(String name,String category,String price,String special,String img,String info, String ingridients){
+      ProductEntity product=productRepository.findByProductName(name).orElseGet(null);
+
+      product.setProductName(name);
+      product.setProductCategory(category);
+        BigDecimal productPrice = new BigDecimal(price);
+        BigDecimal specialPrice;
+        if (special.equals("")){
+            specialPrice=null;
+        }else {
+            specialPrice = new BigDecimal(special);
+        }
+        product.setProductPrice(productPrice);
+        product.setSpecialPrice(specialPrice);
+        product.setProductImg(img);
+        product.setProductInfo(info);
+        product.setProductIngredients(ingridients);
+
+        productRepository.save(product);
+
+    }
 }

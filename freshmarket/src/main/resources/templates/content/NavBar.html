@@ -34,6 +34,10 @@
             <a th:href="@{/contact}" class="nav-link">Contact</a>
           </li>
 
+          <li class="navbar-item item-nav-words col">
+            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin/products}" class="nav-link">Admin</a>
+          </li>
+
 
           <li  class="navbar-item item-nav-words col">
             <a sec:authorize="isAnonymous()"  th:href="@{/loginWithEmail}" class="nav-link log-in-link " style="display: flex">

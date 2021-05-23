@@ -5,9 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 @Entity
@@ -38,7 +40,13 @@ public class ProductEntity {
     String productIngredients;
 
 
-
-
-
+    public ProductEntity(String productName, BigDecimal productPrice, BigDecimal specialPrice, String productCategory, String productImg, String productInfo, String productIngredients) {
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.specialPrice = specialPrice;
+        this.productCategory = productCategory;
+        this.productImg = productImg;
+        this.productInfo = productInfo;
+        this.productIngredients = productIngredients;
+    }
 }

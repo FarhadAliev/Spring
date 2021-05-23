@@ -1,38 +1,114 @@
-<html xmlns:th="http://www.thymeleaf.org">
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Edit Product</title>
+  <title th:text="${title}">Fresh Market</title>
   <script src="https://kit.fontawesome.com/44a5bc4613.js" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/style.css">
-
+  <link rel="stylesheet" th:href="@{/css/FreshMarket.css}" type="text/css">
+  <link rel="stylesheet" th:href="@{/css/AdminPage.css}" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap" rel="stylesheet">
 
 </head>
-
 <body>
-<div class = "container">
-  <h3>Edit Product</h3>
 
-  <form action="/admin/products/saveProduct" method="post">
-    <input th:value="${product.id}" type="hidden" name="id" placeholder="product id">
-    <input th:value="${product.name}" type="text" name="name" placeholder="product name">Name</input><br>
-    <input th:value="${product.price}" type="number" name="price" placeholder="product price">Price</input><br>
-    <input th:value="${product.image}" type="text" name="image" placeholder="product image">Image</input><br>
-    <input th:value="${product.category}" type="text" name="category" placeholder="product category">Category</input><br>
-    <input type="submit" name="submit" value="submit" />
-  </form>
+<div th:replace="content/NavBar  :: content"></div>
+
+
+
+<div class="box-block">
+  <a class="box-link" th:href="@{/admin/products}" style="text-decoration: none;">
+    <div class="box">
+      Products
+    </div>
+  </a>
+  <a  class="box-link" href="" style="text-decoration: none;">
+    <div class="box" >
+      Inbox
+    </div>
+  </a>
+  <a  class="box-link" href="" style="text-decoration: none;">
+    <div class="box">
+      Statistic
+    </div>
+  </a>
+
 </div>
 
 
+
+<div class="container">
+  <hr class="border-hr">
+</div>
+<div class="container">
+
+  <div >
+
+
+
+
+    <form th:action="@{/saveProduct}" >
+
+      <div class="alert alert-primary" role="alert" style="text-align:center; width: 25%; margin-left: 37.5%;"  th:if="${success}">
+        <i class="fas fa-check-circle" style="color: green; font-size: 1.4rem;"></i>
+        &nbsp; <p  style="text-align: center;  padding-top: 4%;
+          ">The data was changed and written to the database</p></div>
+
+      <table class="table-product" style="width: 25%; margin-left: 37.5%;  background-color:#2A6049">
+        <thead>
+        <input type="hidden"  name="id" th:value="${product.id}" />
+        <tr>
+          <th class="addProductTh"  style="padding-top: 2%; padding-bottom: 2%;">Name <tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input th:value="${product.productName}" style="width: 50%;" type="text" name="Name" >
+        <tr>
+          <th class="addProductTh" >Category<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input  th:value="${product.productCategory}" style="width: 50%;" type="text" name="Category" >
+        <tr>
+          <th class="addProductTh">Price<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input  th:value="${product.productPrice}" style="width: 50%;" type="number" step="any" name="Price" >
+        <tr>
+          <th class="addProductTh">Discount<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input th:value="${product.specialPrice}"  style="width: 50%;" type="number" step="any" name="Discount" >
+        <tr>
+          <th class="addProductTh">Image<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input th:value="${product.productImg}" style="width: 50%;" type="text" name="Image" >
+        <tr>
+          <th class="addProductTh">Product Information<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input th:value="${product.productInfo}" style="width: 50%;" type="text" name="Product Information" >
+        <tr>
+          <th class="addProductTh">Product Ingredients<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input th:value="${product.productIngredients}" style="width: 50%;" type="text" name="Product Ingredients" >
+        <tr>
+          <td class="td-admin"> <button class="dark btn create-btn" style="width: 50%; background-color:  #c49412 ; color: black; font-size: 0.8rem" type="submit">Edit Product</button>
+        </thead>
+      </table>
+
+
+
+
+
+    </form>
+  </div>
+
+  <br>
+
+
+
+
+</div>
+
+
+
+<div th:replace="content/Footer :: content"></div>
+
+
+<!-- chat -->
+<div th:replace="content/Chat :: content"></div>
+
+
+
+
+<!-- View Cart -->
+<div th:replace="content/ViewCart :: content"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
@@ -43,11 +119,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
         integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="FreshMarket.js"></script>
-
-
-
+<script  th:src="@{/js/FreshMarket.js}"></script>
 
 </body>
-
 </html>

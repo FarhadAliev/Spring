@@ -209,3 +209,10 @@ tbody tr:hover {
     color: black;
     background-color:#000000 ;
 }
+
+
+.pagination li.active a{
+    background-color: black;
+    color: #c49412;
+    border-color: black ;
+}

@@ -23,7 +23,7 @@
 
 
 <div class="box-block">
-  <a class="box-link" href="" style="text-decoration: none;">
+  <a class="box-link" th:href="@{/admin/products}" style="text-decoration: none;">
     <div class="box">
       Products
     </div>
@@ -42,9 +42,9 @@
 </div>
 
 
-
+<div class="container">
 <hr class="border-hr">
-
+</div>
 <div class="container">
 
   <div >
@@ -52,27 +52,34 @@
 
 
 
+    <form th:action="@{/addNewProduct}" method="post">
+
+      <div class="alert alert-primary" role="alert" style="text-align:center; width: 25%; margin-left: 37.5%;"  th:if="${success}">
+        <i class="fas fa-check-circle" style="color: green; font-size: 1.4rem;"></i>
+        &nbsp; <p  style="text-align: center;  padding-top: 4%;
+          ">New product successfully added to Database</p></div>
+
     <table class="table-product" style="width: 25%; margin-left: 37.5%;  background-color:#2A6049">
       <thead>
       <tr>
-        <th class="addProductTh" style="padding-top: 2%; padding-bottom: 2%;">Name <tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input style="width: 50%;" type="text" name="" id="">
+        <th class="addProductTh" style="padding-top: 2%; padding-bottom: 2%;">Name <tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input style="width: 50%;" type="text" name="Name" >
       <tr>
-        <th class="addProductTh" >Category<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input style="width: 50%;" type="text" name="" id="">
+        <th class="addProductTh" >Category<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input  style="width: 50%;" type="text" name="Category" >
       <tr>
-        <th class="addProductTh">Price<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input style="width: 50%;" type="text" name="" id="">
+        <th class="addProductTh">Price<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input  style="width: 50%;" type="number" step="any" name="Price" >
       <tr>
-        <th class="addProductTh">Discount<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input style="width: 50%;" type="text" name="" id="">
+        <th class="addProductTh">Discount<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input  style="width: 50%;" type="number" step="any" name="Discount" >
       <tr>
-        <th class="addProductTh">Image<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input style="width: 50%;" type="text" name="" id="">
+        <th class="addProductTh">Image<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input  style="width: 50%;" type="text" name="Image" >
       <tr>
-        <th class="addProductTh">Product Information<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input style="width: 50%;" type="text" name="" id="">
+        <th class="addProductTh">Product Information<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input  style="width: 50%;" type="text" name="Product Information" >
       <tr>
-        <th class="addProductTh">Product Ingredients<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input style="width: 50%;" type="text" name="" id="">
+        <th class="addProductTh">Product Ingredients<tr><td class="td-admin" style="padding-top: 2%; padding-bottom: 2%;"><input  style="width: 50%;" type="text" name="Product Ingredients" >
       <tr>
-        <td class="td-admin"> <button class="dark btn create-btn" style="width: 50%; background-color:  #c49412 ; color: black; font-size: 0.8rem"> Create Product</button>
+        <td class="td-admin"> <button class="dark btn create-btn" style="width: 50%; background-color:  #c49412 ; color: black; font-size: 0.8rem" type="submit"> Create Product</button>
       </thead>
     </table>
-
+    </form>
 
 
 

@@ -9,9 +9,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
+
+ Optional<ProductEntity> findByProductName(String s);
 
     @Query(value = "SELECT * FROM  product"
             +" WHERE special_price IS NOT NULL"+
