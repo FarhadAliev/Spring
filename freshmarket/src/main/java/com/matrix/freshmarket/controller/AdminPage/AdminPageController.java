@@ -1,9 +1,9 @@
 package com.matrix.freshmarket.controller.AdminPage;
 
 
+import com.matrix.freshmarket.Global.GlobalData;
 import com.matrix.freshmarket.entity.ProductEntity;
 import com.matrix.freshmarket.entity.User;
-import com.matrix.freshmarket.global.GlobalData;
 import com.matrix.freshmarket.repository.ProductRepository;
 import com.matrix.freshmarket.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +52,6 @@ public class AdminPageController {
                                    Integer page,
                            Model model) {
         model.addAttribute("count", GlobalData.cart.size());
-
         if(!min.equals("$0") || !max.equals("$100")){
 
             Page<ProductEntity> productPage =
@@ -101,7 +100,7 @@ public class AdminPageController {
 
     @GetMapping("/addNewProduct")
     public String redirectToNewProductPage(Model model) {
-        model.addAttribute("count",GlobalData.cart.size());
+        model.addAttribute("count", GlobalData.cart.size());
         return "AddProduct";
     }
 
@@ -111,7 +110,6 @@ public class AdminPageController {
     public String createProduct(HttpServletRequest request , Model model){
 
 
-        model.addAttribute("count",GlobalData.cart.size());
         String productName=request.getParameter("Name");
         String category=request.getParameter("Category");
         String price=request.getParameter("Price");
@@ -144,7 +142,7 @@ public class AdminPageController {
             Model model
     ) {
 
-        model.addAttribute("count",GlobalData.cart.size());
+        model.addAttribute("count", GlobalData.cart.size());
         ProductEntity product = productService.getProduct(productId);
         model.addAttribute("product", product);
         if (!message.equals("")) {
@@ -155,7 +153,6 @@ public class AdminPageController {
 
     @RequestMapping("/saveProduct")
     public String saveProduct(HttpServletRequest request,Model model) {
-        model.addAttribute("count",GlobalData.cart.size());
         String id=request.getParameter("id");
         String productName=request.getParameter("Name");
         String category=request.getParameter("Category");
@@ -164,7 +161,7 @@ public class AdminPageController {
         String img=request.getParameter("Image");
         String productInformation=request.getParameter("Product Information");
         String ingredients=request.getParameter("Product Ingredients");
-
+        model.addAttribute("count", GlobalData.cart.size());
       productService.findProductAndSave(productName,
               category,price,specialPrice,img,
               productInformation,ingredients);
@@ -175,8 +172,8 @@ public class AdminPageController {
 
     @RequestMapping("/deleteProduct/{productId}")
     public String deleteProduct(@PathVariable Long productId,Model model) {
+        model.addAttribute("count", GlobalData.cart.size());
         productService.deleteProduct(productId);
-        model.addAttribute("count",GlobalData.cart.size());
         String message="Product changes deleted from Database";
         return "redirect:/admin/products?message="+message;
     }

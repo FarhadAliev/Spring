@@ -38,7 +38,7 @@
 
         <!-- ----------------------------------------------------------------------------------------- -->
 
-        <input type="hidden"  name="url"  th:text="shop" value="shop" />
+
         <div class="-shop-all-products-body">
 
             <div class="container first-section">
@@ -192,17 +192,9 @@
                                     <div class="card-body">
                                     <h5 class="card-title  products-name-shop" th:text="${product.productName}"></h5>
                                     <p class="card-text products-price-shop" th:text="${product.productPrice}"></p>
-                                    <div class="summ-product-btn-shop ">
-                                        <div class="counter-shop">
-                                            <button class="minus  btn light">-</button>
-                                            <input class="summ-products-input-shop btn light" type="number" min="0"
-                                                   max="1000000" step="1" value="0">
-                                            <button class="plus  btn light">+</button>
 
-                                        </div>
-                                    </div>
                                     <div>
-                                        <a th:href="${'/addToCart/' + product.productName}">
+                                        <a class="a" th:href="@{'/cart/buy/' + ${product.id}}">
                                             <button class="btn light add-to-card-shop">Add to Cart</button>
                                     </a>
                                     </div>
@@ -258,6 +250,7 @@
             integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
             crossorigin="anonymous"></script>
     <script th:src="@{/js/FreshMarket.js}"></script>
+<script th:src="@{/js/FreshMarketShop.js}"></script>
     <script th:src="@{/js/ShopProductSlider.js}"></script>
 
 

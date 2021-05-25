@@ -39,21 +39,24 @@
 <hr class="hr-view-cart">
 </div>
 
-
-<div class="block-info">
+<form th:action="@{'/cart/update'}" method="post">
+<div class="block-info" th:each="cart:${session.cart}">
     <div class="big-viewcart-price-block">
         <div class="price-functions">
             <div class="block-price-text">
-                <p class="price-text-view"><b>$3.68</b></p>
+
                 
             </div>
             <div class="view-close-icon-block">
-                <a class="close-link" href="#">
-                <i  class="far fa-times-circle"></i>
+                <a class="close-link" th:href="${'/cart/remove/' + cart.productEntity.id}">
+                    <button type="button" class="btn btn-danger">Remove</button>
             </a>
+
             </div>
-    
-           
+  <br>
+            <div class="view-close-icon-block" style="margin-top: 1%">
+                <button type="submit" class="btn btn-dark">&nbsp;Update</button>
+            </div>
     
         </div>
     
@@ -61,36 +64,39 @@
         </div>
 
 
-        <div class="block" style="display: flex;">
+        <div class="block" style="display: flex;"  >
         
 <div class="block-info-view-cart">
     <a href="ProductsInfo.html">
-    <img class="view-img" src="../gallery/p-31.jpeg" alt="">
+    <img class="view-img" th:src="${cart.productEntity.productImg}" alt="">
 </a>
 </div>
 
 
 <div class="info-and-functions-block">
-    <p class="view-cart-product-name">Power Water</p>
-    <p class="view-cart-product-price"><b>$3.68</b> </p>
-    
+    <p class="view-cart-product-name" th:text="${cart.productEntity.productName}"></p>
+    <p class="view-cart-product-price"><b th:text="${cart.productEntity.productPrice}"></b> </p>
+
     <div class="summ-product-btn view-cart-btn">
         <div class="counter">
-            <button class="minus  btn light minus-view" >-</button>
-            <input class="summ-products-input btn light view-cart-input" type="number" min="0" max="1000000" step="1"
-                value="0">
-            <button class="plus  btn light plus-view">+</button>
+            <button type="button" class="minus  btn light minus-view" >-</button>
+            <input class="summ-products-input btn light view-cart-input" name="quantity" type="number" min="0" max="1000000" step="1"
+                value="0" th:value="${cart.quantity}">
+            <button type="button" class="plus  btn light plus-view">+</button>
         </div>
     </div>
 </div>
 </div>
 
-
+    <div class="view-card-second-hr-block">
+        <hr class="view-card-second-hr">
+    </div>
 
   
 
 </div>
 
+</form>
 
 <div class="view-card-second-hr-block">
     <hr class="view-card-second-hr">
@@ -123,13 +129,16 @@
 <hr class="hr-order-summary">
 
 <div class="order-summary-block">
-<div class="block-subtotal">
-    <p class="subtotal-text">Subtotal</p>
+    <p style="text-align: center">Subtotal</p>
+<div class="block-subtotal" th:each="cart:${session.cart}" style="display: inline" >
+
+    <p class="subtotal-text" th:text="${cart.productEntity.productName}" style="float: left;font-weight: bolder"></p>
+    <p style="float: left">&nbsp;. . . . . .&nbsp;</p>
+    <p style="float: left; font-weight: bolder">&nbsp;$&nbsp;</p>
+    <p style="float: right;font-weight: bolder" class="subtotal-text" th:text="${(cart.quantity)*(cart.productEntity.productPrice)}"></p>
+
 </div>
 
-<div class="summary-price-block">
-    <p><b> $3.68</b></p>
-</div>
 
 </div>
 
@@ -143,8 +152,8 @@
 </div>
 
 <div class="total-block-price">
-<p  class="total-price-text"><b> Total</b></p>
-<p class="total-all-price"><b>$3.68</b></p>
+<p  class="total-price-text"><b> Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$&nbsp;&nbsp;</b></p>
+<p class="total-all-price"><b th:text="${total}"></b></p>
 </div>
 
 <div class="checkout-button-block">

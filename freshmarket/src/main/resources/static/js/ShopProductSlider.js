@@ -5,7 +5,6 @@ $(document).ready(function() {
 
     $('.linkProductShop').mouseover(function () {
         var productName = $(this).next().next().children(".products-name-shop").text()
-        console.log(productName)
         $(".linkProductShop").attr("href","product?productName="+productName+"")
 
     })

@@ -1,6 +1,6 @@
 package com.matrix.freshmarket.controller;
+import com.matrix.freshmarket.Global.GlobalData;
 import com.matrix.freshmarket.entity.ProductEntity;
-import com.matrix.freshmarket.global.GlobalData;
 import com.matrix.freshmarket.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,14 +31,14 @@ public class ShopProductController {
                            @RequestParam(name = "sort", defaultValue = "sort") String sort,
                            @RequestParam(name = "min", defaultValue = "$0") String min,
                            @RequestParam(name = "max", defaultValue = "$100") String max,
-                           @RequestParam(value = "count",defaultValue = "0") int count,
                            @RequestParam(value = "page",
                                    required = false,
                                    defaultValue = "0")
                                    Integer page,
                                    Model model) {
 
-        model.addAttribute("count", GlobalData.cart.size());
+            model.addAttribute("count", GlobalData.cart.size());
+
            if(!min.equals("$0") || !max.equals("$100")){
 
            Page<ProductEntity> productPage =

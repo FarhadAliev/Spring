@@ -1,5 +1,9 @@
 
 
+
+
+
+
 $('.chat-logo').click(function () {
     $('.chat').show();
    
@@ -16,13 +20,13 @@ $('.close-chat').click(function () {
 // -------------------------------------------------------------------------
 
 $('.plus').click(function () {
-    const input = $(this).closest(".counter").find("input");
+    const input = $(this).closest(".counter-shop").find("input");
     input.val(+input.val() + 1);
 });
 
 $('.minus').click(function () {
-    const input = $(this).closest(".counter").find("input");
-    if (input.val() == 0) {
+    const input = $(this).closest(".counter-shop").find("input");
+    if (input.val() === 0) {
         input.val(0);
     } else {
         input.val(+input.val() - 1);

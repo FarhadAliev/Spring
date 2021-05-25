@@ -22,19 +22,13 @@
       <h5  class="card-title card-title-product-list"></h5>
       <p  class="card-text-price">
       </p>
-      <div class="card-products-control ">
-        <div class="counter">
-          <button class="minus  btn light" >-</button>
-          <input class="products-control-input btn light" type="number" min="0" max="1000000" step="1" value="0" >
-          <button class="plus  btn light">+</button>
-        </div>
-      </div>
+
       <hr>
       <div class="card-body">
         <p class="card-total">
           <b>Total</b></p>
-        <p class="card-total-price"><b>$8.39</b></p>
-        <a th:href="@{/viewCart}">
+        <p class="card-total-price" th:text="${session.size()>0} ? 'hi' : 'mi' "></p>
+        <a th:href="@{/cart/viewCart}">
           <button class="add-to-card-view btn light" type="submit">View Cart</button>
         </a>
       </div>
