@@ -276,6 +276,9 @@ public class ProductService{
 
     }
 
+    public ProductEntity findByName(String s){
+        return  productRepository.findByProductAdd(s);
+    }
 
 
 

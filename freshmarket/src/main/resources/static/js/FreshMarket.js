@@ -1,3 +1,37 @@
+var card;
+
+$(document).ready(function() {
+    $('.add-to-card').click(function (){
+        var productName = $(this).next().val();
+        var count=$(this).parent('.Grab-add-to-Cart').prev().children('.counter').children('.summ-products-input').val();
+        console.log(productName)
+        console.log(count);
+
+
+
+        $.ajax({
+            type: "GET",
+            url: "/addToCart/"+productName+"/"+count,
+            success: function (result) {
+                JSON.stringify(result)
+
+                console.log(result)
+                $('.products-digit').text(result.length);
+
+                // $('.view-img').html("")
+                // var s = ""
+                // s+='<img class="view-img" src="'+result[0].productImg+'" alt="">';
+                // $('.a').html(s)
+
+
+                 card=$('.card-img-view').attr("src",result[0].productImg);
+                // console.log(result[0].productImg);
+    }
+
+        });
+})
+});
+
 
 $(document).ready(function() {
 
@@ -66,6 +100,7 @@ $('.products-digit').click(function () {
         "z-index": "-1",
 
     })
+
 
     $('.card-product-list').fadeIn(700);
     $('.card-product-list').animate({right: '0rem'});

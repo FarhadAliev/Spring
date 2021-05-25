@@ -26,6 +26,8 @@ public class ProductEntity {
     Long id ;
     @Column(name = "product_name")
     String productName;
+    @Column(name = "currency")
+    String currency="$";
     @Column(name = "product_price")
     BigDecimal productPrice;
     @Column(name = "special_price")

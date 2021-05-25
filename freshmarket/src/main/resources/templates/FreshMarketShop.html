@@ -38,6 +38,7 @@
 
         <!-- ----------------------------------------------------------------------------------------- -->
 
+        <input type="hidden"  name="url"  th:text="shop" value="shop" />
         <div class="-shop-all-products-body">
 
             <div class="container first-section">
@@ -201,7 +202,9 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <button class="btn light add-to-card-shop">Add to Cart</button>
+                                        <a th:href="${'/addToCart/' + product.productName}">
+                                            <button class="btn light add-to-card-shop">Add to Cart</button>
+                                    </a>
                                     </div>
                                 </div>
                             </div>

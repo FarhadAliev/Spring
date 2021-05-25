@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,13 +14,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 
-@EnableOAuth2Sso
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
+    @Autowired
     private UserService userService;
+
 
 
     @Autowired
@@ -36,10 +38,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/","/shop","/product","/contact","/about",
+                .antMatchers("/","/product","/contact","/about",
                         "/faq","/policy","/shipping","/product","/signUpWithEmail","/loginWithEmail").permitAll()
                 .antMatchers("/admin/products","/addNewProduct","/editProduct/**").hasRole("ADMIN")
-                .antMatchers("/viewCart").hasRole("USER")
+                .antMatchers("/viewCart/**","/shop").hasRole("USER")
                 .and()
                 .formLogin()
                 .loginPage("/loginWithEmail").permitAll()
@@ -63,6 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         authenticationProvider.setUserDetailsService(userService);
+
         return authenticationProvider;
     }
 

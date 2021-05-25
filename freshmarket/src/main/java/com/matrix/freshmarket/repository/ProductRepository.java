@@ -14,6 +14,9 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
+ @Query(value = "SELECT * FROM product WHERE product_name=:productName", nativeQuery = true )
+ ProductEntity findByProductAdd(@Param("productName") String s);
+
  Optional<ProductEntity> findByProductName(String s);
 
     @Query(value = "SELECT * FROM  product"

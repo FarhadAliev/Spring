@@ -118,16 +118,9 @@
                             <p class="card-text text-z-1 products-price">
                             </p>
 
-                            <div class="summ-product-btn">
-                                <div class="counter">
-                                    <button class="minus  btn light">-</button>
-                                    <input class="summ-products-input btn light" type="number" min="0" max="1000000" step="1"
-                                        value="0" >
-                                    <button class="plus  btn light">+</button>
-                                </div>
-                            </div>
-                            <button class="btn light add-to-card">Add to Cart</button>
+
                         </div>
+                        <hr style="margin-bottom: 5%">
                     </div>
 
                         <div class="card box products-box col-3 column-slider c-2">
@@ -135,22 +128,16 @@
                             <a class="linkProduct" href="">
                         <img class="card-img-top img-z-2" src="" alt="">
                         </a>
+
                         <hr>
-                        <div class="card-body">
+                        <div class="card-body" >
                             <h5 class="card-title title-z-2  products-name" ></h5>
                             <p class="card-text text-z-2 products-price">
 
                             </p>
-                            <div class="summ-product-btn">
-                                <div class="counter">
-                                    <button class="minus  btn light">-</button>
-                                    <input class="summ-products-input btn light" type="number" min="0" max="1000000" step="1"
-                                        value="0" >
-                                    <button class="plus  btn light">+</button>
-                                </div>
-                            </div>
-                            <button class="btn light add-to-card">Add to Cart</button>
+
                         </div>
+                            <hr style="margin-bottom: 5%">
                     </div>
 
                     <div class="card box products-box col-3 column-slider c-3">
@@ -164,16 +151,8 @@
                             <p class="card-text text-z-3 products-price">
 
                             </p>
-                            <div class="summ-product-btn">
-                                <div class="counter">
-                                    <button class="minus  btn light">-</button>
-                                    <input class="summ-products-input btn light" type="number" min="0" max="1000000" step="1"
-                                        value="0" >
-                                    <button class="plus  btn light">+</button>
-                                </div>
-                            </div>
-                            <button class="btn light add-to-card">Add to Cart</button>
                         </div>
+                        <hr style="margin-bottom: 5%">
                     </div>
 
 
@@ -188,16 +167,8 @@
                                </h5>
                             <p class="card-text text-z-4 products-price">
                             </p>
-                            <div class="summ-product-btn">
-                                <div class="counter">
-                                    <button class="minus  btn light">-</button>
-                                    <input class="summ-products-input btn light" type="number" min="0" max="1000000" step="1"
-                                        value="0" >
-                                    <button class="plus  btn light">+</button>
-                                </div>
-                            </div>
-                            <button class="btn light add-to-card">Add to Cart</button>
                         </div>
+                        <hr style="margin-bottom: 5%">
                     </div>
 
 
@@ -244,7 +215,7 @@
                         Submit your products through RangeMe today!</p>
                 </div>
 
-                
+
                 <div class="container Grab-first-line">
                     <div class="row row-Grab"  >
                     <div class="col-3 column"  th:each="product : ${firstLine}">
@@ -255,18 +226,19 @@
                         <hr>
                         <div class="card-body">
                             <h5 class="card-title  products-name" th:text="${product.productName}"></h5>
-                            <p class="card-text products-price"  th:text="${product.productPrice}"></p>
-                            <div  class="summ-product-btn ">
-                                <div class="counter">
-                                    <button class="minus  btn light">-</button>
-                                    <input class="summ-products-input btn light" type="number" min="0" max="1000000" step="1"
-                                        value="0" >
-                                    <button class="plus  btn light">+</button>
-                                    
-                                </div>
-                            </div>
+
+                            <p class="card-text products-price">$
+                            </p>
+                            <p class="card-text products-price"  th:text="${product.productPrice}">
+                            </p>
+
                             <div class="Grab-add-to-Cart" >
-                            <button class="btn light add-to-card">Add to Cart</button>
+                                <a th:href="@{/shop}">
+                            <button class="btn light add-to-card">
+                                <i class="fas fa-shopping-cart"></i>
+                                Go Shopping !</button>
+                                </a>
+                                <input type="hidden" id="jsonProductId" th:value='${product.productName}'/>
                         </div>
                         </div>
                     </div>

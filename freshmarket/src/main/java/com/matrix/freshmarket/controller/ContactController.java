@@ -2,6 +2,7 @@ package com.matrix.freshmarket.controller;
 
 
 import com.matrix.freshmarket.entity.ContactEntity;
+import com.matrix.freshmarket.global.GlobalData;
 import com.matrix.freshmarket.repository.ContactRepository;
 import com.matrix.freshmarket.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class ContactController {
 
     @GetMapping("/contact")
     public String contact( Model model) {
+        model.addAttribute("count", GlobalData.cart.size());
         model.addAttribute("title", "Contact");
         model.addAttribute("contact",new ContactEntity());
         return "Contact.html";
@@ -40,6 +42,7 @@ public class ContactController {
     @RequestMapping(value = "/contact",method = RequestMethod.POST)
     public Object submitContact(@Valid @ModelAttribute("contact") ContactEntity contactEntity, BindingResult result,
                                 HttpServletRequest request, Model model) throws MessagingException {
+        model.addAttribute("count", GlobalData.cart.size());
         String firstName=request.getParameter("firstName");
         String lastName=request.getParameter("lastName");
         String email=request.getParameter("email");
