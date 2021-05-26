@@ -1195,7 +1195,7 @@ width: 30%;
     width: 70%;
     margin-left: 15%;
     margin-right: 15%;
-  
+
 }
 
 .card-img-view{
@@ -1205,11 +1205,10 @@ width: 30%;
 }
 
 .card-title-product-list{
-    font-size:1.4rem;
-     margin-top:0rem ;
+    font-size:0.8rem;
       width: 100%;
        text-align: center;
-        margin-top: 5%;
+
 }
 
 .add-to-card-view:hover{
@@ -1217,9 +1216,10 @@ width: 30%;
 }
 
 .card-text-price{
-    font-size: 1.4rem;
+    font-size: 0.8rem;
      text-align: center;
-      font-weight: 500;
+      font-weight: 700;
+    margin-bottom: 0;
       
 }
 

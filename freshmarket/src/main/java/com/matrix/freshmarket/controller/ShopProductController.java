@@ -1,5 +1,6 @@
 package com.matrix.freshmarket.controller;
 import com.matrix.freshmarket.Global.GlobalData;
+import com.matrix.freshmarket.dao.Cart;
 import com.matrix.freshmarket.entity.ProductEntity;
 import com.matrix.freshmarket.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.stream.IntStream;
 
 @Controller
@@ -35,7 +38,7 @@ public class ShopProductController {
                                    required = false,
                                    defaultValue = "0")
                                    Integer page,
-                                   Model model) {
+                           Model model, HttpSession session) {
 
             model.addAttribute("count", GlobalData.cart.size());
 
@@ -74,7 +77,6 @@ public class ShopProductController {
        }
         return "FreshMarketShop";
     }
-
 
 
 

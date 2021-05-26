@@ -1,4 +1,5 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:overflow="http://www.w3.org/1999/xhtml"
+      xmlns:overflow-scrolling="http://www.w3.org/1999/xhtml">
 <body>
 <div th:fragment="content">
 
@@ -17,22 +18,24 @@
       <p class="empty-card-body-text">Card is empty</p>
     </div>
 
-    <div class="card card-product-list-2">
-      <img class="card-img-view" th:src="${img}" alt="">
-      <h5  class="card-title card-title-product-list"></h5>
-      <p  class="card-text-price">
-      </p>
+
+    <div   class="card card-product-list-2" th:each="cart:${session.cart}">
+
+      <h5  class="card-title card-title-product-list"
+          th:text="${cart.productEntity.productName}">
+      </h5>
+
 
       <hr>
+
+    </div>
+      <hr>
       <div class="card-body">
-        <p class="card-total">
-          <b>Total</b></p>
-        <p class="card-total-price" th:text="${session.size()>0} ? 'hi' : 'mi' "></p>
         <a th:href="@{/cart/viewCart}">
-          <button class="add-to-card-view btn light" type="submit">View Cart</button>
+          <button  class="add-to-card-view btn light" type="submit">View Cart</button>
         </a>
       </div>
-    </div>
+
   </div>
 </div>
 </body>

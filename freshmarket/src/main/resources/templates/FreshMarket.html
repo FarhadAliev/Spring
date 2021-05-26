@@ -26,7 +26,7 @@
 
     <div th:replace="content/NavBar  :: content"></div>
 
-    
+
 
       <!-- ------------------------------------------------------------------------------------------------- -->
 
@@ -115,10 +115,16 @@
                         <hr>
                         <div class="card-body">
                             <h5 class="card-title title-z-1 products-name"></h5>
-                            <p class="card-text text-z-1 products-price">
+                            <div style="display: inline">
+                                <p style="float: left; padding-left: 33%" class="card-text products-price">$&nbsp;&nbsp;
+                                </p>
+                            <p style="float: left" class="card-text text-z-1 products-price">
                             </p>
-
-
+                            </div>
+                            <button class="btn light add-to-card">
+                                <i class="fas fa-shopping-cart"></i>
+                                Go Shopping !</button>
+                            <br>
                         </div>
                         <hr style="margin-bottom: 5%">
                     </div>
@@ -132,10 +138,17 @@
                         <hr>
                         <div class="card-body" >
                             <h5 class="card-title title-z-2  products-name" ></h5>
-                            <p class="card-text text-z-2 products-price">
 
+                            <div style="display: inline">
+                                <p style="float: left; padding-left: 33%" class="card-text products-price">$&nbsp;&nbsp;
+                                </p>
+                            <p style="float: left" class="card-text text-z-2 products-price">
                             </p>
-
+                                </div>
+                            <button class="btn light add-to-card">
+                                <i class="fas fa-shopping-cart"></i>
+                                Go Shopping !</button>
+                            <br>
                         </div>
                             <hr style="margin-bottom: 5%">
                     </div>
@@ -148,9 +161,16 @@
                         <hr>
                         <div class="card-body">
                             <h5 class="card-title title-z-3  products-name" ></h5>
-                            <p class="card-text text-z-3 products-price">
-
+                            <div style="display: inline">
+                                <p style="float: left; padding-left: 33%" class="card-text products-price">$&nbsp;&nbsp;
+                                </p>
+                            <p style="float: left" class="card-text text-z-3 products-price">
                             </p>
+                                </div>
+                            <button class="btn light add-to-card">
+                                <i class="fas fa-shopping-cart"></i>
+                                Go Shopping !</button>
+                            <br>
                         </div>
                         <hr style="margin-bottom: 5%">
                     </div>
@@ -165,8 +185,18 @@
                         <div class="card-body">
                             <h5 class="card-title title-z-4  products-name" >
                                </h5>
-                            <p class="card-text text-z-4 products-price">
+
+                            <div style="display: inline">
+                                <p style="float: left; padding-left: 37%" class="card-text products-price">$
+                                </p>
+                            <p style="float: left" class="card-text text-z-4 products-price">
                             </p>
+                             </div>
+
+                            <button class="btn light add-to-card">
+                                <i class="fas fa-shopping-cart"></i>
+                                Go Shopping !</button>
+                            <br>
                         </div>
                         <hr style="margin-bottom: 5%">
                     </div>
@@ -227,11 +257,12 @@
                         <div class="card-body">
                             <h5 class="card-title  products-name" th:text="${product.productName}"></h5>
 
-                            <p class="card-text products-price">$
+                            <div style="display: inline">
+                            <p style="float: left; padding-left: 35%" class="card-text products-price">$&nbsp;&nbsp;
                             </p>
-                            <p class="card-text products-price"  th:text="${product.productPrice}">
+                            <p style="float: left" class="card-text products-price"  th:text="${ product.productPrice}">
                             </p>
-
+                            </div>
                             <div class="Grab-add-to-Cart" >
                                 <a th:href="@{/shop}">
                             <button class="btn light add-to-card">

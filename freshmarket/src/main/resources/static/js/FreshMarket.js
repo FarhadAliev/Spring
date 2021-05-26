@@ -16,7 +16,6 @@ $(document).ready(function() {
 
 
 
-
 $(document).ready(function() {
 
     $('.linkProduct').mouseover(function () {

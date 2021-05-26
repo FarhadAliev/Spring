@@ -1,5 +1,6 @@
 package com.matrix.freshmarket.controller.Login;
 
+import com.matrix.freshmarket.Global.GlobalData;
 import com.matrix.freshmarket.entity.User;
 import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.security.core.Authentication;
@@ -17,7 +18,7 @@ public class Login {
 
     @GetMapping("/loginWithEmail")
     public String loginWithEmailPage(Model model) {
-
+        model.addAttribute("count", GlobalData.cart.size());
         model.addAttribute("title", "Login With Email");
         return "LogInWithEmail";
     }
