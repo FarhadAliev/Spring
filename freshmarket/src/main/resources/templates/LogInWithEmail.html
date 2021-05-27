@@ -40,14 +40,14 @@
                          <input type="password" name="password" placeholder="password">
                          <a class="forgot text-muted" th:href="@{/CreatePassword}">Forgot password?</a>
                          <input type="submit" name="submit" value="Login" href="#">
-                        <div class="col-md-12">
-                            <ul class="social-network social-circle">
-                                <li><a th:href="@{/login}" class="icoFacebook authenticated" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+<!--                        <div class="col-md-12">-->
+<!--                            <ul class="social-network social-circle">-->
+<!--                                <li><a th:href="@{/login}" class="icoFacebook authenticated" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>-->
 
-                                <li><a th:href="@{/login}"  class="icoGoogle authenticated" title="Google +"><i class="fab fa-google-plus"></i></a></li>
+<!--                                <li><a th:href="@{/login}"  class="icoGoogle authenticated" title="Google +"><i class="fab fa-google-plus"></i></a></li>-->
 
-                            </ul>
-                        </div>
+<!--                            </ul>-->
+<!--                        </div>-->
                     </form>
                 </div>
             </div>
@@ -55,16 +55,16 @@
     </div>
 
 
-<script type="text/javascript">
-    $.get("/user", function(data) {
-        $(".icoFacebook").html(data.userAuthentication.details.name);
-        console.log(data)
-    });
+<!--<script type="text/javascript">-->
+<!--    $.get("/user", function(data) {-->
+<!--        $(".icoFacebook").html(data.userAuthentication.details.name);-->
+<!--        console.log(data)-->
+<!--    });-->
 
-    $.get("/user", function(data) {
-        $(".icoGoogle").html(data.userAuthentication.details.name);
-        console.log(data)
-    });
+<!--    $.get("/user", function(data) {-->
+<!--        $(".icoGoogle").html(data.userAuthentication.details.name);-->
+<!--        console.log(data)-->
+<!--    });-->
 
 
 </script>

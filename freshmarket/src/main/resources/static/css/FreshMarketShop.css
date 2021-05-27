@@ -469,6 +469,11 @@ display: flex;
   
 }
 
+.column-shop:hover{
+    width: 24.5%;
+
+}
+
 @media only screen and (max-width: 992px) and (min-width: 768px){
   .column-shop{
       width: 50%;
@@ -518,6 +523,8 @@ display: flex;
     margin-bottom: 6%;
 }
 
+
+
 .shop-img-top{
   width: 100%;
   height: auto;
@@ -566,6 +573,10 @@ display: flex;
 
 }
 
+
+.add-to-card-shop:hover{
+    background-color: #50a47c;
+}
 
 
 .hr-card{

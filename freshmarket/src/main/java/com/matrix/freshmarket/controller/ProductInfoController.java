@@ -1,7 +1,6 @@
 package com.matrix.freshmarket.controller;
 
 
-import com.matrix.freshmarket.Global.GlobalData;
 import com.matrix.freshmarket.entity.ProductEntity;
 import com.matrix.freshmarket.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +23,8 @@ public class ProductInfoController {
     @RequestMapping(value = "/product",method = RequestMethod.GET)
         public String productInfo(@RequestParam(name = "productName") String productName, Model model){
 
-        model.addAttribute("count", GlobalData.cart.size());
 
+        System.out.println(productName);
         List<ProductEntity> product=productService.findbyName(productName);
         model.addAttribute("product",product);
         model.addAttribute("productName",productName);

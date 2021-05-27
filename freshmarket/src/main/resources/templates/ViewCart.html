@@ -39,6 +39,9 @@
 <hr class="hr-view-cart">
 </div>
 
+
+   <p th:if="${session.cartsize == 0 ||  session.cartsize == null } " style="text-align: center; font-size: 1.5rem"><b>Card is Empty</b></p>
+
 <form th:action="@{'/cart/update'}" method="post">
 <div class="block-info" th:each="cart:${session.cart}">
     <div class="big-viewcart-price-block">
@@ -67,20 +70,23 @@
         <div class="block" style="display: flex;"  >
         
 <div class="block-info-view-cart">
-    <a href="ProductsInfo.html">
+    <a class="linkProductView" href="">
     <img class="view-img" th:src="${cart.productEntity.productImg}" alt="">
 </a>
 </div>
 
 
 <div class="info-and-functions-block">
-    <p class="view-cart-product-name" th:text="${cart.productEntity.productName}"></p>
+    <i> <p class="view-cart-product-name" th:text="${cart.productEntity.productName}"></p> </i>
 
 
-    <p  class="view-cart-product-price"><b th:text="${cart.productEntity.productPrice}"></b> </p>
+    <div style="display: inline">
+    <p class="view-cart-product-price" style="float: left;font-weight: 600">$&nbsp;</p>
+    <p   class="view-cart-product-price"><b th:text="${cart.productEntity.productPrice}"></b> </p>
+    </div>
+    <div></div>
+        <div class="summ-product-btn view-cart-btn">
 
-
-    <div class="summ-product-btn view-cart-btn">
         <div class="counter">
             <button type="button" class="minus  btn light minus-view" >-</button>
             <input class="summ-products-input btn light view-cart-input" name="quantity" type="number" min="0" max="1000000" step="1"
@@ -132,13 +138,20 @@
 <hr class="hr-order-summary">
 
 <div class="order-summary-block">
-    <p style="text-align: center">Subtotal</p>
+    <p style="text-align: center; color: #2c6d51; font-size: 1.3rem; font-weight: bold">Subtotal</p>
 <div class="block-subtotal" th:each="cart:${session.cart}" style="display: inline" >
 
-    <p class="subtotal-text" th:text="${cart.productEntity.productName}" style="float: left;font-weight: bolder"></p>
-    <p style="float: left">&nbsp;. . . . . .&nbsp;</p>
-    <p style="float: left; font-weight: bolder">&nbsp;$&nbsp;</p>
-    <p style="float: right;font-weight: bolder" class="subtotal-text" th:text="${(cart.quantity)*(cart.productEntity.productPrice)}"></p>
+    <div style="width: 60%; margin: 0; float: left">
+        <i>  <p  class="subtotal-text" th:text="${cart.productEntity.productName}" style="font-weight: bolder"></p> </i>
+    </div>
+    <div style="width:40%; display: inline;">
+
+    <p style="float: right; font-weight: bolder" class="subtotal-text" th:text="${(cart.quantity)*(cart.productEntity.productPrice)}"></p>
+        <p style="float: right; font-weight: bolder">&nbsp;$&nbsp;&nbsp;</p>
+    </div>
+
+
+
 
 </div>
 
@@ -154,10 +167,16 @@
 <hr class="hr-total">
 </div>
 
-<div class="total-block-price">
-<p  class="total-price-text"><b> Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$&nbsp;&nbsp;</b></p>
-<p class="total-all-price"><b th:text="${total}"></b></p>
-</div>
+<div class="total-block-price" style="display: inline">
+    <div style="width: 50%;float: left">
+        <p  class="total-price-text"><b><i> Total</i></b></p>
+    </div>
+    <div style="width: 50%; display: inline">
+
+        <p style="float: right" class="total-all-price"><b th:text="${total}"></b></p>
+        <p class="total-all-price" style="float: right; font-weight: bold;">$&nbsp;&nbsp;</p>
+    </div>
+    </div>
 
 <div class="checkout-button-block">
 
@@ -258,6 +277,8 @@
         crossorigin="anonymous"></script>
     <script  th:src="@{/js/FreshMarket.js}"></script>
     <script  th:src="@{/js/viewCart.js}"></script>
+
+
 
 
 

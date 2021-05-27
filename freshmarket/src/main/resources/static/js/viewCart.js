@@ -1,4 +1,16 @@
 
+
+$(document).ready(function() {
+
+    $('.linkProductView').mouseover(function () {
+        var productName = $(this).parent().next().children(".view-cart-product-name").text()
+        $(".linkProductView").attr("href","/product?productName="+productName+"")
+
+    })
+
+});
+
+
         $('.checkout').click(function(){
 
             $('.allSite').css({

@@ -1,7 +1,6 @@
 package com.matrix.freshmarket.controller.AdminPage;
 
 
-import com.matrix.freshmarket.Global.GlobalData;
 import com.matrix.freshmarket.entity.ProductEntity;
 import com.matrix.freshmarket.entity.User;
 import com.matrix.freshmarket.repository.ProductRepository;
@@ -51,7 +50,6 @@ public class AdminPageController {
                                    defaultValue = "0")
                                    Integer page,
                            Model model) {
-        model.addAttribute("count", GlobalData.cart.size());
         if(!min.equals("$0") || !max.equals("$100")){
 
             Page<ProductEntity> productPage =
@@ -100,7 +98,6 @@ public class AdminPageController {
 
     @GetMapping("/addNewProduct")
     public String redirectToNewProductPage(Model model) {
-        model.addAttribute("count", GlobalData.cart.size());
         return "AddProduct";
     }
 
@@ -142,7 +139,6 @@ public class AdminPageController {
             Model model
     ) {
 
-        model.addAttribute("count", GlobalData.cart.size());
         ProductEntity product = productService.getProduct(productId);
         model.addAttribute("product", product);
         if (!message.equals("")) {
@@ -161,7 +157,6 @@ public class AdminPageController {
         String img=request.getParameter("Image");
         String productInformation=request.getParameter("Product Information");
         String ingredients=request.getParameter("Product Ingredients");
-        model.addAttribute("count", GlobalData.cart.size());
       productService.findProductAndSave(productName,
               category,price,specialPrice,img,
               productInformation,ingredients);
@@ -172,7 +167,6 @@ public class AdminPageController {
 
     @RequestMapping("/deleteProduct/{productId}")
     public String deleteProduct(@PathVariable Long productId,Model model) {
-        model.addAttribute("count", GlobalData.cart.size());
         productService.deleteProduct(productId);
         String message="Product changes deleted from Database";
         return "redirect:/admin/products?message="+message;

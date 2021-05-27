@@ -27,6 +27,9 @@
 
     <!-- ------------------------------------------------------------------------------------------------- -->
 
+
+
+
     <!-- Title -->
     <div class="shop-all-products-list container">
         <div class="shop-block container">
@@ -193,14 +196,15 @@
                                     <h5 class="card-title  products-name-shop" th:text="${product.productName}"></h5>
 
                                         <div class="c" style="display: inline">
-                                            <p style="float: left; font-size: 0.9rem; padding-left: 35%" class="card-text products-price">$&nbsp;
-                                            </p>
+                                            <p style="float: left; font-size: 0.9rem; padding-left: 35%" class="card-text products-price">$&nbsp;</p>
                                     <p style="float: left" class="card-text products-price-shop" th:text="${product.productPrice}"></p>
                                         </div>
 
                                     <div>
                                         <a class="a" th:href="@{'/cart/buy/' + ${product.id}}">
-                                            <button class="btn light add-to-card-shop">Add to Cart</button>
+                                            <button class="btn light add-to-card-shop">
+                                                <i class="fas fa-shopping-cart"></i>&nbsp;
+                                                Add to Cart</button>
                                     </a>
                                     </div>
                                 </div>

@@ -1,7 +1,6 @@
 package com.matrix.freshmarket.controller;
 
 
-import com.matrix.freshmarket.Global.GlobalData;
 import com.matrix.freshmarket.entity.ProductEntity;
 import com.matrix.freshmarket.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,6 @@ public class HomeContoller {
     @GetMapping("/")
     public String homePage(Model model ){
         model.addAttribute("title", "Home");
-        model.addAttribute("count", GlobalData.cart.size());
         List<ProductEntity> productsFirst =
                 productService.findtop8();
         model.addAttribute("firstLine",productsFirst);
@@ -41,7 +39,7 @@ public class HomeContoller {
 
     @GetMapping("/about")
     public String aboutPage( Model model) {
-        model.addAttribute("count", GlobalData.cart.size());
+
         model.addAttribute("title", "About");
         return "About";
     }
@@ -50,7 +48,7 @@ public class HomeContoller {
 
     @GetMapping("/faq")
     public String faqPage( Model model) {
-        model.addAttribute("count", GlobalData.cart.size());
+
         model.addAttribute("title", "Faq");
         return "Faq";
     }
@@ -60,7 +58,7 @@ public class HomeContoller {
 
     @GetMapping("/policy")
     public String policyPage( Model model) {
-        model.addAttribute("count", GlobalData.cart.size());
+
         model.addAttribute("title", "Policy");
         return "Policy";
     }
@@ -68,7 +66,7 @@ public class HomeContoller {
 
     @GetMapping("/shipping")
     public String shippingPage( Model model) {
-        model.addAttribute("count", GlobalData.cart.size());
+
         model.addAttribute("title", "Shipping");
         return "Shipping";
     }

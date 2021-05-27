@@ -1,7 +1,6 @@
 package com.matrix.freshmarket.controller.Ecommerce;
 
 
-import com.matrix.freshmarket.Global.GlobalData;
 import com.matrix.freshmarket.dao.Cart;
 import com.matrix.freshmarket.entity.ProductEntity;
 import com.matrix.freshmarket.service.ProductService;
@@ -27,9 +26,14 @@ public class CartController {
     @Autowired
     private ProductService productService;
 
+    @GetMapping(value = "/view")
+    public String cartView(){
+        return "ViewCart.html";
+    }
+
+
     @RequestMapping(value = "/viewCart", method = RequestMethod.GET)
     public String cart(ModelMap modelMap, HttpSession session) {
-        modelMap.addAttribute("count", GlobalData.cart.size());
         modelMap.put("total", total(session));
         return "ViewCart.html";
     }
@@ -43,6 +47,8 @@ public class CartController {
             List<Cart> cart = new ArrayList<Cart>();
             cart.add(new Cart(productService.getProduct(id), 1));
             session.setAttribute("cart", cart);
+
+            session.setAttribute("cartsize",cart.size());
         } else {
             List<Cart> cart = (List<Cart>) session.getAttribute("cart");
             long index = isExist(id, cart);
@@ -54,6 +60,7 @@ public class CartController {
 
             }
             session.setAttribute("cart", cart);
+            session.setAttribute("cartsize",cart.size());
         }
 
         return "redirect:/shop";
@@ -68,7 +75,7 @@ public class CartController {
         System.out.println(index);
         cart.remove(index);
         session.setAttribute("cart", cart);
-
+        session.setAttribute("cartsize",cart.size());
         return "redirect:/cart/viewCart";
     }
 
@@ -82,6 +89,7 @@ public class CartController {
             cart.get(i).setQuantity(Integer.parseInt(quantities[i]));
         }
         session.setAttribute("cart", cart);
+        session.setAttribute("cartsize",cart.size());
         return "redirect:/cart/viewCart";
     }
 
@@ -102,35 +110,12 @@ public class CartController {
         for (Cart cartSumm : cart) {
             s += cartSumm.getQuantity() * cartSumm.getProductEntity().getProductPrice().doubleValue();
         }
-        double num = Math.round(s);
+        double num = Math.round(s*100.0)/100.0;
         return num;
     }
 
 
-    @RequestMapping("/addToCart/{productName}")
-    public ResponseEntity<List<ProductEntity>> addToCart(@PathVariable String productName, Model model) {
 
-
-
-        System.out.println(GlobalData.cart.size());
-        ProductEntity product = productService.findByName(productName);
-
-            GlobalData.cart.add(product);
-
-
-        List<ProductEntity> cart;
-
-
-        try {
-
-            cart = GlobalData.cart;
-            return new ResponseEntity<List<ProductEntity>>(cart, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<List<ProductEntity>>(HttpStatus.BAD_REQUEST);
-        }
-
-
-    }
 
 
 

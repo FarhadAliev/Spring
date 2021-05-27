@@ -15,7 +15,7 @@
     </div>
 
     <div class="card-body empty-card-body">
-      <p class="empty-card-body-text">Card is empty</p>
+      <p th:if="${session.cartsize == null || session.cartsize == 0 } " style="text-align: center; font-size: 1.5rem"><b>Card is Empty</b></p>
     </div>
 
 
@@ -31,7 +31,10 @@
     </div>
       <hr>
       <div class="card-body">
-        <a th:href="@{/cart/viewCart}">
+        <a th:if="${session.cartsize == null}" th:href="@{/cart/view}">
+          <button  class="add-to-card-view btn light" type="submit">View Cart</button>
+        </a>
+        <a th:if="${session.cartsize > 0}"  th:href="@{/cart/viewCart}">
           <button  class="add-to-card-view btn light" type="submit">View Cart</button>
         </a>
       </div>

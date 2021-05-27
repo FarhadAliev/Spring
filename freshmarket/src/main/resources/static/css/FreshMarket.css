@@ -435,6 +435,10 @@ input::-webkit-inner-spin-button {
       width: 100%;
 }
 
+.add-to-card:hover{
+    background-color: #478f6c;
+}
+
 
 
 .carousel-control-prev-icon,
@@ -1180,7 +1184,7 @@ width: 30%;
 
 .empty-card-body-text{
     text-align: center;
-     display: none;
+
 }
 
 .card-product-list-2{

@@ -1,5 +1,4 @@
 package com.matrix.freshmarket.controller;
-import com.matrix.freshmarket.Global.GlobalData;
 import com.matrix.freshmarket.dao.Cart;
 import com.matrix.freshmarket.entity.ProductEntity;
 import com.matrix.freshmarket.service.ProductService;
@@ -40,7 +39,7 @@ public class ShopProductController {
                                    Integer page,
                            Model model, HttpSession session) {
 
-            model.addAttribute("count", GlobalData.cart.size());
+
 
            if(!min.equals("$0") || !max.equals("$100")){
 

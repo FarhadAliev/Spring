@@ -71,24 +71,28 @@ html{
 
 .view-img{
     width:100%;
-     border: 1px solid black;
+     border: 3px solid #045b36;
+    border-radius:  2rem 2rem 2rem 2rem;
 }
 
 .info-and-functions-block{
     float: left;
-     width: 30%;
+     width: 40%;
       margin-left: 5%;
        margin-top:  2%;
 }
 
 .view-cart-product-name{
-    font-size: 0.9rem;
+    font-size: 1rem;
+    font-weight: 600;
+    padding-left: 5%;
 }
 
 .view-cart-product-price{
     font-size: 1.5rem;
-     padding-top: 20%; 
-     padding-bottom: 29%;
+     padding-top: 30%;
+     padding-bottom: 5%;
+    padding-left: 30.5%;
 }
 
 
@@ -227,10 +231,12 @@ color: black;
 
 .block-subtotal{
     float: left;
+    width: 100%;
 }
 
 .subtotal-text{
     font-weight: 300;
+
 }
 
 .summary-price-block{
@@ -264,10 +270,12 @@ color: black;
 
 .total-price-text{
     float: left;
+    font-size: 1.3rem;
 }
 
 .total-all-price{
     float: right;
+    font-size: 1.3rem;
 }
 
 .checkout-button-block{

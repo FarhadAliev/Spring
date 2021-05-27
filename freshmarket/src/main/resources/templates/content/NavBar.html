@@ -63,7 +63,8 @@
               <a href="##" class="nav-link"  >
                 <i class="fab fa-shopify logo3">
                 </i>
-                <p class="products-digit"  th:text="${count}"></p>
+                <p class="products-digit"  th:if="${session.cartsize == null || session.cartsize == 0 } " >0</p>
+                <p class="products-digit"  th:if="${session.cartsize >0}" th:text="${session.cartsize}"></p>
               </a>
             </div>
           </li>
